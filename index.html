@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kiwoo Shin</title>
+  <meta name="description" content="Kiwoo Shin — robotics and machine learning. Side projects and demos.">
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #1a1a1a;
+      --muted: #6b6b6b;
+      --border: #e2e2e2;
+      --card: #fafafa;
+      --accent: #2563eb;
+      --tag-bg: #eef2ff;
+      --tag-fg: #3730a3;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111214;
+        --fg: #e8e8e8;
+        --muted: #9a9a9a;
+        --border: #2a2c30;
+        --card: #1a1c1f;
+        --accent: #7aa2ff;
+        --tag-bg: #1e2740;
+        --tag-fg: #aabdff;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      padding: 3rem 1.25rem 4rem;
+    }
+    main { max-width: 760px; margin: 0 auto; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* ---- Header ---- */
+    header h1 { font-size: 2rem; letter-spacing: -0.02em; }
+    header .tagline { color: var(--muted); margin-top: 0.35rem; }
+    header nav { margin-top: 0.9rem; display: flex; gap: 1.1rem; flex-wrap: wrap; font-size: 0.95rem; }
+
+    /* ---- About ---- */
+    #about { margin-top: 2.2rem; color: var(--fg); }
+
+    /* ---- CV sections (Education / Experience) ---- */
+    .cv-section { margin-top: 2.8rem; }
+    .cv-section > h2 { font-size: 1.3rem; margin-bottom: 1rem; }
+    .entry { margin-bottom: 1rem; }
+    .entry .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .entry .what { font-weight: 600; }
+    .entry .when { color: var(--muted); font-size: 0.9rem; white-space: nowrap; }
+    .entry .where { color: var(--muted); font-size: 0.95rem; }
+    .entry .detail { font-size: 0.92rem; margin-top: 0.2rem; }
+
+    /* ---- Projects ---- */
+    #projects { margin-top: 2.8rem; }
+    #projects > h2 { font-size: 1.3rem; margin-bottom: 1.2rem; }
+    .project {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 10px;
+      padding: 1.4rem;
+      margin-bottom: 1.4rem;
+    }
+    .project h3 { font-size: 1.1rem; }
+    .project h3 a { color: inherit; }
+    .project p { margin-top: 0.5rem; font-size: 0.95rem; }
+    .tags { margin-top: 0.7rem; display: flex; gap: 0.4rem; flex-wrap: wrap; }
+    .tags span {
+      background: var(--tag-bg);
+      color: var(--tag-fg);
+      font-size: 0.75rem;
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+    }
+    .links { margin-top: 0.7rem; font-size: 0.9rem; }
+
+    /* ---- Demo media ---- */
+    .featured { margin-top: 1rem; }
+    .featured img { width: 100%; display: block; border-radius: 8px; }
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    @media (max-width: 620px) { .gallery { grid-template-columns: 1fr; } }
+    .gallery img { width: 100%; display: block; border-radius: 6px; }
+    figure { margin: 0; }
+    figcaption {
+      margin-top: 0.35rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* ---- Video slot: replace the placeholder div with a real embed ---- */
+    .video-slot {
+      margin-top: 1rem;
+      aspect-ratio: 16 / 9;
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .video-slot iframe, .video-slot video {
+      width: 100%; height: 100%; border: 0; border-radius: 8px;
+    }
+    .has-video { border: none; }
+
+    footer {
+      margin-top: 3rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+<main>
+
+  <header>
+    <h1>Kiwoo Shin</h1>
+    <p class="tagline">Senior Software Engineer, Vision AI at NVIDIA · Ph.D., UC Berkeley —
+    3D perception for self-driving vehicles and learned robot systems.</p>
+    <nav>
+      <a href="https://github.com/KiwooShin">GitHub</a>
+      <a href="https://www.linkedin.com/in/kiwoo-shin">LinkedIn</a>
+      <a href="mailto:kiwoo.shin@berkeley.edu">Email</a>
+      <!-- <a href="cv.pdf">CV</a> -->
+      <!-- <a href="https://scholar.google.com/...">Scholar</a> -->
+    </nav>
+  </header>
+
+  <section id="about">
+    <p>I've spent the last decade building 3D perception systems. I did my
+    Ph.D. at UC Berkeley on 3D object detection for self-driving vehicles —
+    where RoarNet took 2nd place on the KITTI 3D detection benchmark — then
+    five years shipping autonomous-vehicle perception: monocular 3D detection
+    and camera-LiDAR panoptic segmentation at Argo AI, and a Transformer-based
+    multi-modal perception foundation model at Latitude AI. Today I'm a senior
+    software engineer on NVIDIA's Vision AI team, connecting real-time 3D
+    detection and tracking with visual-language systems for video search and
+    summarization.</p>
+    <p style="margin-top:0.6rem;">On the side, I build learned robot systems in
+    simulation — from single-humanoid vision-language navigation to multi-robot
+    collaboration and camera-only manipulation. Demos below.</p>
+  </section>
+
+  <section id="experience" class="cv-section">
+    <h2>Experience</h2>
+    <div class="entry">
+      <div class="row">
+        <span class="what">Senior Software Engineer, Vision AI — NVIDIA</span>
+        <span class="when">Jan 2025 – present</span>
+      </div>
+      <div class="where">Santa Clara, CA</div>
+      <p class="detail">3D scene understanding for video streaming in NVIDIA's
+      Video Search and Summarization service; real-time 3D detection and
+      tracking integrated with visual-language systems for sports, warehouse,
+      and traffic analysis.</p>
+    </div>
+    <div class="entry">
+      <div class="row">
+        <span class="what">Senior Software Engineer, Unified Perception — Latitude AI</span>
+        <span class="when">Jan 2023 – Dec 2024</span>
+      </div>
+      <div class="where">Palo Alto, CA · wholly owned subsidiary of Ford</div>
+      <p class="detail">Transformer-based multi-modal perception foundation
+      model (3D detection, tracking, state estimation, OOD classification)
+      with spatio-temporal camera–LiDAR–radar fusion; long-range (500&nbsp;ft)
+      real-time camera-LiDAR 3D detection with 5 models deployed to real
+      vehicles; distributed multi-GPU training infrastructure with a 3×
+      training-speed improvement.</p>
+    </div>
+    <div class="entry">
+      <div class="row">
+        <span class="what">Software Engineer, Camera Perception — Argo AI</span>
+        <span class="when">Jun 2020 – Dec 2022</span>
+      </div>
+      <div class="where">Palo Alto, CA · joint venture backed by Ford and Volkswagen</div>
+      <p class="detail">Monocular 3D amodal cuboid detection to 200&nbsp;m
+      (patent filed, +10 mAP from a 2.4M-sample synthetic-augmented dataset);
+      real-time camera-LiDAR 3D panoptic segmentation (200+&nbsp;ms → 56&nbsp;ms);
+      sensor-fusion foreign-object detection deployed on-vehicle at
+      1.2&nbsp;ms for 8 objects.</p>
+    </div>
+    <div class="entry">
+      <div class="row">
+        <span class="what">ML Research Intern, LiDAR Perception — Lyft Level 5</span>
+        <span class="when">Oct 2019 – Jan 2020</span>
+      </div>
+      <div class="where">Palo Alto, CA</div>
+      <p class="detail">Active and weakly-supervised learning for 3D detection
+      of rare objects; mined a 600k-frame training set — 10× the human-labeled
+      dataset.</p>
+    </div>
+    <div class="entry">
+      <div class="row">
+        <span class="what">ML Research Intern, LiDAR Perception — Aptiv (now Motional)</span>
+        <span class="when">May 2019 – Sep 2019</span>
+      </div>
+      <div class="where">Santa Monica, CA</div>
+      <p class="detail">End-to-end single-stage LiDAR 3D perception with
+      6-second path prediction for cars and pedestrians.</p>
+    </div>
+    <div class="entry">
+      <div class="row">
+        <span class="what">Graduate Researcher — Berkeley Deep Drive</span>
+        <span class="when">Aug 2015 – Dec 2020</span>
+      </div>
+      <div class="where">UC Berkeley · advised by Prof. Masayoshi Tomizuka</div>
+      <p class="detail">3D object detection for self-driving vehicles —
+      RoarNet reached 2nd place on the KITTI 3D detection benchmark
+      (July 2018).</p>
+    </div>
+  </section>
+
+  <section id="education" class="cv-section">
+    <h2>Education</h2>
+    <div class="entry">
+      <div class="row">
+        <span class="what">Ph.D., Mechanical Engineering</span>
+        <span class="when">Dec 2020</span>
+      </div>
+      <div class="where">University of California, Berkeley</div>
+      <p class="detail">Dissertation: <em>3D Object Detection for Self-Driving
+      Vehicles</em>.</p>
+    </div>
+    <div class="entry">
+      <div class="row">
+        <span class="what">B.S., Electrical Engineering and Computer Science</span>
+        <span class="when">Jun 2014</span>
+      </div>
+      <div class="where">Seoul National University · Summa Cum Laude</div>
+    </div>
+  </section>
+
+  <section id="publications" class="cv-section">
+    <h2>Selected Publications &amp; Patents</h2>
+    <div class="entry">
+      <p class="detail"><strong>RoarNet: A Robust 3D Object Detection based on
+      RegiOn Approximation Refinement.</strong> Kiwoo Shin*, Youngwook Paul
+      Kwon*, M. Tomizuka. <em>IEEE Intelligent Vehicles 2019</em> — 290+
+      citations; 2nd place, KITTI 3D object detection benchmark (Jul 2018).</p>
+    </div>
+    <div class="entry">
+      <p class="detail"><strong>epBRM: End Point Box Regression Module for
+      LiDAR-based 3D Object Detection.</strong> Kiwoo Shin, M. Tomizuka.
+      <em>IEEE Intelligent Vehicles 2020</em>.</p>
+    </div>
+    <div class="entry">
+      <p class="detail"><strong>Multi-camera Perception Feature Fusion</strong>
+      — US patent applications 17/394,973 and 17/395,003 (filed).</p>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+
+    <article class="project">
+      <h3><a href="https://github.com/KiwooShin/VLA_mujoco_multi_unitree_warehouse">Multi-Robot Warehouse — Collaborative Search-and-Fetch</a></h3>
+      <p>Four Unitree G1 humanoids explore a multi-room warehouse and fulfill
+      plain-English orders end to end: they ask teammates what they can see,
+      delegate a room-by-room search over an addressed, need-to-know message
+      bus, plan collision-free A* routes, and walk them on a learned VLA
+      locomotion policy to fetch and deliver the object.</p>
+      <div class="tags">
+        <span>MuJoCo</span><span>Unitree G1</span><span>multi-robot</span>
+        <span>VLA</span><span>fleet coordination</span>
+      </div>
+      <!-- To add a full-length video later, use a YouTube embed:
+           <div class="video-slot has-video">
+             <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Demo"
+                     allowfullscreen></iframe>
+           </div> -->
+      <figure class="featured">
+        <img src="media/warehouse/mission_c.gif" alt="Mission C — delegated search then fetch">
+        <figcaption>Delegated room-to-room search, then fetch — Bravo finds the
+        hidden cube and reports its relative position to Alpha only; Alpha walks
+        the learned VLA gait to fetch it and carries it to the delivery pad,
+        with the live comms transcript and ego insets on the right.</figcaption>
+      </figure>
+      <div class="gallery">
+        <figure>
+          <img src="media/warehouse/six_robot_flagship.gif" alt="Six-robot flagship demo" loading="lazy">
+          <figcaption>Six-robot flagship — an ambiguous fleet order ("someone
+          bring me a ball") is clarified, allocated to the shortest-path owner,
+          and searched across four rooms in parallel.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/warehouse/clarify_fetch.gif" alt="Clarify-then-fetch demo" loading="lazy">
+          <figcaption>Ambiguous order → clarify → fetch — "bring me the cube"
+          matches three cubes, so Alpha asks which one before delegating the
+          search.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/warehouse/unseen_map.gif" alt="Never-seen map demo" loading="lazy">
+          <figcaption>Never-seen map — a freshly sampled warehouse layout;
+          room-by-room search finds a cube hidden in a shelf-occluded
+          corner.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/warehouse/dual_fetch.gif" alt="Two parallel missions demo" loading="lazy">
+          <figcaption>Two objects, two owners — one order splits into two
+          concurrent missions that finish only when both objects are on the
+          pad.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/warehouse/relay_multigoal.gif" alt="Sequential relay demo" loading="lazy">
+          <figcaption>Sequential relay — one owner fetches the red cube, then
+          re-tasks the same teammates to find and deliver the blue
+          ball.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/warehouse/retask.gif" alt="Mid-mission re-task demo" loading="lazy">
+          <figcaption>Mid-mission re-task — "actually, bring the yellow ball
+          instead": helpers stand down and the search is
+          re-delegated.</figcaption>
+        </figure>
+      </div>
+      <p class="links"><a href="https://github.com/KiwooShin/VLA_mujoco_multi_unitree_warehouse">Code &amp; write-up →</a></p>
+    </article>
+
+    <article class="project">
+      <h3><a href="https://github.com/KiwooShin/VLA_mujoco_unitree">G1Nav — Vision-Language-Action Navigation for a Unitree G1</a></h3>
+      <p>A compact VLA policy that navigates a Unitree G1 humanoid through an
+      object-filled arena from onboard RGBD, sensor history, and a free-form
+      English instruction — outputting 15-dim joint targets at 50&nbsp;Hz in
+      real time, deployed fully WBC-free. Includes a from-scratch learned
+      grounding detector, two-camera handoff, and local obstacle avoidance.</p>
+      <div class="tags">
+        <span>MuJoCo</span><span>Unitree G1</span><span>VLA</span>
+        <span>imitation learning</span><span>GR00T</span>
+      </div>
+      <figure class="featured">
+        <img src="media/g1nav/demo.gif" alt="G1Nav interactive demo" loading="lazy">
+        <figcaption>Interactive demo — "find the red cylinder": the G1 scans,
+        spots the cylinder 6.2&nbsp;m away, and walks to it past a same-color
+        decoy cube, the ego view switching cameras automatically to keep the
+        target in frame.</figcaption>
+      </figure>
+      <div class="gallery">
+        <figure>
+          <img src="media/g1nav/01_long_range.gif" alt="Long-range navigation demo" loading="lazy">
+          <figcaption>Long-range navigation — scan, spot the purple ball at
+          7.5&nbsp;m, walk in with camera handoff.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/g1nav/02_search_reversal.gif" alt="Search with reversal demo" loading="lazy">
+          <figcaption>Search with reversal — the scan direction flips before
+          locking on, then the robot walks to the target.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/g1nav/03_multi_goal.gif" alt="Multi-goal instruction demo" loading="lazy">
+          <figcaption>Multi-goal instruction — after reaching goal 1, the
+          goal-2 search continues from the goal-1 position.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/g1nav/04_twin_decoy.gif" alt="Same-color decoy demo" loading="lazy">
+          <figcaption>Same-color decoy discrimination — the grounding heatmap
+          locks the cylinder and ignores an identically colored cube
+          nearby.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/g1nav/05_obstacle_weave.gif" alt="Obstacle avoidance demo" loading="lazy">
+          <figcaption>Obstacle avoidance — depth-corridor repulsion bends the
+          path around a green ball.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/g1nav/06_interactive.gif" alt="Interactive instruction demo" loading="lazy">
+          <figcaption>Interactive instruction — an ambiguous request gets a
+          clarification question, and the answer drives the
+          search.</figcaption>
+        </figure>
+      </div>
+      <p class="links"><a href="https://github.com/KiwooShin/VLA_mujoco_unitree">Code &amp; write-up →</a></p>
+    </article>
+
+    <article class="project">
+      <h3><a href="https://github.com/KiwooShin/Intrinsics_Assembly_Robotics">Camera-Only Imitation Learning for Robotic Cable Insertion</a></h3>
+      <p>A learned visuomotor policy that inserts SFP fiber-optic plugs into
+      NIC ports with a UR5e — from RGB cameras only, no ground-truth poses, no
+      depth. Built on the Intrinsic AI for Industry Challenge toolkit, with
+      oracle distillation, ACT-style policy learning, a hardened evaluation
+      harness, and a statistics-first experiment log.</p>
+      <div class="tags">
+        <span>UR5e</span><span>Gazebo</span><span>ACT</span>
+        <span>imitation learning</span><span>manipulation</span>
+      </div>
+      <figure class="featured">
+        <img src="media/insertion/oracle_demo_sfp_rail0_sfp_port_0.gif" alt="Oracle SFP insertion demo" loading="lazy">
+        <figcaption>The task, end to end — the scripted oracle (reads
+        ground-truth port poses) seats an SFP plug into the NIC port, engine
+        score ≈93/100. This is the distillation teacher. GIFs are 2.5×
+        timelapses.</figcaption>
+      </figure>
+      <div class="gallery">
+        <figure>
+          <img src="media/insertion/policy_p1_k16_official_1.gif" alt="Learned policy rollout" loading="lazy">
+          <figcaption>Learned ACT policy (3 RGB cameras + TCP state, ~0.75&nbsp;M
+          params) — a clean camera-only approach on an official evaluation
+          config.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/insertion/policy_v2_wide_official_2.gif" alt="Adopted checkpoint v2_wide rollout" loading="lazy">
+          <figcaption>Adopted checkpoint <code>v2_wide</code> on a harder pose —
+          the characteristic "last-inch" stall 5–8&nbsp;cm from the port,
+          analyzed in the write-up.</figcaption>
+        </figure>
+      </div>
+      <p class="links"><a href="https://github.com/KiwooShin/Intrinsics_Assembly_Robotics">Code &amp; write-up →</a></p>
+    </article>
+
+  </section>
+
+  <footer>
+    © 2026 Kiwoo Shin · Built with plain HTML — no framework, no build step.
+  </footer>
+
+</main>
+</body>
+</html>
