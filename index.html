@@ -97,6 +97,9 @@
     }
     @media (max-width: 620px) { .gallery { grid-template-columns: 1fr; } }
     .gallery img { width: 100%; display: block; border-radius: 6px; }
+    .fig-narrow { max-width: 440px; margin-left: auto; margin-right: auto; }
+    .paper-fig img { background: #fff; border: 1px solid var(--border); padding: 0.5rem; }
+    .venue { color: var(--muted); font-size: 0.9rem; margin-top: 0.25rem; }
     figure { margin: 0; }
     figcaption {
       margin-top: 0.35rem;
@@ -251,22 +254,78 @@
     </div>
   </section>
 
-  <section id="publications" class="cv-section">
-    <h2>Selected Publications &amp; Patents</h2>
-    <div class="entry">
-      <p class="detail"><strong>RoarNet: A Robust 3D Object Detection based on
-      RegiOn Approximation Refinement.</strong> Kiwoo Shin*, Youngwook Paul
-      Kwon*, M. Tomizuka. <em>IEEE Intelligent Vehicles 2019</em> — 290+
-      citations; 2nd place, KITTI 3D object detection benchmark (Jul 2018).</p>
-    </div>
-    <div class="entry">
-      <p class="detail"><strong>epBRM: End Point Box Regression Module for
-      LiDAR-based 3D Object Detection.</strong> Kiwoo Shin, M. Tomizuka.
-      <em>IEEE Intelligent Vehicles 2020</em>.</p>
-    </div>
-    <div class="entry">
-      <p class="detail"><strong>Multi-camera Perception Feature Fusion</strong>
-      — US patent applications 17/394,973 and 17/395,003 (filed).</p>
+  <section id="research" class="cv-section">
+    <h2>Research</h2>
+
+    <article class="project">
+      <h3><a href="https://arxiv.org/abs/1811.03818">RoarNet: A Robust 3D Object
+      Detection based on RegiOn Approximation Refinement</a></h3>
+      <p class="venue">Kiwoo Shin*, Youngwook Paul Kwon*, Masayoshi Tomizuka ·
+      IEEE Intelligent Vehicles Symposium 2019 · 290+ citations ·
+      2nd place, KITTI 3D detection benchmark (Jul 2018)</p>
+      <p>RoarNet detects cars in 3D from a camera image plus a LiDAR scan —
+      without requiring the two sensors to be tightly time-synchronized. The
+      key idea is to let the image do the first pass: a 2D network estimates
+      each object's full 3D pose directly from the monocular image using
+      <em>geometric agreement search</em> (a 3D box must project back onto its
+      own 2D detection), then scatters a handful of candidate positions along
+      the camera ray. That collapses an enormous 3D search space into a few
+      short line segments. A PointNet-based second stage then reads the raw
+      points inside each candidate region and recursively refines the box's
+      location, rotation, and size. Because the point clouds are never
+      cropped by the 2D box, detection degrades gracefully when camera and
+      LiDAR fall out of sync — where prior state-of-the-art methods drop
+      sharply.</p>
+      <figure class="featured paper-fig fig-narrow">
+        <img src="media/research/roarnet_pipeline.png" alt="RoarNet detection pipeline" loading="lazy">
+        <figcaption>The pipeline: (a) 2D detection with geometric agreement
+        search, (b) cylindrical 3D region proposals in the point cloud,
+        (c) recursive box regression, (d) final 3D bounding boxes.</figcaption>
+      </figure>
+      <figure class="featured paper-fig">
+        <img src="media/research/roarnet_arch.png" alt="RoarNet architecture" loading="lazy">
+        <figcaption>Two-stage architecture: RoarNet_2D turns image detections
+        into 3D region proposals; RoarNet_3D refines them with PointNet-style
+        networks — RPN for objectness and location, BRN for the full
+        box.</figcaption>
+      </figure>
+      <p class="links"><a href="https://arxiv.org/abs/1811.03818">arXiv:1811.03818 →</a></p>
+    </article>
+
+    <article class="project">
+      <h3><a href="https://arxiv.org/abs/1910.04853">epBRM: Improving the Quality
+      of 3D Object Detection using an End Point Box Regression Module</a></h3>
+      <p class="venue">Kiwoo Shin, Masayoshi Tomizuka ·
+      IEEE Intelligent Vehicles Symposium 2020</p>
+      <p>LiDAR detectors have a common failure mode: many predictions land
+      right next to a real object, but the box fits too loosely to count as a
+      detection. Rather than building yet another detector, epBRM is a tiny
+      plug-in module that refines <em>any</em> detector's output: it samples
+      the raw points around each predicted location and regresses a precise
+      3D box, using a spatial-transformation (centering) mechanism to make the
+      regression easy enough for a very small PointNet. Bolted onto
+      AVOD, F-PointNet, or PointPillars, it improves 3D detection on KITTI
+      after just 40 minutes of training, adding less than 12&nbsp;ms of
+      inference overhead for up to 20 objects.</p>
+      <figure class="featured paper-fig">
+        <img src="media/research/epbrm_pipeline.png" alt="epBRM box regression pipeline" loading="lazy">
+        <figcaption>epBRM slots in after any localization module: (a) take its
+        predicted object locations, (b) sample the raw points around each,
+        (c) regress a precise 3D box, (d) keep the detector's confidence
+        score.</figcaption>
+      </figure>
+      <figure class="featured paper-fig fig-narrow">
+        <img src="media/research/epbrm_training.png" alt="epBRM training progress vs PointPillars baseline" loading="lazy">
+        <figcaption>Applied to PointPillars, epBRM overtakes the base
+        detector's box quality after ~10k iterations — about 40 minutes of
+        training on a single GPU.</figcaption>
+      </figure>
+      <p class="links"><a href="https://arxiv.org/abs/1910.04853">arXiv:1910.04853 →</a></p>
+    </article>
+
+    <div class="entry" style="margin-top:1.2rem;">
+      <p class="detail"><strong>Patent:</strong> Multi-camera Perception Feature
+      Fusion — US patent applications 17/394,973 and 17/395,003 (filed).</p>
     </div>
   </section>
 
