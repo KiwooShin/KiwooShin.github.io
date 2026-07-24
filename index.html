@@ -457,7 +457,12 @@
       NIC ports with a UR5e — from RGB cameras only, no ground-truth poses, no
       depth. Built on the Intrinsic AI for Industry Challenge toolkit, with
       oracle distillation, ACT-style policy learning, a hardened evaluation
-      harness, and a statistics-first experiment log.</p>
+      harness, and a statistics-first experiment log. A curriculum-insertion
+      phase then produced the project's first fully <em>learned</em> seats
+      (best 93/100), off-center recovery at 2–3&nbsp;mm offsets, robustness
+      across randomized scenes, and a separate model for the harder angled SC
+      fiber connector — with failures scored and shown alongside the
+      successes.</p>
       <div class="tags">
         <span>UR5e</span><span>Gazebo</span><span>ACT</span>
         <span>imitation learning</span><span>manipulation</span>
@@ -471,16 +476,68 @@
       </figure>
       <div class="gallery">
         <figure>
+          <img src="media/insertion/milestone1_first_seat.gif" alt="Milestone 1: first learned-policy seat" loading="lazy">
+          <figcaption>Milestone 1 — the first seat by a <em>learned</em>
+          policy: staged above the aligned port, then a camera+force descent
+          with no ground-truth pose fed to the network. Best demo 93/100;
+          3/3 on the matched-seed suite (~88 mean).</figcaption>
+        </figure>
+        <figure>
+          <img src="media/insertion/milestone2_offset_2mm.gif" alt="Milestone 2: 2 mm off-center insertion" loading="lazy">
+          <figcaption>Milestone 2 — off-center insertion: commanded 2&nbsp;mm
+          off-center, the plug travels and corrects at the port mouth during a
+          blind descent. Verified staged seat, 92.9/100.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/insertion/milestone3_ten_locations.gif" alt="Milestone 3: 10 random locations" loading="lazy">
+          <figcaption>Milestone 3 — robustness: the same policy on 10 fully
+          randomized scenes (board pose, rail, port) seats 9/10 at ~93/100;
+          the lone runaway miss is disclosed in the tally, not cropped
+          out.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/insertion/milestone4_sc_insertion.gif" alt="Milestone 4: SC angled insertion" loading="lazy">
+          <figcaption>Milestone 4 — SC angled fiber insertion: the port is
+          physically rotated, so a separate model learns to insert along the
+          port's own tilted axis, seating 5/6 SC poses at
+          ~85–87/100.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/insertion/dynamic_3mm.gif" alt="Dynamic rollout: 3 mm offset seated" loading="lazy">
+          <figcaption>Dynamic rollout — 3&nbsp;mm lateral offset: a large
+          correction swings in during descent; seated at
+          93.3/100.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/insertion/dynamic_2mm.gif" alt="Dynamic rollout: 2 mm offset seated" loading="lazy">
+          <figcaption>Dynamic rollout — 2&nbsp;mm offset: the plug walks over
+          to the port and drops in; seated at 92.9/100.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/insertion/dynamic_1p2mm_miss.gif" alt="Dynamic rollout: 1.2 mm offset missed" loading="lazy">
+          <figcaption>Dynamic rollout — 1.2&nbsp;mm offset, NOT seated
+          (56.8/100): the plug drifts past before it can feel the port. An
+          honest failure, shown rather than hidden — seat/miss at a given
+          offset is scene-dependent.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/insertion/dynamic_sc_angled.gif" alt="Dynamic rollout: SC angled insertion seated" loading="lazy">
+          <figcaption>Dynamic rollout — SC angled insertion: a long, visibly
+          tilted descent along the rotated port's axis; seated at
+          86.3/100.</figcaption>
+        </figure>
+        <figure>
           <img src="media/insertion/policy_p1_k16_official_1.gif" alt="Learned policy rollout" loading="lazy">
-          <figcaption>Learned ACT policy (3 RGB cameras + TCP state, ~0.75&nbsp;M
-          params) — a clean camera-only approach on an official evaluation
-          config.</figcaption>
+          <figcaption>Pre-curriculum ACT policy (3 RGB cameras + TCP state,
+          ~0.75&nbsp;M params) — a clean camera-only approach on an official
+          evaluation config.</figcaption>
         </figure>
         <figure>
           <img src="media/insertion/policy_v2_wide_official_2.gif" alt="Adopted checkpoint v2_wide rollout" loading="lazy">
-          <figcaption>Adopted checkpoint <code>v2_wide</code> on a harder pose —
-          the characteristic "last-inch" stall 5–8&nbsp;cm from the port,
-          analyzed in the write-up.</figcaption>
+          <figcaption>Pre-curriculum checkpoint <code>v2_wide</code> on a
+          harder pose — the characteristic "last-inch" stall 5–8&nbsp;cm from
+          the port. The curriculum milestones above are how the seat was
+          finally reached.</figcaption>
         </figure>
       </div>
       <p class="links"><a href="https://github.com/KiwooShin/Intrinsics_Assembly_Robotics">Code &amp; write-up →</a></p>
