@@ -336,41 +336,59 @@
     <article class="project">
       <h3><a href="https://github.com/KiwooShin/small_world_model">small_world_model — World Models from Scratch on One GPU</a></h3>
       <p>A from-scratch implementation of <a href="https://arxiv.org/abs/2603.19312">LeWM</a>,
-      a decoder-free JEPA-style world model, trained on MuJoCo robot tasks on a
-      single DGX Spark and evaluated by goal-image planning: encode a goal
-      image once, CEM-plan through latent rollouts, execute — no decoder
-      anywhere. The repo is built as a rigorous study: chance/collapse
-      baselines are permanent guards, and a committed chain of evidence
-      localized why the paper's GoalMSE cost fails at this scale (SIGReg
-      whitens the latent space so latent distance decorrelates from task
-      distance — even though a linear probe reads the true state to
-      1.5&nbsp;cm) before a DINO-WM baseline head-to-head. Active — the
-      task ladder is climbing toward contact-rich manipulation.</p>
+      a decoder-free JEPA-style world model (~9M trainable params), trained on
+      MuJoCo robot tasks on a single DGX Spark and evaluated by goal-image
+      planning: encode the goal image once, CEM-plan through latent rollouts,
+      execute — no decoder, no rewards. The headline is an honest head-to-head
+      against a frozen-DINOv2 DINO-WM baseline on identical data and planner —
+      and a <strong>crossover</strong>: the pretrained patch grid dominates
+      gross pose-matching (reacher: 40±11% vs 12%), but the end-to-end model
+      wins where contact dynamics matter (pusher: 30±5% vs 19±7%, all four
+      seed pairs). Along the way, a committed chain of evidence localized why
+      the paper's goal-latent-MSE cost fails at this scale (SIGReg whitening
+      decorrelates latent distance from task distance, even though a linear
+      probe reads the fingertip position to 1.5&nbsp;cm), and three
+      eval-protocol bugs were caught by the chance baselines that stay in
+      every results table. Study milestones complete; the roadmap continues
+      toward V-JEPA-2-AC-style post-training.</p>
       <div class="tags">
         <span>world models</span><span>JEPA</span><span>MuJoCo</span>
         <span>CEM planning</span><span>from scratch</span>
       </div>
       <figure class="featured">
-        <img src="media/worldmodel/lewm_hero.gif" alt="LeWM goal-image planning demo" loading="lazy">
-        <figcaption>LeWM planning from pixels — given only a goal image
-        (left), the planner searches action sequences through latent rollouts
-        (center: imagined latents visualized by nearest-neighbor retrieval,
-        since no decoder exists) and executes the plan in MuJoCo (right), with
-        the live fingertip-to-goal distance below.</figcaption>
+        <img src="media/worldmodel/pusher_xl12_hero.gif" alt="LeWM pusher goal-image planning demo" loading="lazy">
+        <figcaption>The contact task, and the crossover — LeWM pushes the puck
+        to its goal-image position: goal (left), CEM planning through latent
+        rollouts (center: imagined latents visualized by nearest-neighbor
+        retrieval, since no decoder exists), MuJoCo execution (right). On
+        contact dynamics the end-to-end model beats the frozen-pretrained
+        baseline in all four seed pairs — its features were trained on exactly
+        these dynamics.</figcaption>
       </figure>
       <div class="gallery">
         <figure>
-          <img src="media/worldmodel/reacher_dinowm_hero.gif" alt="DINO-WM baseline planning demo" loading="lazy">
-          <figcaption>The DINO-WM baseline in the identical harness — frozen
-          DINOv2 patch tokens, same data, same planner. Its spatially
-          structured patch grid wins at this scale: 56% vs LeWM's 12%
-          success.</figcaption>
+          <img src="media/worldmodel/lewm_hero.gif" alt="LeWM reacher planning demo" loading="lazy">
+          <figcaption>LeWM planning from pixels on the reacher — where its
+          whitened single-token latent struggles (12%): the study's first
+          finding is <em>why</em>.</figcaption>
         </figure>
         <figure>
-          <img src="media/worldmodel/reacher_dinowm_grid.gif" alt="Four goal-image planning episodes" loading="lazy">
-          <figcaption>Four goal-image planning episodes side by side, each
-          with its live distance meter — success is first passage within
-          5&nbsp;cm of the goal pose.</figcaption>
+          <img src="media/worldmodel/reacher_dinowm_hero.gif" alt="DINO-WM baseline planning demo" loading="lazy">
+          <figcaption>The DINO-WM baseline in the identical harness — frozen
+          DINOv2 patch tokens, same data, same planner — wins the
+          pose-matching reacher (40±11%): spatial patch structure is what a
+          goal-MSE cost needs.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/worldmodel/pusher_xl12_grid.gif" alt="Four LeWM pusher episodes" loading="lazy">
+          <figcaption>Four LeWM pusher episodes side by side with live
+          distance meters — success is first passage of the puck within
+          5&nbsp;cm of its goal position.</figcaption>
+        </figure>
+        <figure>
+          <img src="media/worldmodel/reacher_dinowm_grid.gif" alt="Four DINO-WM reacher episodes" loading="lazy">
+          <figcaption>Four DINO-WM reacher episodes — goal image and execution
+          pairs, each with its live distance meter.</figcaption>
         </figure>
       </div>
       <p class="links"><a href="https://github.com/KiwooShin/small_world_model">Code &amp; write-up →</a></p>
