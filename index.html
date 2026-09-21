@@ -334,34 +334,48 @@
     <h2>Projects</h2>
 
     <article class="project" id="calibration-recovery">
-      <h3><a href="https://github.com/KiwooShin/g1-calibration-recovery">G1 Calibration Recovery — Camera Mount Drift and Geometric Recovery</a></h3>
-      <p>A perception robustness study starting with a physically perturbed
-      MuJoCo camera: estimate its changed pitch from noisy RGB-D floor geometry,
-      then validate the correction from a separate viewpoint. Across 45 runs
-      in one controlled scene, mean absolute pitch error was 0.0075°; on
-      shifted-camera trials, mean trial-median 3D reconstruction error fell
-      from 42.5&nbsp;cm with stale calibration to 1.6&nbsp;mm after recovery.</p>
-      <p><strong>Initial milestone:</strong> camera-rig geometry only, with known
-      body pitch and a flat floor. Humanoid navigation recovery, automatic drift
-      detection, and pretrained-model comparisons are next.</p>
+      <h3><a href="https://github.com/KiwooShin/g1-calibration-recovery">G1 Calibration Recovery — Perception Robustness with a Frozen Walking Policy</a></h3>
+      <p>Physically shift a humanoid's camera mount by 12°, recover its pitch
+      from floor geometry, and evaluate the unchanged perception and walking
+      networks. Across five held-out scenes, target-position error fell from
+      <strong>23.28&nbsp;cm to 3.31&nbsp;cm</strong> (mean of episode medians).
+      All conditions reached 5/5 goals: this demonstrates localization recovery,
+      not an improvement in navigation success.</p>
+      <p>A separate camera-rig monitor detects persistent drift, validates a
+      correction on subsequent frames, and withholds motion permission when
+      depth is unavailable. That permission signal is not yet connected to
+      robot stop/resume control. The study discloses ideal body attitude, floor
+      assumptions, and a historical checkpoint's auxiliary-head mismatch.</p>
       <div class="tags">
         <span>camera calibration</span><span>geometric vision</span>
         <span>MuJoCo</span><span>perception robustness</span>
       </div>
       <figure class="featured">
-        <a href="media/calibration/calibration.mp4">
-          <img src="media/calibration/calibration.gif" width="1200" height="400"
+        <a href="media/calibration/g1-navigation-study.mp4">
+          <img src="media/calibration/g1-navigation-study.gif" width="768" height="432"
                style="height:auto" loading="lazy"
-               alt="Rendered camera tilting from 26 to 38 degrees, with stale and recovered point-cloud geometry compared against scoring ground truth">
+               alt="Synchronized G1 walking with stale versus recovered camera calibration, followed by held-out localization measurements">
         </a>
-        <figcaption>The camera physically tilts while the assumed calibration
-        stays fixed. A robust floor fit recovers pitch; the reconstructed
-        geometry is checked on a separate view. Gray points are scoring ground
-        truth, never estimator inputs. This is a geometric baseline, not a
-        walking-policy result.</figcaption>
+        <figcaption>Actual G1 rollouts, camera insets, and held-out measurements.
+        The first held-out scene is shown, not the best run. Calibration is
+        recovered before walking; replay runs at half speed. Click for the
+        1080p film.</figcaption>
+      </figure>
+      <figure class="featured">
+        <a href="media/calibration/calibration-monitor.mp4">
+          <img src="media/calibration/calibration-monitor.gif" width="768" height="432"
+               style="height:auto" loading="lazy"
+               alt="Automatic camera-rig monitor detecting pitch drift, validating a correction and rejecting unavailable depth">
+        </a>
+        <figcaption>Separate camera-rig experiment: persistent disagreement,
+        later-frame validation, and an explicit HOLD signal during missing
+        depth. No physical robot stopping is claimed. Click for the 1080p
+        monitor film.</figcaption>
       </figure>
       <p class="links"><a href="https://github.com/KiwooShin/g1-calibration-recovery">Code &amp; results →</a>
-        · <a href="media/calibration/calibration.mp4">Demo video →</a></p>
+        · <a href="media/calibration/g1-navigation-study.mp4">Walking film →</a>
+        · <a href="media/calibration/calibration-monitor.mp4">Monitor film →</a>
+        · <a href="media/calibration/calibration.mp4">Initial geometry study →</a></p>
     </article>
 
     <article class="project">
