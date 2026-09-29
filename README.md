@@ -120,9 +120,36 @@ real-robot demonstration.
 The model checkpoints, raw dataset, and TensorBoard logs remain in the local
 RoomGraph workspace. The public page links back to reproducible source code and
 explicitly separates the held-out perception benchmark, validation-only active-head
-follow-up, and future robot navigation.
+follow-up, and the separate depth-assisted connected-room pilot.
 
 Implementation for the reported experiment:
 [RoomGraph 38a4400](https://github.com/KiwooShin/roomgraph/commit/38a4400).
 Validation included local-link checks, all image loads, 3D keyboard/orbit controls,
 room/reference selection, and desktop/mobile layouts.
+
+## Connected-room exploration
+
+`roomgraph-multiroom/index.html` presents a separate development experiment in a
+furnished office, corridor, living room and bedroom. The camera explores using
+acquired RGB-D observations, a reused RGB edge model and known metric poses. The
+page includes a 52.5-second replay, four rows of top-down + four learned overlays,
+an interactive observed point cloud, candidate connectivity, and optional observed
+wall-patch downloads. Visibility, geometric completeness and typed edge accuracy
+are reported separately; the result is a partial reconstruction.
+
+With RoomGraph checked out beside this repository, build from its completed report:
+
+```bash
+python scripts/build_multiroom_page.py --results ../roomgraph/vis/multiroom/report
+```
+
+The builder checks completed evaluation and matching experiment hashes. It copies
+selected artifacts into `media/roomgraph-multiroom/`, recording their hashes in a
+compact summary without per-frame traces or local paths. The full local report,
+captures and predictions remain in RoomGraph's ignored `vis/` directory. Rebuilding
+`build_perception_page.py` preserves links from the homepage and perception page.
+
+The pilot entered all three rooms through their open doorways; it does not
+establish complete surfaces, verified room semantics, SLAM robustness, or humanoid
+walking control. Implementation:
+[RoomGraph 7d4dad3](https://github.com/KiwooShin/roomgraph/commit/7d4dad3).

@@ -1,0 +1,12 @@
+.hero .lead { max-width:950px; }
+.hero > p:not(.eyebrow) { max-width:1040px; }
+nav { gap:18px; }
+.toolbar { flex-wrap:wrap; }
+#cloud { width:100%; height:590px; display:block; background:#142131; border:1px solid var(--line); border-radius:8px; touch-action:none; cursor:grab; }
+#cloud:active { cursor:grabbing; }
+#cloud:focus-visible { outline:2px solid var(--mint); outline-offset:4px; }
+#cloud-status { min-height:1.7em; }
+.legend { flex-wrap:wrap; }
+.stats .stat strong { font-size:31px; }
+.active-head-video video { max-height:820px; }
+@media(max-width:800px) { #cloud { height:370px; } .stats .stat strong { font-size:26px; } }

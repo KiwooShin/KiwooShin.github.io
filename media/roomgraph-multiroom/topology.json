@@ -1,0 +1,191 @@
+{
+  "schema_version": "0.1",
+  "source": "observed_free_space_only",
+  "method": "clearance_core_watershed",
+  "display_minimum_area_m2": 1.0,
+  "substantial_region_count": 4,
+  "neck_connection_count": 3,
+  "small_fragment_count": 21,
+  "small_fragment_area_m2": 0.45000000000000007,
+  "regions": [
+    {
+      "label": "R1",
+      "source_id": "region_010",
+      "centroid_xy_m": [
+        -3.9730959752321975,
+        3.370309597523221
+      ],
+      "observed_free_area_m2": 16.150000000000002,
+      "touches_unknown": true,
+      "reconstruction_complete": null
+    },
+    {
+      "label": "R2",
+      "source_id": "region_001",
+      "centroid_xy_m": [
+        -0.011502782931353562,
+        0.031122448979592533
+      ],
+      "observed_free_area_m2": 21.560000000000006,
+      "touches_unknown": true,
+      "reconstruction_complete": null
+    },
+    {
+      "label": "R3",
+      "source_id": "region_009",
+      "centroid_xy_m": [
+        -0.024921235034655844,
+        3.3128229363579083
+      ],
+      "observed_free_area_m2": 15.870000000000003,
+      "touches_unknown": true,
+      "reconstruction_complete": null
+    },
+    {
+      "label": "R4",
+      "source_id": "region_011",
+      "centroid_xy_m": [
+        3.997861635220127,
+        3.417735849056605
+      ],
+      "observed_free_area_m2": 15.900000000000004,
+      "touches_unknown": true,
+      "reconstruction_complete": null
+    }
+  ],
+  "connections": [
+    {
+      "source_id": "neck_001",
+      "regions": [
+        "R2",
+        "R3"
+      ],
+      "center_xy_m": [
+        0.05000000000000071,
+        1.0000000000000009
+      ],
+      "clearance_width_m": 1.6,
+      "verified_doorway": false
+    },
+    {
+      "source_id": "neck_002",
+      "regions": [
+        "R2",
+        "R1"
+      ],
+      "center_xy_m": [
+        -3.999999999999999,
+        1.0500000000000012
+      ],
+      "clearance_width_m": 1.4142135623730951,
+      "verified_doorway": false
+    },
+    {
+      "source_id": "neck_003",
+      "regions": [
+        "R2",
+        "R4"
+      ],
+      "center_xy_m": [
+        3.950000000000001,
+        1.0000000000000009
+      ],
+      "clearance_width_m": 1.6,
+      "verified_doorway": false
+    }
+  ],
+  "small_fragments": [
+    {
+      "source_id": "region_002",
+      "observed_free_area_m2": 0.010000000000000002
+    },
+    {
+      "source_id": "region_003",
+      "observed_free_area_m2": 0.010000000000000002
+    },
+    {
+      "source_id": "region_004",
+      "observed_free_area_m2": 0.010000000000000002
+    },
+    {
+      "source_id": "region_005",
+      "observed_free_area_m2": 0.11000000000000001
+    },
+    {
+      "source_id": "region_006",
+      "observed_free_area_m2": 0.020000000000000004
+    },
+    {
+      "source_id": "region_007",
+      "observed_free_area_m2": 0.020000000000000004
+    },
+    {
+      "source_id": "region_008",
+      "observed_free_area_m2": 0.010000000000000002
+    },
+    {
+      "source_id": "region_012",
+      "observed_free_area_m2": 0.010000000000000002
+    },
+    {
+      "source_id": "region_013",
+      "observed_free_area_m2": 0.010000000000000002
+    },
+    {
+      "source_id": "region_014",
+      "observed_free_area_m2": 0.010000000000000002
+    },
+    {
+      "source_id": "region_015",
+      "observed_free_area_m2": 0.04000000000000001
+    },
+    {
+      "source_id": "region_016",
+      "observed_free_area_m2": 0.010000000000000002
+    },
+    {
+      "source_id": "region_017",
+      "observed_free_area_m2": 0.010000000000000002
+    },
+    {
+      "source_id": "region_018",
+      "observed_free_area_m2": 0.010000000000000002
+    },
+    {
+      "source_id": "region_019",
+      "observed_free_area_m2": 0.010000000000000002
+    },
+    {
+      "source_id": "region_020",
+      "observed_free_area_m2": 0.020000000000000004
+    },
+    {
+      "source_id": "region_021",
+      "observed_free_area_m2": 0.05000000000000001
+    },
+    {
+      "source_id": "region_022",
+      "observed_free_area_m2": 0.010000000000000002
+    },
+    {
+      "source_id": "region_023",
+      "observed_free_area_m2": 0.010000000000000002
+    },
+    {
+      "source_id": "region_024",
+      "observed_free_area_m2": 0.030000000000000006
+    },
+    {
+      "source_id": "region_025",
+      "observed_free_area_m2": 0.030000000000000006
+    }
+  ],
+  "limitations": [
+    "Snapshot candidate regions, not persistent semantic room IDs",
+    "Furniture and partial observations can split a room; wide openings can merge rooms",
+    "Observed free-space necks are not detected doors or robot-clearance guarantees",
+    "Unknown space remains unlabeled; exhausted frontiers do not prove completion"
+  ],
+  "source_topology_sha256": "6c0d256596cecf0517e06a3caba07a07359540cb778bc754ef03ea089f980fe5",
+  "source_snapshot_sha256": "bae6523d12a0f57e72b4d24778337481d715deb668605ee303a0381c5090dc7f"
+}

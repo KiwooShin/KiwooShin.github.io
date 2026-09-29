@@ -1,0 +1,186 @@
+{
+  "status": "complete",
+  "sensor_assumptions": [
+    "ideal optical-axis depth from the head camera",
+    "known metric camera and body poses",
+    "level traversable floor and known gravity",
+    "kinematic body movement, no humanoid dynamics",
+    "known articulated proxy geometry used for depth self filtering"
+  ],
+  "stop_reason": "frame_budget",
+  "frames": 420,
+  "stations": 42,
+  "path_length_m": 34.82928932188133,
+  "action_seconds": 1379.080094075634,
+  "wall_seconds": 419.71043243817985,
+  "surface_voxels": 108861,
+  "edge_voxels": 7718,
+  "experiment_sha256": "7890a25cb9dc8890c62cf14020d67da4637b5455773482e67ba490617730097e",
+  "evaluation": {
+    "protocol": "evaluator_only_reference_geometry",
+    "provenance": {
+      "experiment_sha256": "7890a25cb9dc8890c62cf14020d67da4637b5455773482e67ba490617730097e",
+      "reference_sha256": "03471fb2dd97ff7acdfea97ea345d9ff2be2f29ee7a9d00e3ddd238c48aef5f4"
+    },
+    "final": {
+      "station": 41,
+      "action_seconds": 1379.080094075634,
+      "visible_edge_coverage": 0.9031346595107261,
+      "predicted_edge_voxels": 7718,
+      "edge_accuracy_mean_m": 0.20931019781061075,
+      "edge_completeness_mean_m": 0.18649918641073146,
+      "symmetric_edge_chamfer_m": 0.1979046921106711,
+      "per_region": {
+        "bedroom": {
+          "reference_edge_length_m": 51.220000000000006,
+          "visible_edge_coverage": 0.7988412890160757,
+          "edge_completeness_5cm": 0.3443019877187023,
+          "edge_completeness_10cm": 0.4597539414667469,
+          "observed_edge_completeness_10cm": 0.5755260122233052
+        },
+        "corridor": {
+          "reference_edge_length_m": 80.22000000000001,
+          "visible_edge_coverage": 0.9701075207735689,
+          "edge_completeness_5cm": 0.5429371751725783,
+          "edge_completeness_10cm": 0.7138234136544164,
+          "observed_edge_completeness_10cm": 0.7358188637535867
+        },
+        "living": {
+          "reference_edge_length_m": 51.220000000000006,
+          "visible_edge_coverage": 0.9123491506661741,
+          "edge_completeness_5cm": 0.32036824764597016,
+          "edge_completeness_10cm": 0.47768995995486124,
+          "observed_edge_completeness_10cm": 0.5235824022043143
+        },
+        "office": {
+          "reference_edge_length_m": 51.220000000000006,
+          "visible_edge_coverage": 0.8933216425105064,
+          "edge_completeness_5cm": 0.2969961853289081,
+          "edge_completeness_10cm": 0.4202757941205793,
+          "observed_edge_completeness_10cm": 0.46501279915505755
+        }
+      },
+      "edge_precision_5cm": 0.47641876133713396,
+      "edge_completeness_5cm": 0.3968315985132094,
+      "observed_edge_completeness_5cm": 0.4392755604655111,
+      "typed_edge_precision_5cm": 0.3283233998445193,
+      "typed_edge_completeness_5cm": 0.2840201458692425,
+      "edge_precision_10cm": 0.6482249287380151,
+      "edge_completeness_10cm": 0.5421811059048577,
+      "observed_edge_completeness_10cm": 0.59915164247432,
+      "typed_edge_precision_10cm": 0.4137082145633584,
+      "typed_edge_completeness_10cm": 0.34399204926403376
+    },
+    "visits": {
+      "region_entry_order": [
+        "office",
+        "corridor",
+        "living",
+        "bedroom"
+      ],
+      "region_transition_sequence": [
+        {
+          "region": "office",
+          "frame_id": "v4_F0000",
+          "action_seconds": 0.9
+        },
+        {
+          "region": "corridor",
+          "frame_id": "v4_F0032",
+          "action_seconds": 107.56904761904767
+        },
+        {
+          "region": "living",
+          "frame_id": "v4_F0102",
+          "action_seconds": 333.86454059225946
+        },
+        {
+          "region": "corridor",
+          "frame_id": "v4_F0112",
+          "action_seconds": 367.69082915485177
+        },
+        {
+          "region": "bedroom",
+          "frame_id": "v4_F0192",
+          "action_seconds": 622.9911328189172
+        },
+        {
+          "region": "corridor",
+          "frame_id": "v4_F0302",
+          "action_seconds": 1014.9643463155035
+        },
+        {
+          "region": "living",
+          "frame_id": "v4_F0372",
+          "action_seconds": 1228.269077949939
+        }
+      ],
+      "rooms_entered": 3,
+      "reference_room_count": 3,
+      "unique_portals_crossed": 3
+    },
+    "path_audit": {
+      "footprint_radius_m": 0.25,
+      "architecture": {
+        "minimum_footprint_clearance_m": 0.20269132668024703,
+        "intersecting_samples": 0,
+        "path_samples": 1580,
+        "minimum_continuous_footprint_clearance_m": 0.20269132668024703,
+        "intersecting_path_segments": 0
+      },
+      "furniture_recipe_aabb_proxy": {
+        "minimum_footprint_clearance_m": 0.13965529638386953,
+        "intersecting_samples": 0,
+        "path_samples": 1580,
+        "minimum_continuous_footprint_clearance_m": 0.13965529638386953,
+        "intersecting_path_segments": 0
+      },
+      "all_motions_in_observed_safe_map": true,
+      "limitations": [
+        "Continuous horizontal disk/box audit between heights 0.12 and 1.85 m; no dynamics",
+        "Furniture uses rotated recipe bounding boxes; downloaded replacement meshes differ"
+      ]
+    },
+    "timings": {
+      "inference": {
+        "count": 420,
+        "median_ms": 7.48585001565516,
+        "p95_ms": 16.86577203217894
+      },
+      "mapping": {
+        "count": 420,
+        "median_ms": 79.51310137286782,
+        "p95_ms": 83.7602995801717
+      },
+      "capture": {
+        "count": 420,
+        "median_ms": 702.0584745332599,
+        "p95_ms": 728.9915655273944
+      },
+      "planning": {
+        "count": 42,
+        "median_ms": 16.962731257081032,
+        "p95_ms": 19.489692407660186
+      }
+    },
+    "definitions": {
+      "visible_edge_coverage": "Length-weighted true architectural edge visibility in acquired RGB-D frames; not predicted reconstruction completeness",
+      "edge_precision": "Fraction of fused predicted edge voxels within tolerance of a reference segment",
+      "edge_completeness": "Length-weighted fraction of all reference edge samples within tolerance of a predicted voxel",
+      "observed_edge_completeness": "Completeness restricted to directly visible reference samples from acquired views",
+      "typed_edge_scores": "Distance requires the predicted wall/ceiling/floor/door/window channel to agree",
+      "symmetric_edge_chamfer": "Mean of point-weighted prediction-to-segment distance and length-weighted reference-to-prediction distance",
+      "room_names": "Evaluator-only true scene identities; controller receives no room IDs"
+    }
+  },
+  "public_artifacts_sha256": {
+    "multiroom.mp4": "5969e416543c60945afe18f5ff09c35080dee17ea2f49246c7d91982667c3085",
+    "poster.jpg": "223bf446f849365943eee6739f23808a8dedba2b1e11afcb352b3931c9a5ea4d",
+    "overview.jpg": "c4966f1a4d8bdebea067c583e648603ac0f59ae5ba2474c63acb6de6d879871b",
+    "cloud.json": "2467d0ba43b0e04bbb6fb3ba3b647b544f0ee1e81fcd30137dea3a2f281afe81",
+    "observed_walls.obj": "7033f363023e5b38e86a60fc954a5757365fa2afff94c138d7103856392cfd5a",
+    "observed_walls.json": "9a120c2000603c9f01ccb5f632576fabff0c55aa190de78db8acd9ac9168e79f",
+    "topology.png": "a2b6d3e3eb7f292d9f68cc9530022c6354ae5d688f363508869726a44a2a442b",
+    "topology.json": "14eefaf553ed351fe09cdfd46ac0e7e574863d0ab07269224f1af7ad8782f78a"
+  }
+}
