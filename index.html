@@ -333,6 +333,28 @@
   <section id="projects">
     <h2>Projects</h2>
 
+    <article class="project" id="roomgraph">
+      <h3><a href="roomgraph/">RoomGraph — Synthetic Indoor Structure</a></h3>
+      <p>Generate calibrated indoor images and architectural edge labels with
+      NVIDIA Isaac Sim on a DGX Spark. The first dataset milestone renders a
+      room from four viewpoints and exports RGB, depth, normals, camera poses,
+      and geometry-derived labels for 20 structural edges.</p>
+      <p>Explore the interactive 3D room graph and image overlays. Learned edge
+      detection, multi-view reconstruction, and furnished scenes are the next stages.</p>
+      <div class="tags"><span>3D vision</span><span>synthetic data</span>
+        <span>Isaac Sim</span><span>DGX Spark</span></div>
+      <figure class="featured">
+        <a href="roomgraph/">
+          <img src="media/roomgraph/view_000_overlay.png" width="640" height="480"
+               style="height:auto" loading="lazy"
+               alt="Rendered room with turquoise ground-truth edges along walls, the ceiling, floor, doorway, and window">
+        </a>
+        <figcaption>Geometry-derived structural labels over a rendered room.
+        These are ground-truth annotations, not learned predictions.</figcaption>
+      </figure>
+      <p class="links"><a href="roomgraph/">Project page &amp; interactive demo →</a></p>
+    </article>
+
     <article class="project" id="calibration-recovery">
       <h3><a href="https://github.com/KiwooShin/g1-calibration-recovery">G1 Calibration Recovery — Perception Robustness with a Frozen Walking Policy</a></h3>
       <p>Physically shift a humanoid's camera mount by 12°, recover its pitch
