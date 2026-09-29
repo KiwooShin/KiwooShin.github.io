@@ -7,7 +7,7 @@
 <meta property="og:image" content="https://kiwooshin.github.io/media/roomgraph-perception/predictions.jpg">
 <link rel="stylesheet" href="style.css"><script src="scene.js" defer></script></head>
 <body><main>
-<nav><a href="../#roomgraph-perception">← Kiwoo Shin / Projects</a><a href="../roomgraph/">Dataset generation</a><a href="https://github.com/KiwooShin/roomgraph">Code ↗</a><a href="#results">Results</a></nav>
+<nav><a href="../#roomgraph-perception">← Kiwoo Shin / Projects</a><a href="../roomgraph/">Dataset generation</a><a href="https://github.com/KiwooShin/roomgraph">Code ↗</a><a href="#results">Results</a><a href="#efficiency">Training efficiency</a></nav>
 <header class="hero"><div class="eyebrow">ROOMGRAPH PERCEPTION / A SYNTHETIC HEAD-CAMERA EXPERIMENT</div><h1>From a robot’s view<br>to a room’s shape.</h1><span class="badge">Trained model · held-out room instances · known camera poses</span><p class="lead">Detect the structure behind furniture, robot arms, and visual clutter. A learned edge model turns RGB into typed boundaries; calibrated multi-view fitting estimates the room’s 3D shell.</p>
 <div class="stats"><div class="stat"><strong>0.916</strong><span>Test visible-edge F1</span></div><div class="stat"><strong>0.958</strong><span>Test amodal-edge F1</span></div><div class="stat"><strong>0.023 m</strong><span>Mean room-dimension error</span></div><div class="stat"><strong>3.3 ms</strong><span>Median GPU forward / image</span></div></div><p class="caption">96 test images from four held-out parameterized rooms. Boundary F1 uses a 2-pixel tolerance at 384 × 256. Inference timing excludes I/O and reconstruction.</p></header>
 <section><p class="eyebrow">01 / THE PIPELINE</p><h2>RGB in. A structural hypothesis out.</h2><div class="pipeline"><article><span class="number">01 — CAPTURE</span><h3>A head-mounted viewpoint</h3><p>Isaac Sim renders furnished rooms with an original humanoid proxy, a head camera, and forward arms. The benchmark varies dimensions, lighting, camera directions, and arm reach.</p></article><article><span class="number">02 — PERCEIVE</span><h3>Visible and hidden boundaries</h3><p>A ResNet-18 encoder/decoder predicts visible edges plus full wall–wall, wall–floor, wall–ceiling, door, and window boundaries. It sees RGB only.</p></article><article><span class="number">03 — RECONSTRUCT</span><h3>Fit the room across views</h3><p>Eight calibrated views constrain six Manhattan planes through typed edge reprojection. The output is a closed rectangular shell with per-edge support diagnostics.</p></article></div></section>
@@ -19,6 +19,37 @@
 <tr><td>office_05</td><td>0.875 / 0.966 / 0.918</td><td>0.982</td><td>0.003 m</td><td>0.012 m</td></tr></tbody></table></div>
 <p class="caption">3D results assume known metric camera poses and Manhattan axes. Mean dimension MAE: model 0.023 m; oracle edges 0.016 m; training-median room prior 0.338 m. The prior estimates a typical training-room size without using test images. Chamfer is symmetric mean distance between sampled shell edges.</p>
 <p><a href="../media/roomgraph-perception/summary.json">Measured results and provenance (JSON) ↗</a></p></section>
+<section id="efficiency">
+<p class="eyebrow">TRAINING EFFICIENCY / VALIDATION-ONLY FOLLOW-UP</p>
+<h2>Measure speed alongside prediction quality.</h2>
+<p>Each run uses 60 epochs, 1,440 optimizer updates, batch size 16, and seed 42. The dataset, learning-rate schedule, and reported hardware/software match. The fixed decision threshold is 0.70.
+This separate experiment uses validation rooms only; the held-out test results above remain
+the original benchmark.</p>
+<div class="table-scroll"><table><thead><tr><th>Training mode</th><th>Wall time</th>
+<th>Steady images/s</th><th>Peak CUDA</th><th>Val visible F1</th><th>Val amodal F1</th>
+</tr></thead><tbody><tr><td>eager</td><td>246.8 s</td><td>110.5</td><td>2,515 MiB</td><td>0.9236</td><td>0.9632</td></tr><tr><td>compiled</td><td>214.9 s</td><td>148.7</td><td>2,211 MiB</td><td>0.9222</td><td>0.9630</td></tr></tbody></table></div>
+<p class="caption">Time to the preselected validation-loss target ≤ 0.5: eager: 159.8 s; compiled: 148.4 s. First scheduled crossing on the training-session clock, including compilation but excluding process initialization; no interpolation.</p>
+<p class="caption">Wall time includes interpreter startup, data/model initialization, training,
+validation, and checkpointing. Each run starts with isolated, empty compiler caches, so compiled-run wall time includes cold compilation. Steady throughput is the median
+train-loop images/s after the first epoch. Peak CUDA measures tensor allocation, not total
+system memory. These are single-seed measurements, not a statistical reliability claim.</p>
+<figure><a href="../media/roomgraph-perception/speed_memory.png"><img
+src="../media/roomgraph-perception/speed_memory.png" width="2340" height="720" loading="lazy"
+alt="Measured training-session duration, aggregate training throughput, and peak CUDA allocation">
+</a><figcaption>Chart throughput averages all training batches, including first-epoch compilation;
+the table reports steady throughput after that epoch. Table wall time also includes process
+startup.</figcaption></figure>
+<details class="efficiency-details"><summary>Inspect loss curves and timing scope</summary>
+<figure><img src="../media/roomgraph-perception/loss_curves.png" width="2160" height="720"
+loading="lazy" alt="Training and validation loss against measured elapsed training time">
+<figcaption>Time axis: Training session elapsed seconds. Checkpoints are selected by
+validation loss. Training-session time includes validation and checkpointing;
+the first compiled epoch includes compilation.</figcaption></figure>
+<p class="caption">A matching seed and schedule do not guarantee identical floating-point
+results. Validation shares procedural scene families with training; this comparison does not
+establish robustness on unseen buildings or real robots.</p></details>
+<p><a href="../media/roomgraph-perception/efficiency.json">Efficiency measurements and provenance
+(JSON) ↗</a></p></section>
 <section id="reconstruction"><p class="eyebrow">04 / INTERACTIVE 3D</p><h2>Inspect the reconstructed shell.</h2><p>Drag or use arrow keys to orbit; scroll or press +/− to zoom. Reference geometry is shown only for evaluation—it is not an input to reconstruction.</p><div class="toolbar"><label>Test room <select id="room-picker"><option value="0">bedroom_05</option>
 <option value="1">kitchen_05</option>
 <option value="2">living_05</option>

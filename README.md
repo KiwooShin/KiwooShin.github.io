@@ -73,6 +73,24 @@ Generate the page from local experiment outputs with:
 python scripts/build_perception_page.py --results /path/to/roomgraph/vis/perception
 ```
 
+To include a measured training-efficiency follow-up on the same page:
+
+```bash
+python scripts/build_perception_page.py \
+  --results /path/to/roomgraph/vis/perception \
+  --efficiency /path/to/roomgraph/vis/training_efficiency
+```
+
+Generate that comparison with RoomGraph's `scripts/compare_training.py`. The page
+copies its speed/memory and loss charts, publishes a JSON whitelist of timing,
+validation metrics and reproducibility fields, and excludes local filesystem
+paths. This validation-only experiment is separate from the original test result.
+Later builds without `--efficiency` reuse the already published
+`media/roomgraph-perception/efficiency.json`; they do not guess a local experiment
+directory or silently remove the section. Wall time includes startup and cold
+compilation when the source records initially empty compiler caches. Full local
+overlays and training artifacts remain in the RoomGraph workspace.
+
 The model checkpoints, raw dataset, and TensorBoard logs remain in the local
 RoomGraph workspace. The public page links back to reproducible source code and
 explicitly separates this result from future active mapping and robot navigation.

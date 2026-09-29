@@ -1,0 +1,288 @@
+{
+  "schema_version": 1,
+  "threshold": 0.7,
+  "target_val_loss": 0.5,
+  "threshold_selection": "Fixed before comparison; no threshold search",
+  "split": "val",
+  "evaluation_device": "cuda",
+  "comparison": {
+    "matched_training_work": true,
+    "matched_reported_environment": true,
+    "comparable_fresh_run_timing": true,
+    "work_mismatches": [],
+    "environment_mismatches": [],
+    "timing_caveats": [],
+    "caveat": "Equal seed/work does not guarantee identical augmentation draws or numerical results. This comparison does not establish multi-seed statistical significance."
+  },
+  "curve_time_scope": "Training session elapsed seconds",
+  "runs": [
+    {
+      "name": "eager",
+      "dataset_sha256": "397b109b92818b15aa1e68dc519a30748921465059c6582f4d89bbcebc08652a",
+      "gpu": "NVIDIA GB10",
+      "torch": "2.11.0+cu128",
+      "parameters": 12524606,
+      "git_commit": "38a440022a3cf23d436e6579b386a7b423ef7bf6",
+      "git_dirty": true,
+      "sampling": "epoch-seeded private CPU generator; worker RNG isolated",
+      "compiler_cache": "isolated; initially empty",
+      "resumed": false,
+      "resume_epoch": null,
+      "epochs_completed": 60,
+      "best_epoch": 58,
+      "best_val_loss": 0.3969017267227173,
+      "time_to_quality": {
+        "target_val_loss": 0.5,
+        "attained": true,
+        "epoch": 38,
+        "train_session_elapsed_seconds": 159.76653833687305
+      },
+      "optimizer_steps": 1440,
+      "optimizer_steps_source": "recorded",
+      "training_images_seen": 23040,
+      "train_loop_seconds": 211.2151981499046,
+      "train_loop_images_per_second": 109.0830593717406,
+      "steady_epoch_median_images_per_second": 110.51288043118019,
+      "train_session_seconds": 243.59165696892887,
+      "process_seconds": 244.80937001900747,
+      "launcher_wall_seconds": 246.7515223971568,
+      "peak_allocated_mb": 2515.23193359375,
+      "validation_images": 96,
+      "validation_rooms": 4,
+      "checkpoint_sha256": "1b2d0b8a50b5621701267127f9070d10122adb9fdb4fb77c49b60ec334d2569d",
+      "checkpoint_epoch": 58,
+      "validation": {
+        "visible": {
+          "precision": 0.8854320457412825,
+          "recall": 0.9651276858327268,
+          "f1": 0.9235637917416176
+        },
+        "amodal": {
+          "precision": 0.9707624353761983,
+          "recall": 0.9557276007215875,
+          "f1": 0.9631863501479809
+        },
+        "per_channel": [
+          {
+            "precision": 0.8854320457412825,
+            "recall": 0.9651276858327268,
+            "f1": 0.9235637917416176
+          },
+          {
+            "precision": 0.9895170618854829,
+            "recall": 0.9681138881731512,
+            "f1": 0.9786984724234514
+          },
+          {
+            "precision": 0.9585007838107453,
+            "recall": 0.9413612074622668,
+            "f1": 0.9498536834215255
+          },
+          {
+            "precision": 0.9884169884169884,
+            "recall": 0.992952576714139,
+            "f1": 0.9906795913176605
+          },
+          {
+            "precision": 0.9860802433033103,
+            "recall": 0.9681640222542757,
+            "f1": 0.9770400061525735
+          },
+          {
+            "precision": 0.9550657459086179,
+            "recall": 0.9378876636802206,
+            "f1": 0.9463987613787095
+          }
+        ],
+        "counts": [
+          [
+            32985,
+            37253,
+            30499,
+            31601
+          ],
+          [
+            13687,
+            13832,
+            15029,
+            15524
+          ],
+          [
+            33629,
+            35085,
+            40166,
+            42668
+          ],
+          [
+            11520,
+            11655,
+            13526,
+            13622
+          ],
+          [
+            8430,
+            8549,
+            9397,
+            9706
+          ],
+          [
+            10096,
+            10571,
+            10887,
+            11608
+          ]
+        ]
+      },
+      "config": {
+        "seed": 42,
+        "epochs": 60,
+        "batch_size": 16,
+        "learning_rate": 0.0004,
+        "weight_decay": 0.0001,
+        "workers": 2,
+        "amp": true,
+        "pretrained": true,
+        "patience": 60,
+        "eval_every": 2,
+        "tolerance_pixels": 2,
+        "compile_model": false,
+        "compile_loss": false,
+        "checkpoint_every": 1
+      }
+    },
+    {
+      "name": "compiled",
+      "dataset_sha256": "397b109b92818b15aa1e68dc519a30748921465059c6582f4d89bbcebc08652a",
+      "gpu": "NVIDIA GB10",
+      "torch": "2.11.0+cu128",
+      "parameters": 12524606,
+      "git_commit": "38a440022a3cf23d436e6579b386a7b423ef7bf6",
+      "git_dirty": true,
+      "sampling": "epoch-seeded private CPU generator; worker RNG isolated",
+      "compiler_cache": "isolated; initially empty",
+      "resumed": false,
+      "resume_epoch": null,
+      "epochs_completed": 60,
+      "best_epoch": 58,
+      "best_val_loss": 0.39695600668589276,
+      "time_to_quality": {
+        "target_val_loss": 0.5,
+        "attained": true,
+        "epoch": 38,
+        "train_session_elapsed_seconds": 148.40588140301406
+      },
+      "optimizer_steps": 1440,
+      "optimizer_steps_source": "recorded",
+      "training_images_seen": 23040,
+      "train_loop_seconds": 184.28008289448917,
+      "train_loop_images_per_second": 125.02707638346196,
+      "steady_epoch_median_images_per_second": 148.71501093232723,
+      "train_session_seconds": 210.50270355306566,
+      "process_seconds": 212.00065522268414,
+      "launcher_wall_seconds": 214.90444170497358,
+      "peak_allocated_mb": 2210.974609375,
+      "validation_images": 96,
+      "validation_rooms": 4,
+      "checkpoint_sha256": "4c0126e1d4994aa1c4ca2f4aaffb6f3ec913628d27fa8d665dbda17d8cd9b667",
+      "checkpoint_epoch": 58,
+      "validation": {
+        "visible": {
+          "precision": 0.8854385115878906,
+          "recall": 0.9622163855574191,
+          "f1": 0.9222322259094864
+        },
+        "amodal": {
+          "precision": 0.9707861500991789,
+          "recall": 0.9553732497208144,
+          "f1": 0.9630180338043526
+        },
+        "per_channel": [
+          {
+            "precision": 0.8854385115878906,
+            "recall": 0.9622163855574191,
+            "f1": 0.9222322259094864
+          },
+          {
+            "precision": 0.9919669995657837,
+            "recall": 0.9702396289616079,
+            "f1": 0.9809830214702386
+          },
+          {
+            "precision": 0.9580375723367257,
+            "recall": 0.9403065529202213,
+            "f1": 0.949089256501448
+          },
+          {
+            "precision": 0.9888860170586715,
+            "recall": 0.9908236675965351,
+            "f1": 0.9898538940851322
+          },
+          {
+            "precision": 0.9859040074557316,
+            "recall": 0.9717700391510405,
+            "f1": 0.9787860012600627
+          },
+          {
+            "precision": 0.9532462615937914,
+            "recall": 0.9355616815988973,
+            "f1": 0.9443211827742403
+          }
+        ],
+        "counts": [
+          [
+            32933,
+            37194,
+            30407,
+            31601
+          ],
+          [
+            13707,
+            13818,
+            15062,
+            15524
+          ],
+          [
+            33607,
+            35079,
+            40121,
+            42668
+          ],
+          [
+            11478,
+            11607,
+            13497,
+            13622
+          ],
+          [
+            8463,
+            8584,
+            9432,
+            9706
+          ],
+          [
+            10072,
+            10566,
+            10860,
+            11608
+          ]
+        ]
+      },
+      "config": {
+        "seed": 42,
+        "epochs": 60,
+        "batch_size": 16,
+        "learning_rate": 0.0004,
+        "weight_decay": 0.0001,
+        "workers": 2,
+        "amp": true,
+        "pretrained": true,
+        "patience": 60,
+        "eval_every": 2,
+        "tolerance_pixels": 2,
+        "compile_model": true,
+        "compile_loss": true,
+        "checkpoint_every": 1
+      }
+    }
+  ]
+}
