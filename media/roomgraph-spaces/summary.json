@@ -1,0 +1,794 @@
+{
+  "schema_version": 1,
+  "name": "space_suite_v1",
+  "status": "complete",
+  "suite_sha256": "0a5ab090876359681e25af4242960515b5ebc4844da4f84d81544798cbf04ba5",
+  "frozen_suite_sha256": "b6bcf5dea417e3d7853b32f4a9e4d934a7a46b43fcc48f52f9b4c05b3a31e990",
+  "shared_budget": {
+    "max_frames": 300,
+    "max_stations": 32
+  },
+  "aggregate": {
+    "declared_buildings": 4,
+    "evaluated_buildings": 4,
+    "unevaluated_case_ids": [],
+    "all_reference_rooms_entered_buildings": 2,
+    "total_reference_rooms_entered": 13,
+    "total_reference_rooms": 16,
+    "reference_edge_length_m": 917.16,
+    "predicted_edge_voxels": 23798,
+    "total_frames": 1200,
+    "total_path_length_m": 98.47928932188137,
+    "total_wall_seconds": 1136.3447520281188,
+    "total_full_pipeline_wall_seconds": 1484.553837849293,
+    "full_pipeline_timing_buildings": 4,
+    "macro": {
+      "visible_edge_coverage": {
+        "value": 0.8130316880765961,
+        "denominator_buildings": 4
+      },
+      "edge_precision_10cm": {
+        "value": 0.639659313293553,
+        "denominator_buildings": 4
+      },
+      "edge_completeness_10cm": {
+        "value": 0.4397613157073127,
+        "denominator_buildings": 4
+      },
+      "typed_edge_precision_10cm": {
+        "value": 0.4550256633957995,
+        "denominator_buildings": 4
+      },
+      "typed_edge_completeness_10cm": {
+        "value": 0.29743467146116664,
+        "denominator_buildings": 4
+      }
+    },
+    "weighted": {
+      "visible_edge_coverage": {
+        "value": 0.813116181456269,
+        "denominator": "reference_edge_length_m",
+        "denominator_value": 917.16,
+        "evaluated_buildings": 4
+      },
+      "edge_precision_10cm": {
+        "value": 0.6187074544079334,
+        "denominator": "predicted_edge_voxels",
+        "denominator_value": 23798,
+        "evaluated_buildings": 4
+      },
+      "edge_completeness_10cm": {
+        "value": 0.4403285545057916,
+        "denominator": "reference_edge_length_m",
+        "denominator_value": 917.16,
+        "evaluated_buildings": 4
+      },
+      "typed_edge_precision_10cm": {
+        "value": 0.43516261870745443,
+        "denominator": "predicted_edge_voxels",
+        "denominator_value": 23798,
+        "evaluated_buildings": 4
+      },
+      "typed_edge_completeness_10cm": {
+        "value": 0.2973877011815035,
+        "denominator": "reference_edge_length_m",
+        "denominator_value": 917.16,
+        "evaluated_buildings": 4
+      }
+    },
+    "missing_case_policy": "Unavailable measurements remain null and visible; aggregate denominators include evaluated buildings only. Run completion does not mean whole-building reconstruction."
+  },
+  "limitations": [
+    "Four development buildings; no held-out generalization or policy comparison",
+    "Ideal simulated depth and known metric poses; kinematic humanoid proxy",
+    "Partial observed surface/edge maps; no completed watertight building mesh",
+    "Physically open portals; no door-leaf articulation or opening-angle inference"
+  ],
+  "cases": [
+    {
+      "id": "residential_branch",
+      "title": "Branching home: four furnished rooms around a central corridor",
+      "description": "Branching corridor with living room, kitchen, bedroom and study; two choices on each side of the hall.",
+      "visual_audit": null,
+      "split": "development",
+      "status": "complete",
+      "stage": "complete",
+      "evaluated": true,
+      "available_artifacts": [
+        "report.html",
+        "replay.mp4",
+        "poster.jpg",
+        "overview.jpg",
+        "cloud.json"
+      ],
+      "media_sha256": {
+        "report.html": "a3ceb49f044186dde428f576495e68378fbeed28fe4bd173d5ece59817a1e4f1",
+        "replay.mp4": "bdd72fbca738ee1938134715cc2ef441aea6c489467c901baa6a3ef1f01767d0",
+        "poster.jpg": "be078c80ec49c813cd6b251b17c3469bebe7147441b49952d4306750ba941a1d",
+        "overview.jpg": "2b160b9f23abdcdd38f531c3e3de64cc0ab83e88a600a71bba771e02a8ebaa57",
+        "cloud.json": "3de4db22bf61fbb5fff45afbc5704970b544d01ab2d34bfa0d88850cc9dc2fe4"
+      },
+      "receipt_sha256": "99150c50ceb72e9c1c6d48ab7b20e99dcbcdf7ad7eab15db09b7ae6985864a1e",
+      "full_pipeline_wall_seconds": 368.4303860240616,
+      "experiment_status": "complete",
+      "reference_edge_length_m": 257.59999999999997,
+      "reference_portal_count": 4,
+      "unentered_reference_rooms": [],
+      "predicted_edge_voxels": 6444,
+      "metrics": {
+        "visible_edge_coverage": 0.8416579425506513,
+        "edge_precision_10cm": 0.691495965238982,
+        "edge_completeness_10cm": 0.44734264152631154,
+        "typed_edge_precision_10cm": 0.48448168839230293,
+        "typed_edge_completeness_10cm": 0.2904773541321589
+      },
+      "frames": 300,
+      "stations": 30,
+      "path_length_m": 24.65000000000001,
+      "action_seconds": 937.4345781873982,
+      "wall_seconds": 282.3936675838195,
+      "stop_reason": "frame_budget",
+      "visits": {
+        "rooms_entered": 4,
+        "reference_room_count": 4,
+        "region_entry_order": [
+          "living",
+          "corridor",
+          "kitchen",
+          "study",
+          "bedroom"
+        ],
+        "region_transition_sequence": [
+          {
+            "region": "living",
+            "frame_id": "F0000",
+            "action_seconds": 4.9
+          },
+          {
+            "region": "corridor",
+            "frame_id": "F0042",
+            "action_seconds": 153.76318486649248
+          },
+          {
+            "region": "kitchen",
+            "frame_id": "F0062",
+            "action_seconds": 229.17588327919097
+          },
+          {
+            "region": "corridor",
+            "frame_id": "F0072",
+            "action_seconds": 264.88223248554027
+          },
+          {
+            "region": "study",
+            "frame_id": "F0142",
+            "action_seconds": 480.5776327338766
+          },
+          {
+            "region": "corridor",
+            "frame_id": "F0192",
+            "action_seconds": 633.8828676796435
+          },
+          {
+            "region": "bedroom",
+            "frame_id": "F0222",
+            "action_seconds": 716.2519152986906
+          }
+        ],
+        "unique_portals_crossed": 4
+      },
+      "all_reference_rooms_entered": true,
+      "path_audit": {
+        "footprint_radius_m": 0.25,
+        "architecture": {
+          "minimum_footprint_clearance_m": 0.29071067811865237,
+          "intersecting_samples": 0,
+          "path_samples": 1075,
+          "minimum_continuous_footprint_clearance_m": 0.29071067811865237,
+          "intersecting_path_segments": 0
+        },
+        "furniture_recipe_aabb_proxy": {
+          "minimum_footprint_clearance_m": 0.07499999999999973,
+          "intersecting_samples": 0,
+          "path_samples": 1075,
+          "minimum_continuous_footprint_clearance_m": 0.07499999999999973,
+          "intersecting_path_segments": 0
+        },
+        "all_motions_in_observed_safe_map": true,
+        "limitations": [
+          "Continuous horizontal disk/box audit between heights 0.12 and 1.85 m; no dynamics",
+          "Furniture uses rotated recipe bounding boxes; downloaded replacement meshes differ"
+        ]
+      },
+      "timings": {
+        "inference": {
+          "count": 300,
+          "median_ms": 7.554458919912577,
+          "p95_ms": 16.3768055383116
+        },
+        "mapping": {
+          "count": 300,
+          "median_ms": 80.47814387828112,
+          "p95_ms": 84.43228090181947
+        },
+        "capture": {
+          "count": 300,
+          "median_ms": 668.5140344779938,
+          "p95_ms": 689.0271233627573
+        },
+        "planning": {
+          "count": 30,
+          "median_ms": 17.340745078399777,
+          "p95_ms": 19.621344679035246
+        }
+      },
+      "per_region": {
+        "bedroom": {
+          "reference_edge_length_m": 47.21999999999999,
+          "visible_edge_coverage": 0.7665351096736105,
+          "edge_completeness_5cm": 0.37979186797484127,
+          "edge_completeness_10cm": 0.5282263244779128,
+          "observed_edge_completeness_10cm": 0.6815312712675624
+        },
+        "corridor": {
+          "reference_edge_length_m": 68.72,
+          "visible_edge_coverage": 0.9484045846525734,
+          "edge_completeness_5cm": 0.46007265041451584,
+          "edge_completeness_10cm": 0.5690102603623176,
+          "observed_edge_completeness_10cm": 0.5999657420158526
+        },
+        "kitchen": {
+          "reference_edge_length_m": 47.21999999999999,
+          "visible_edge_coverage": 0.7120224450592939,
+          "edge_completeness_5cm": 0.13439303178820333,
+          "edge_completeness_10cm": 0.203635495757478,
+          "observed_edge_completeness_10cm": 0.28005701155518764
+        },
+        "living": {
+          "reference_edge_length_m": 47.21999999999999,
+          "visible_edge_coverage": 0.9244881806508237,
+          "edge_completeness_5cm": 0.30627849255549383,
+          "edge_completeness_10cm": 0.42196350874876937,
+          "observed_edge_completeness_10cm": 0.45414560115656083
+        },
+        "study": {
+          "reference_edge_length_m": 47.21999999999999,
+          "visible_edge_coverage": 0.8082359872702949,
+          "edge_completeness_5cm": 0.3538879140530984,
+          "edge_completeness_10cm": 0.45848046019583505,
+          "observed_edge_completeness_10cm": 0.5633354277355977
+        }
+      },
+      "provenance": {
+        "experiment_sha256": "35897a2f8be7357f3877f5edbba9748a9b8d57b53cc71454fa19e35bde26d016",
+        "reference_sha256": "665904a9c2bd7e81f593085b3f55299d8e85c8011275a95aafafcec2b2fc6d24",
+        "evaluation_sha256": "5c51ed424f27667e5289ab87a4be0ccec22cd7029cfb610da3d72526419e44bd",
+        "checkpoint_sha256": "bbdad608aa594122563b9e7aebac0c1415a82e9735f29521af660d5ceb21e022"
+      }
+    },
+    {
+      "id": "loop_workspaces",
+      "title": "Loop-connected studio, dining room, lounge and workshop",
+      "description": "Four physically partitioned work and living spaces form a loop, allowing a revisit by a different route.",
+      "visual_audit": null,
+      "split": "development",
+      "status": "complete",
+      "stage": "complete",
+      "evaluated": true,
+      "available_artifacts": [
+        "report.html",
+        "replay.mp4",
+        "poster.jpg",
+        "overview.jpg",
+        "cloud.json"
+      ],
+      "media_sha256": {
+        "report.html": "3bccaa85f00b654962fc4db3e91224ad830632583b3bb82ac82e45e874b170a2",
+        "replay.mp4": "b87f7f028af3a41a6bb0f68ea3609e105e8e1390084cc9662319c1db9e878aa8",
+        "poster.jpg": "fde11ad3267aa19c94e1ea1f32ed219e8222fd4c5d4acc3fa7eaca493be90233",
+        "overview.jpg": "3129873e4de308ab83c0b8f87a5d5be5f1108b595144fdb8adc4f51424a23608",
+        "cloud.json": "ef6671e42991ef8c51d18ab4a4fd556062681aa6f24057df6ce8e18ef88513e7"
+      },
+      "receipt_sha256": "eef668b53588a4602b923a3d38d9d442f7418246034351c61ebe88219e88491b",
+      "full_pipeline_wall_seconds": 374.71910282224417,
+      "experiment_status": "complete",
+      "reference_edge_length_m": 214.88,
+      "reference_portal_count": 4,
+      "unentered_reference_rooms": [],
+      "predicted_edge_voxels": 4375,
+      "metrics": {
+        "visible_edge_coverage": 0.848784793736055,
+        "edge_precision_10cm": 0.7949714285714286,
+        "edge_completeness_10cm": 0.43272311171496824,
+        "typed_edge_precision_10cm": 0.6187428571428571,
+        "typed_edge_completeness_10cm": 0.32371286115454834
+      },
+      "frames": 300,
+      "stations": 30,
+      "path_length_m": 24.650000000000002,
+      "action_seconds": 928.4546171003228,
+      "wall_seconds": 286.98332479130477,
+      "stop_reason": "frame_budget",
+      "visits": {
+        "rooms_entered": 4,
+        "reference_room_count": 4,
+        "region_entry_order": [
+          "studio",
+          "workshop",
+          "lounge",
+          "dining"
+        ],
+        "region_transition_sequence": [
+          {
+            "region": "studio",
+            "frame_id": "F0000",
+            "action_seconds": 0.7055555555555556
+          },
+          {
+            "region": "workshop",
+            "frame_id": "F0032",
+            "action_seconds": 113.8052721158067
+          },
+          {
+            "region": "lounge",
+            "frame_id": "F0072",
+            "action_seconds": 238.99141803620773
+          },
+          {
+            "region": "dining",
+            "frame_id": "F0232",
+            "action_seconds": 729.1953320192237
+          },
+          {
+            "region": "lounge",
+            "frame_id": "F0242",
+            "action_seconds": 768.9016812255727
+          },
+          {
+            "region": "workshop",
+            "frame_id": "F0282",
+            "action_seconds": 888.1982678939739
+          }
+        ],
+        "unique_portals_crossed": 3
+      },
+      "all_reference_rooms_entered": true,
+      "path_audit": {
+        "footprint_radius_m": 0.25,
+        "architecture": {
+          "minimum_footprint_clearance_m": 0.3000000000000016,
+          "intersecting_samples": 0,
+          "path_samples": 1089,
+          "minimum_continuous_footprint_clearance_m": 0.3000000000000016,
+          "intersecting_path_segments": 0
+        },
+        "furniture_recipe_aabb_proxy": {
+          "minimum_footprint_clearance_m": 0.03991378028648679,
+          "intersecting_samples": 0,
+          "path_samples": 1089,
+          "minimum_continuous_footprint_clearance_m": 0.03991378028648679,
+          "intersecting_path_segments": 0
+        },
+        "all_motions_in_observed_safe_map": true,
+        "limitations": [
+          "Continuous horizontal disk/box audit between heights 0.12 and 1.85 m; no dynamics",
+          "Furniture uses rotated recipe bounding boxes; downloaded replacement meshes differ"
+        ]
+      },
+      "timings": {
+        "inference": {
+          "count": 300,
+          "median_ms": 7.579614641144872,
+          "p95_ms": 16.035544988699257
+        },
+        "mapping": {
+          "count": 300,
+          "median_ms": 80.8186954818666,
+          "p95_ms": 85.23127490188926
+        },
+        "capture": {
+          "count": 300,
+          "median_ms": 678.5083769354969,
+          "p95_ms": 693.180964444764
+        },
+        "planning": {
+          "count": 30,
+          "median_ms": 17.841066466644406,
+          "p95_ms": 19.139122334308922
+        }
+      },
+      "per_region": {
+        "dining": {
+          "reference_edge_length_m": 53.72,
+          "visible_edge_coverage": 0.8230449137712303,
+          "edge_completeness_5cm": 0.23199953636962617,
+          "edge_completeness_10cm": 0.30865530696272486,
+          "observed_edge_completeness_10cm": 0.364852925217932
+        },
+        "lounge": {
+          "reference_edge_length_m": 53.72,
+          "visible_edge_coverage": 0.8071474671373251,
+          "edge_completeness_5cm": 0.41420314112214757,
+          "edge_completeness_10cm": 0.5558304424106851,
+          "observed_edge_completeness_10cm": 0.6869098230530567
+        },
+        "studio": {
+          "reference_edge_length_m": 53.72,
+          "visible_edge_coverage": 0.9136489041404502,
+          "edge_completeness_5cm": 0.3161712207795132,
+          "edge_completeness_10cm": 0.41925165615239735,
+          "observed_edge_completeness_10cm": 0.44973878111843396
+        },
+        "workshop": {
+          "reference_edge_length_m": 53.72,
+          "visible_edge_coverage": 0.8512978898952145,
+          "edge_completeness_5cm": 0.3431089627681585,
+          "edge_completeness_10cm": 0.4471550413340659,
+          "observed_edge_completeness_10cm": 0.5230803092913191
+        }
+      },
+      "provenance": {
+        "experiment_sha256": "47c25fa48187eeb0133f7088881b711ca062ddb99ef8bb6aa523990d01e34f3b",
+        "reference_sha256": "3708715ccb298fc7140f4f160f0051270d5c112031650ae97fd57bc245e69ed1",
+        "evaluation_sha256": "3c79ea5d0037080e8061d58d8273e9fb70c22300338da810e963268b938546b7",
+        "checkpoint_sha256": "bbdad608aa594122563b9e7aebac0c1415a82e9735f29521af660d5ceb21e022"
+      }
+    },
+    {
+      "id": "open_office",
+      "title": "Open office with meeting room, break room and quiet office",
+      "description": "A single 54 square metre open office connects to three smaller side rooms; desk groups do not invent reference room boundaries.",
+      "visual_audit": null,
+      "split": "development",
+      "status": "complete",
+      "stage": "complete",
+      "evaluated": true,
+      "available_artifacts": [
+        "report.html",
+        "replay.mp4",
+        "poster.jpg",
+        "overview.jpg",
+        "cloud.json"
+      ],
+      "media_sha256": {
+        "report.html": "d3407730e0e0b3298d55b1d6c08fee1cb679e42b413e6932e0f2e224bebd7082",
+        "replay.mp4": "045faaf0939bc46be18747e5c42f8cf36a014703d802cc224d9e0a71ac950f99",
+        "poster.jpg": "01b8d1c4cbdc10347af52d4b955df51f506c476e6576f8dccaae9159dc8943f9",
+        "overview.jpg": "a0f9985c19c7b15c0199c341b75d71efce2ae605d9c4f750ceaef86d7eea4b38",
+        "cloud.json": "4ab2ccef1b780adb62e6378af62cb5dee7f47e53a8da8746dc38d10326f439ff"
+      },
+      "receipt_sha256": "9b3d9bf1b3fede8773a1b3db4ec47b68137b9f6487cc2ab8f488c23bc2e6324e",
+      "full_pipeline_wall_seconds": 377.7478780951351,
+      "experiment_status": "complete",
+      "reference_edge_length_m": 213.88,
+      "reference_portal_count": 3,
+      "unentered_reference_rooms": [
+        "break_room",
+        "quiet_office"
+      ],
+      "predicted_edge_voxels": 7278,
+      "metrics": {
+        "visible_edge_coverage": 0.8201534510615386,
+        "edge_precision_10cm": 0.42965100302280845,
+        "edge_completeness_10cm": 0.4276442355119458,
+        "typed_edge_precision_10cm": 0.27906018136850785,
+        "typed_edge_completeness_10cm": 0.2642357575935474
+      },
+      "frames": 300,
+      "stations": 30,
+      "path_length_m": 24.65000000000001,
+      "action_seconds": 872.5098818344848,
+      "wall_seconds": 288.3865744653158,
+      "stop_reason": "frame_budget",
+      "visits": {
+        "rooms_entered": 2,
+        "reference_room_count": 4,
+        "region_entry_order": [
+          "open_office",
+          "meeting"
+        ],
+        "region_transition_sequence": [
+          {
+            "region": "open_office",
+            "frame_id": "F0000",
+            "action_seconds": 0.9
+          },
+          {
+            "region": "meeting",
+            "frame_id": "F0272",
+            "action_seconds": 801.3261759054
+          }
+        ],
+        "unique_portals_crossed": 1
+      },
+      "all_reference_rooms_entered": false,
+      "path_audit": {
+        "footprint_radius_m": 0.25,
+        "architecture": {
+          "minimum_footprint_clearance_m": 0.40000000000000036,
+          "intersecting_samples": 0,
+          "path_samples": 1076,
+          "minimum_continuous_footprint_clearance_m": 0.40000000000000036,
+          "intersecting_path_segments": 0
+        },
+        "furniture_recipe_aabb_proxy": {
+          "minimum_footprint_clearance_m": 0.2793281159061487,
+          "intersecting_samples": 0,
+          "path_samples": 1076,
+          "minimum_continuous_footprint_clearance_m": 0.2793281159061487,
+          "intersecting_path_segments": 0
+        },
+        "all_motions_in_observed_safe_map": true,
+        "limitations": [
+          "Continuous horizontal disk/box audit between heights 0.12 and 1.85 m; no dynamics",
+          "Furniture uses rotated recipe bounding boxes; downloaded replacement meshes differ"
+        ]
+      },
+      "timings": {
+        "inference": {
+          "count": 300,
+          "median_ms": 7.56856775842607,
+          "p95_ms": 16.22434442397207
+        },
+        "mapping": {
+          "count": 300,
+          "median_ms": 82.19201094470918,
+          "p95_ms": 86.27735069021583
+        },
+        "capture": {
+          "count": 300,
+          "median_ms": 675.8587909862399,
+          "p95_ms": 700.2994847018272
+        },
+        "planning": {
+          "count": 30,
+          "median_ms": 19.065412459895015,
+          "p95_ms": 53.78421985078587
+        }
+      },
+      "per_region": {
+        "break_room": {
+          "reference_edge_length_m": 43.22,
+          "visible_edge_coverage": 0.6046240448624821,
+          "edge_completeness_5cm": 0.20624270068971592,
+          "edge_completeness_10cm": 0.2657180370471001,
+          "observed_edge_completeness_10cm": 0.4261088293373871
+        },
+        "meeting": {
+          "reference_edge_length_m": 43.22,
+          "visible_edge_coverage": 0.8725139117196886,
+          "edge_completeness_5cm": 0.3461757966495052,
+          "edge_completeness_10cm": 0.4362266304775864,
+          "observed_edge_completeness_10cm": 0.49930229044673974
+        },
+        "open_office": {
+          "reference_edge_length_m": 84.22000000000001,
+          "visible_edge_coverage": 0.9718329438915958,
+          "edge_completeness_5cm": 0.30370560243031913,
+          "edge_completeness_10cm": 0.567800478403143,
+          "observed_edge_completeness_10cm": 0.5833419862880789
+        },
+        "quiet_office": {
+          "reference_edge_length_m": 43.22,
+          "visible_edge_coverage": 0.687754444586077,
+          "edge_completeness_5cm": 0.19821855973491426,
+          "edge_completeness_10cm": 0.30787469388628697,
+          "observed_edge_completeness_10cm": 0.4233264934061408
+        }
+      },
+      "provenance": {
+        "experiment_sha256": "8165efab3fba19214315985d5c119c8231fb4be51efb01716f26d89bc2aea376",
+        "reference_sha256": "cf74a8f18b19b60dd13f9f5453840de1b03d392712d684cda008c83834a5ee70",
+        "evaluation_sha256": "61af9dd33218d98421eb8f286c7f7102021eb3cf3c5d2c8ea95f11b656add416",
+        "checkpoint_sha256": "bbdad608aa594122563b9e7aebac0c1415a82e9735f29521af660d5ceb21e022"
+      }
+    },
+    {
+      "id": "compact_apartment",
+      "title": "Compact furnished apartment with narrow central hall",
+      "description": "A dense 56 square metre apartment with a 1.7 metre corridor and 1.4 metre physical door openings.",
+      "visual_audit": {
+        "status": "inspected_with_scene_defect",
+        "observed_frames": [
+          "F0004",
+          "F0036"
+        ],
+        "findings": [
+          "Imported living-room plant foliage intersects the sofa arm/cushion. The frozen scene and acquired images are retained; furnishing placement needs mesh collision validation."
+        ]
+      },
+      "split": "development",
+      "status": "complete",
+      "stage": "complete",
+      "evaluated": true,
+      "available_artifacts": [
+        "report.html",
+        "replay.mp4",
+        "poster.jpg",
+        "overview.jpg",
+        "cloud.json"
+      ],
+      "media_sha256": {
+        "report.html": "ff106b979dbb243c78b2b5a530109198611c9fb797b899b3bc2b6258e064549c",
+        "replay.mp4": "38ddb064f05bb40a7eac5a003e9f1728168c99b258f1d70898e6c565e752ef85",
+        "poster.jpg": "7ffbf51f1e3d0ac9196b3ed010d2814174f415e99f508845857e4321264554ff",
+        "overview.jpg": "aff470c893fb47f8b7dd7d6e2d99cbc2c31b7ac9619792b9ea72e5da8a7a31d1",
+        "cloud.json": "9bc33736adfde5b48eba5740eb309ba5b22e42972a2c472376fb9029ea63d9d8"
+      },
+      "receipt_sha256": "4f9bbd2ab5c2c5632fdf5efc86fdbabda5178d8e6e2f375a337626ac6ed4205d",
+      "full_pipeline_wall_seconds": 363.65647090785205,
+      "experiment_status": "complete",
+      "reference_edge_length_m": 230.79999999999998,
+      "reference_portal_count": 4,
+      "unentered_reference_rooms": [
+        "kitchen"
+      ],
+      "predicted_edge_voxels": 5701,
+      "metrics": {
+        "visible_edge_coverage": 0.7415305649581394,
+        "edge_precision_10cm": 0.6425188563409928,
+        "edge_completeness_10cm": 0.45133527407602525,
+        "typed_edge_precision_10cm": 0.4378179266795299,
+        "typed_edge_completeness_10cm": 0.3113127129644121
+      },
+      "frames": 300,
+      "stations": 30,
+      "path_length_m": 24.52928932188135,
+      "action_seconds": 914.1084853928778,
+      "wall_seconds": 278.5811851876788,
+      "stop_reason": "frame_budget",
+      "visits": {
+        "rooms_entered": 3,
+        "reference_room_count": 4,
+        "region_entry_order": [
+          "living",
+          "corridor",
+          "study",
+          "bedroom"
+        ],
+        "region_transition_sequence": [
+          {
+            "region": "living",
+            "frame_id": "F0000",
+            "action_seconds": 2.9
+          },
+          {
+            "region": "corridor",
+            "frame_id": "F0032",
+            "action_seconds": 108.44530146242654
+          },
+          {
+            "region": "study",
+            "frame_id": "F0092",
+            "action_seconds": 293.8927991463303
+          },
+          {
+            "region": "corridor",
+            "frame_id": "F0182",
+            "action_seconds": 565.9194976302667
+          },
+          {
+            "region": "bedroom",
+            "frame_id": "F0202",
+            "action_seconds": 625.3321960429648
+          },
+          {
+            "region": "corridor",
+            "frame_id": "F0252",
+            "action_seconds": 779.2330885674818
+          }
+        ],
+        "unique_portals_crossed": 3
+      },
+      "all_reference_rooms_entered": false,
+      "path_audit": {
+        "footprint_radius_m": 0.25,
+        "architecture": {
+          "minimum_footprint_clearance_m": 0.17000000000000148,
+          "intersecting_samples": 0,
+          "path_samples": 1073,
+          "minimum_continuous_footprint_clearance_m": 0.17000000000000148,
+          "intersecting_path_segments": 0
+        },
+        "furniture_recipe_aabb_proxy": {
+          "minimum_footprint_clearance_m": 0.04999999999999993,
+          "intersecting_samples": 0,
+          "path_samples": 1073,
+          "minimum_continuous_footprint_clearance_m": 0.04999999999999993,
+          "intersecting_path_segments": 0
+        },
+        "all_motions_in_observed_safe_map": true,
+        "limitations": [
+          "Continuous horizontal disk/box audit between heights 0.12 and 1.85 m; no dynamics",
+          "Furniture uses rotated recipe bounding boxes; downloaded replacement meshes differ"
+        ]
+      },
+      "timings": {
+        "inference": {
+          "count": 300,
+          "median_ms": 7.6867351308465,
+          "p95_ms": 16.900964314118028
+        },
+        "mapping": {
+          "count": 300,
+          "median_ms": 80.62997506931424,
+          "p95_ms": 83.69615178089589
+        },
+        "capture": {
+          "count": 300,
+          "median_ms": 660.4740812908858,
+          "p95_ms": 679.4258221285418
+        },
+        "planning": {
+          "count": 30,
+          "median_ms": 11.928473832085729,
+          "p95_ms": 13.4553573327139
+        }
+      },
+      "per_region": {
+        "bedroom": {
+          "reference_edge_length_m": 41.82,
+          "visible_edge_coverage": 0.669607545724272,
+          "edge_completeness_5cm": 0.2992262779866977,
+          "edge_completeness_10cm": 0.4256636722116732,
+          "observed_edge_completeness_10cm": 0.6285491765049459
+        },
+        "corridor": {
+          "reference_edge_length_m": 63.519999999999996,
+          "visible_edge_coverage": 0.9626647851587637,
+          "edge_completeness_5cm": 0.4886495701825706,
+          "edge_completeness_10cm": 0.6123954221602934,
+          "observed_edge_completeness_10cm": 0.6353295841568077
+        },
+        "kitchen": {
+          "reference_edge_length_m": 41.81999999999999,
+          "visible_edge_coverage": 0.40769209641736043,
+          "edge_completeness_5cm": 0.1326334617936089,
+          "edge_completeness_10cm": 0.17026485954111642,
+          "observed_edge_completeness_10cm": 0.4029933228828447
+        },
+        "living": {
+          "reference_edge_length_m": 41.82,
+          "visible_edge_coverage": 0.7365873712669148,
+          "edge_completeness_5cm": 0.299910955244575,
+          "edge_completeness_10cm": 0.4036504568330607,
+          "observed_edge_completeness_10cm": 0.4970275399706172
+        },
+        "study": {
+          "reference_edge_length_m": 41.81999999999999,
+          "visible_edge_coverage": 0.8163565838906854,
+          "edge_completeness_5cm": 0.4096686908011121,
+          "edge_completeness_10cm": 0.5611293815988652,
+          "observed_edge_completeness_10cm": 0.682978398731559
+        }
+      },
+      "provenance": {
+        "experiment_sha256": "d85a2ffd36262931b4263a477a1b59911e6ae74787435a04be148bc7033747a4",
+        "reference_sha256": "c279f76276cc49a3af5fc315628a25529d11d6a52dbe59decdf6097005ffba3f",
+        "evaluation_sha256": "13af0dd84b3a12df3412921e5f122ff0ca4d2ad5d731a54cfa80e8ec9e432747",
+        "checkpoint_sha256": "bbdad608aa594122563b9e7aebac0c1415a82e9735f29521af660d5ceb21e022"
+      }
+    }
+  ],
+  "public_artifacts_sha256": {
+    "overview.jpg": "a21cc14ad3fbd9f7767fc200f3cc86e3c109d9c0732f89ee82ecaa10867fd615",
+    "coverage.png": "eefbdfc8a89ae49139ffc5ef2a93a3c4b0b8cb3b891b238e69c18dae0ca771a6",
+    "comparison.png": "3e7680eb1929631ce232a51949fa33c8201212a1f647786a6e2a9465dafca50a",
+    "residential_branch/replay.mp4": "bdd72fbca738ee1938134715cc2ef441aea6c489467c901baa6a3ef1f01767d0",
+    "residential_branch/poster.jpg": "be078c80ec49c813cd6b251b17c3469bebe7147441b49952d4306750ba941a1d",
+    "residential_branch/overview.jpg": "2b160b9f23abdcdd38f531c3e3de64cc0ab83e88a600a71bba771e02a8ebaa57",
+    "residential_branch/cloud.json": "3de4db22bf61fbb5fff45afbc5704970b544d01ab2d34bfa0d88850cc9dc2fe4",
+    "loop_workspaces/replay.mp4": "b87f7f028af3a41a6bb0f68ea3609e105e8e1390084cc9662319c1db9e878aa8",
+    "loop_workspaces/poster.jpg": "fde11ad3267aa19c94e1ea1f32ed219e8222fd4c5d4acc3fa7eaca493be90233",
+    "loop_workspaces/overview.jpg": "3129873e4de308ab83c0b8f87a5d5be5f1108b595144fdb8adc4f51424a23608",
+    "loop_workspaces/cloud.json": "ef6671e42991ef8c51d18ab4a4fd556062681aa6f24057df6ce8e18ef88513e7",
+    "open_office/replay.mp4": "045faaf0939bc46be18747e5c42f8cf36a014703d802cc224d9e0a71ac950f99",
+    "open_office/poster.jpg": "01b8d1c4cbdc10347af52d4b955df51f506c476e6576f8dccaae9159dc8943f9",
+    "open_office/overview.jpg": "a0f9985c19c7b15c0199c341b75d71efce2ae605d9c4f750ceaef86d7eea4b38",
+    "open_office/cloud.json": "4ab2ccef1b780adb62e6378af62cb5dee7f47e53a8da8746dc38d10326f439ff",
+    "compact_apartment/replay.mp4": "38ddb064f05bb40a7eac5a003e9f1728168c99b258f1d70898e6c565e752ef85",
+    "compact_apartment/poster.jpg": "7ffbf51f1e3d0ac9196b3ed010d2814174f415e99f508845857e4321264554ff",
+    "compact_apartment/overview.jpg": "aff470c893fb47f8b7dd7d6e2d99cbc2c31b7ac9619792b9ea72e5da8a7a31d1",
+    "compact_apartment/cloud.json": "9bc33736adfde5b48eba5740eb309ba5b22e42972a2c472376fb9029ea63d9d8"
+  }
+}

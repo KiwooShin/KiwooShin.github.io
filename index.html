@@ -344,6 +344,15 @@
   <section id="projects">
     <h2>Projects</h2>
 
+    <article class="project" id="roomgraph-spaces">
+      <h3><a href="roomgraph-spaces/">RoomGraph — Exploring Multiple Connected Spaces</a></h3>
+      <p>The same frozen perception model and exploration policy start in one room and grow partial 3D maps across four furnished development buildings: a branching home, loop-connected workspaces, an open office and a compact apartment.</p>
+      <p>Acquired RGB-D and known poses support the map. The project compares structural visibility, geometric reconstruction and typed edge accuracy with explicit per-building and weighted denominators.</p>
+      <div class="tags"><span>Isaac Sim</span><span>Active perception</span><span>3D mapping</span><span>Four development cases</span></div>
+      <figure class="featured"><a href="roomgraph-spaces/#gallery"><img src="media/roomgraph-spaces/overview.jpg" width="1800" height="1540" loading="lazy" alt="Four furnished buildings with top-down camera directions and acquired learned structural-edge overlays"></a><figcaption>Four space cases, each with a furnished top-down and four acquired predictions. Full coverage and held-out robustness remain open questions.</figcaption></figure>
+      <p class="links"><a href="roomgraph-spaces/"><strong>Case replays, interactive 3D maps &amp; measurements →</strong></a> · <a href="roomgraph-multiroom/">First connected building</a> · <a href="https://github.com/KiwooShin/roomgraph">Code ↗</a></p>
+    </article>
+
     <article class="project" id="roomgraph-perception">
       <h3><a href="roomgraph-perception/">RoomGraph Perception — Head-camera RGB to 3D Room Structure</a></h3>
       <p>A trained structural-edge model and calibrated multi-view reconstruction from furnished humanoid head-camera images, with visible robot arms and mirror reflections. On four held-out synthetic room instances: <strong>0.916 visible-edge F1</strong>, <strong>0.958 amodal-edge F1</strong>, and <strong>0.023 m mean dimension error</strong>.</p>

@@ -153,3 +153,34 @@ The pilot entered all three rooms through their open doorways; it does not
 establish complete surfaces, verified room semantics, SLAM robustness, or humanoid
 walking control. Implementation:
 [RoomGraph 7d4dad3](https://github.com/KiwooShin/roomgraph/commit/7d4dad3).
+
+## Multiple connected-space cases
+
+`roomgraph-spaces/index.html` adds a four-building development suite: branching
+rooms, loop-connected spaces, an open office with side rooms, and a compact
+apartment. It reuses the frozen perception model and exploration policy with
+equal acquisition budgets. Ideal depth and known poses remain explicit.
+
+Build only after RoomGraph has generated the aggregate report and per-case media:
+
+```bash
+python scripts/build_space_suite_page.py \
+  --report ../roomgraph/vis/space_suite/report \
+  --cases ../roomgraph/vis/space_suite/v1
+```
+
+The builder verifies terminal suite status and matching per-case experiment hashes,
+then copies selected replays, overlays and observed point data to
+`media/roomgraph-spaces/`. The page shows all declared cases, including incomplete
+coverage or unavailable evaluations. Macro averages weight evaluated buildings
+equally; pooled visibility/completeness weight reference edge length, and pooled
+precision weights predicted voxels. Every denominator is recorded. This is a
+development suite, not evidence of held-out robustness. Full captures and traces
+remain in RoomGraph's ignored `vis/` tree. Earlier project pages retain their
+original measured results.
+
+Implementation and measured protocol:
+[RoomGraph e470dd3](https://github.com/KiwooShin/roomgraph/commit/e470dd3).
+Publication validation covers media receipts and hashes, all four videos and
+interactive maps, local links, and desktop/mobile layouts. Run publisher tests
+with `python -m unittest discover -s tests -v`.
