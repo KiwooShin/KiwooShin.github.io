@@ -127,6 +127,14 @@ img {
   display:block;
   border-radius:7px;
 }
+.active-head-video video {
+  display:block;
+  width:100%;
+  height:auto;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--panel);
+}
 figure {
   margin:24px 0;
 }
@@ -234,12 +242,12 @@ th {
   border-top:1px solid var(--line);
   padding-top:15px;
 }
-.gallery-room summary,.efficiency-details summary {
+.gallery-room summary,.efficiency-details summary,.active-head-details summary {
   cursor:pointer;
   color:var(--mint);
   font-size:14px;
 }
-.gallery-room details,.efficiency-details {
+.gallery-room details,.efficiency-details,.active-head-details {
   margin-top:15px;
 }
 .notes {

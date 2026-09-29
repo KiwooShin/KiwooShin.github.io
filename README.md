@@ -91,9 +91,36 @@ directory or silently remove the section. Wall time includes startup and cold
 compilation when the source records initially empty compiler caches. Full local
 overlays and training artifacts remain in the RoomGraph workspace.
 
+To publish the active head-camera follow-up while retaining the original test
+benchmark and training-efficiency measurements:
+
+```bash
+python scripts/build_perception_page.py \
+  --results /path/to/roomgraph/vis/perception \
+  --active-head /path/to/roomgraph/vis/active_head/report
+```
+
+The active-head input contains a completed validation-room `summary.json`,
+`active_head.mp4`, `poster.jpg`, `comparison.png`, and `reconstruction.png`.
+The builder publishes a compact whitelist in `media/roomgraph-perception/active-head.json`
+and selected media under `media/roomgraph-perception/active-head/`. Raw experiment
+traces, dense captures, checkpoints and absolute local paths are excluded.
+Omitting `--active-head` on later builds preserves the published section and media.
+
+This follow-up compares a hand-designed planner, fixed raster scan and five random
+seeds under the same 12-second simulated motion budget, in one furnished validation
+office with known metric camera poses and three translated bootstrap images.
+The continuous video uses actual intermediate Isaac Sim renders of the frozen
+trajectory. Extra animation frames do not enter policy selection or benchmark
+metrics. Coverage and 3D accuracy are reported separately: the active policy covers
+more structure than raster in this pilot, but its dimension error is larger.
+It is a stationary-body head-motion experiment, not autonomous navigation or a
+real-robot demonstration.
+
 The model checkpoints, raw dataset, and TensorBoard logs remain in the local
 RoomGraph workspace. The public page links back to reproducible source code and
-explicitly separates this result from future active mapping and robot navigation.
+explicitly separates the held-out perception benchmark, validation-only active-head
+follow-up, and future robot navigation.
 
 Implementation for the reported experiment:
 [RoomGraph 38a4400](https://github.com/KiwooShin/roomgraph/commit/38a4400).
