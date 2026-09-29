@@ -108,6 +108,17 @@
       line-height: 1.45;
     }
 
+    .rg-scene-row { margin-top: 1rem; }
+    .rg-scene-row h4 { font-size: .82rem; font-weight: 600; margin-bottom: .35rem; }
+    .rg-scroll { overflow-x: auto; }
+    .rg-five { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 5px; min-width: 570px; }
+    .rg-five img { display: block; width: 100%; height: auto; border-radius: 3px; }
+    .rg-five figcaption { font-size: .65rem; text-align: center; }
+    .rg-five a { text-decoration: none; }
+    .project .rg-legend, .project .rg-scroll-hint { font-size: .75rem; color: var(--muted); }
+    .rg-scroll-hint { display: none; }
+    @media (max-width: 660px) { .rg-scroll-hint { display: block; } }
+
     /* ---- Video slot: replace the placeholder div with a real embed ---- */
     .video-slot {
       margin-top: 1rem;
@@ -335,24 +346,13 @@
 
     <article class="project" id="roomgraph">
       <h3><a href="roomgraph/">RoomGraph — Synthetic Indoor Structure</a></h3>
-      <p>Generate calibrated indoor images and architectural edge labels with
-      NVIDIA Isaac Sim on a DGX Spark. The first dataset milestone renders a
-      room from four viewpoints and exports RGB, depth, normals, camera poses,
-      and geometry-derived labels for 20 structural edges.</p>
-      <p>Explore the interactive 3D room graph and image overlays. Learned edge
-      detection, multi-view reconstruction, and furnished scenes are the next stages.</p>
-      <div class="tags"><span>3D vision</span><span>synthetic data</span>
-        <span>Isaac Sim</span><span>DGX Spark</span></div>
-      <figure class="featured">
-        <a href="roomgraph/">
-          <img src="media/roomgraph/view_000_overlay.png" width="640" height="480"
-               style="height:auto" loading="lazy"
-               alt="Rendered room with turquoise ground-truth edges along walls, the ceiling, floor, doorway, and window">
-        </a>
-        <figcaption>Geometry-derived structural labels over a rendered room.
-        These are ground-truth annotations, not learned predictions.</figcaption>
-      </figure>
-      <p class="links"><a href="roomgraph/">Project page &amp; interactive demo →</a></p>
+      <p>Recover the shape of an indoor space from its images. RoomGraph uses Isaac Sim on NVIDIA DGX Spark to generate furnished interiors with calibrated cameras, depth, and architectural edge ground truth.</p>
+      <div class="tags"><span>3D vision</span><span>synthetic data</span><span>Isaac Sim</span><span>DGX Spark</span></div>
+      <p class="rg-legend"><span>Mint: visible structure</span> · <span>Coral: hidden structure</span>. Labels come from scene geometry.</p>
+      <div class="rg-scene-row"><h4>Bedroom &amp; study</h4><div class="rg-scroll" role="region" aria-label="Bedroom &amp; study camera previews" tabindex="0"><div class="rg-five"><figure><a href="roomgraph/#bedroom"><img src="media/roomgraph/furnished/bedroom/top_down_four.webp" width="420" height="280" loading="lazy" alt="Bedroom &amp; study: top-down with camera positions C1 to C4"><figcaption>Top-down</figcaption></a></figure><figure><a href="roomgraph/#bedroom"><img src="media/roomgraph/furnished/bedroom/C1_thumb.webp" width="420" height="280" loading="lazy" alt="Bedroom &amp; study, C1: structural-edge overlay"><figcaption>Overlay 1</figcaption></a></figure><figure><a href="roomgraph/#bedroom"><img src="media/roomgraph/furnished/bedroom/C2_thumb.webp" width="420" height="280" loading="lazy" alt="Bedroom &amp; study, C2: structural-edge overlay"><figcaption>Overlay 2</figcaption></a></figure><figure><a href="roomgraph/#bedroom"><img src="media/roomgraph/furnished/bedroom/C3_thumb.webp" width="420" height="280" loading="lazy" alt="Bedroom &amp; study, C3: structural-edge overlay"><figcaption>Overlay 3</figcaption></a></figure><figure><a href="roomgraph/#bedroom"><img src="media/roomgraph/furnished/bedroom/C4_thumb.webp" width="420" height="280" loading="lazy" alt="Bedroom &amp; study, C4: structural-edge overlay"><figcaption>Overlay 4</figcaption></a></figure></div></div></div><div class="rg-scene-row"><h4>Kitchen &amp; dining</h4><div class="rg-scroll" role="region" aria-label="Kitchen &amp; dining camera previews" tabindex="0"><div class="rg-five"><figure><a href="roomgraph/#kitchen"><img src="media/roomgraph/furnished/kitchen/top_down_four.webp" width="420" height="280" loading="lazy" alt="Kitchen &amp; dining: top-down with camera positions C1 to C4"><figcaption>Top-down</figcaption></a></figure><figure><a href="roomgraph/#kitchen"><img src="media/roomgraph/furnished/kitchen/C1_thumb.webp" width="420" height="280" loading="lazy" alt="Kitchen &amp; dining, C1: structural-edge overlay"><figcaption>Overlay 1</figcaption></a></figure><figure><a href="roomgraph/#kitchen"><img src="media/roomgraph/furnished/kitchen/C2_thumb.webp" width="420" height="280" loading="lazy" alt="Kitchen &amp; dining, C2: structural-edge overlay"><figcaption>Overlay 2</figcaption></a></figure><figure><a href="roomgraph/#kitchen"><img src="media/roomgraph/furnished/kitchen/C3_thumb.webp" width="420" height="280" loading="lazy" alt="Kitchen &amp; dining, C3: structural-edge overlay"><figcaption>Overlay 3</figcaption></a></figure><figure><a href="roomgraph/#kitchen"><img src="media/roomgraph/furnished/kitchen/C4_thumb.webp" width="420" height="280" loading="lazy" alt="Kitchen &amp; dining, C4: structural-edge overlay"><figcaption>Overlay 4</figcaption></a></figure></div></div></div><div class="rg-scene-row"><h4>Living room</h4><div class="rg-scroll" role="region" aria-label="Living room camera previews" tabindex="0"><div class="rg-five"><figure><a href="roomgraph/#living"><img src="media/roomgraph/furnished/living/top_down_four.webp" width="420" height="280" loading="lazy" alt="Living room: top-down with camera positions C1 to C4"><figcaption>Top-down</figcaption></a></figure><figure><a href="roomgraph/#living"><img src="media/roomgraph/furnished/living/C1_thumb.webp" width="420" height="280" loading="lazy" alt="Living room, C1: structural-edge overlay"><figcaption>Overlay 1</figcaption></a></figure><figure><a href="roomgraph/#living"><img src="media/roomgraph/furnished/living/C2_thumb.webp" width="420" height="280" loading="lazy" alt="Living room, C2: structural-edge overlay"><figcaption>Overlay 2</figcaption></a></figure><figure><a href="roomgraph/#living"><img src="media/roomgraph/furnished/living/C3_thumb.webp" width="420" height="280" loading="lazy" alt="Living room, C3: structural-edge overlay"><figcaption>Overlay 3</figcaption></a></figure><figure><a href="roomgraph/#living"><img src="media/roomgraph/furnished/living/C4_thumb.webp" width="420" height="280" loading="lazy" alt="Living room, C4: structural-edge overlay"><figcaption>Overlay 4</figcaption></a></figure></div></div></div><div class="rg-scene-row"><h4>Shared creative office</h4><div class="rg-scroll" role="region" aria-label="Shared creative office camera previews" tabindex="0"><div class="rg-five"><figure><a href="roomgraph/#office"><img src="media/roomgraph/furnished/office/top_down_four.webp" width="420" height="280" loading="lazy" alt="Shared creative office: top-down with camera positions C1 to C4"><figcaption>Top-down</figcaption></a></figure><figure><a href="roomgraph/#office"><img src="media/roomgraph/furnished/office/C1_thumb.webp" width="420" height="280" loading="lazy" alt="Shared creative office, C1: structural-edge overlay"><figcaption>Overlay 1</figcaption></a></figure><figure><a href="roomgraph/#office"><img src="media/roomgraph/furnished/office/C2_thumb.webp" width="420" height="280" loading="lazy" alt="Shared creative office, C2: structural-edge overlay"><figcaption>Overlay 2</figcaption></a></figure><figure><a href="roomgraph/#office"><img src="media/roomgraph/furnished/office/C3_thumb.webp" width="420" height="280" loading="lazy" alt="Shared creative office, C3: structural-edge overlay"><figcaption>Overlay 3</figcaption></a></figure><figure><a href="roomgraph/#office"><img src="media/roomgraph/furnished/office/C4_thumb.webp" width="420" height="280" loading="lazy" alt="Shared creative office, C4: structural-edge overlay"><figcaption>Overlay 4</figcaption></a></figure></div></div></div>
+      <p class="rg-scroll-hint">On small screens, swipe each row to see all four overlays.</p>
+      <figure class="featured"><a href="roomgraph/#living"><picture><source media="(prefers-reduced-motion: reduce)" srcset="media/roomgraph/furnished/living/walkthrough-poster.webp"><img src="media/roomgraph/furnished/living/walkthrough.gif" width="768" height="384" loading="lazy" alt="Moving camera in a furnished living room, with a continuous structural-edge overlay and synchronized top-down camera marker"></picture></a><figcaption>Continuous moving-camera walkthrough. Explore four rooms, 32 detailed views, and camera-path videos on the project page.</figcaption></figure>
+      <p class="links"><a href="roomgraph/"><strong>Detailed project page &amp; interactive gallery →</strong></a> · <a href="https://github.com/KiwooShin/roomgraph">Source code ↗</a></p>
     </article>
 
     <article class="project" id="calibration-recovery">

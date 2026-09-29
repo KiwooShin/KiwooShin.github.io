@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RoomGraph — Synthetic Indoor Structure | Kiwoo Shin</title>
+<meta name="description" content="RoomGraph: calibrated indoor images and structural-edge ground truth generated with Isaac Sim on NVIDIA DGX Spark. Explore the first room capture and its 3D structural graph.">
+<link rel="canonical" href="https://kiwooshin.github.io/roomgraph/">
+<meta property="og:title" content="RoomGraph — Synthetic Indoor Structure">
+<meta property="og:description" content="From rendered rooms to structural-edge ground truth. An Isaac Sim project by Kiwoo Shin.">
+<meta property="og:image" content="https://kiwooshin.github.io/media/roomgraph/view_000_overlay.png">
+<meta property="og:url" content="https://kiwooshin.github.io/roomgraph/">
+<meta property="og:type" content="website">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#0b111b;color:#e7eff8;font:16px system-ui,sans-serif}
+main{max-width:1440px;margin:auto;padding:40px 28px}header{border-bottom:1px solid #273243;padding-bottom:24px}
+.eyebrow{color:#45dec4;font-size:12px;letter-spacing:.2em}h1{font-size:44px;letter-spacing:-.04em;margin:12px 0}
+p,small,figcaption{color:#9db0c6}p{max-width:850px;line-height:1.7}h2{font-size:19px;font-weight:550}
+small{font-size:13px;margin-left:16px}section{margin-top:32px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+figure{margin:0;background:#141e2c;border:1px solid #273243;border-radius:10px;overflow:hidden}
+img{width:100%;height:auto;display:block}figcaption{padding:12px;font-size:13px}
+canvas{display:block;width:100%;height:400px;background:#101a28;border:1px solid #273243;border-radius:12px;touch-action:none}
+.legend{display:flex;gap:22px;margin:12px 0;font-size:13px}.legend span:first-child{color:#45dec4}.legend span:nth-child(2){color:#f3ae68}
+footer{margin-top:40px;border-top:1px solid #273243;padding-top:20px;color:#9db0c6;font-size:13px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}h1{font-size:32px}small{display:block;margin:6px 0}}
+a{color:#70e5d0;text-underline-offset:4px}a:hover{color:#fff}
+nav{display:flex;flex-wrap:wrap;gap:20px;margin-bottom:30px;font-size:14px}
+.status{display:inline-block;border:1px solid #365648;color:#99e3b5;padding:5px 12px;border-radius:99px;font-size:12px;margin-bottom:16px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:28px 0 0}
+.stat{padding:18px;background:#141e2c;border:1px solid #273243;border-radius:10px}
+.stat strong{display:block;font-size:25px}.stat span{font-size:13px;color:#9db0c6}
+.details{display:grid;grid-template-columns:1fr 1fr;gap:28px}.details p{margin-top:8px}
+ul{padding-left:22px;color:#b8c7d8;line-height:1.8}button{font:inherit;background:#17283a;color:#e7eff8;border:1px solid #40566c;border-radius:6px;padding:6px 12px;cursor:pointer}
+:focus-visible{outline:2px solid #70e5d0;outline-offset:5px}
+@media(max-width:800px){.stats{grid-template-columns:repeat(2,1fr)}.details{grid-template-columns:1fr}main{padding:24px 16px}}
+</style>
+<main>
+<nav aria-label="Project navigation"><a href="../#projects">← Kiwoo Shin / Projects</a><a href="#captures">Explore the captures</a><a href="https://github.com/KiwooShin/roomgraph">View source on GitHub</a></nav>
+<header><div class="eyebrow">ROOMGRAPH / SYNTHETIC INDOOR STRUCTURE</div>
+<h1>Learning the shape of a room.</h1>
+<div class="status">In development · First dataset milestone complete</div>
+<p>RoomGraph explores how multiple indoor images can reveal a building’s 3D structure.
+The first step is a synthetic dataset with precise architectural edge labels: wall intersections,
+floor and ceiling boundaries, and door and window openings.</p>
+<p>The working prototype uses NVIDIA Isaac Sim on a DGX Spark to render a room and export
+calibrated images, metric depth, normals, and structural-edge ground truth.
+The next stages are learned edge detection, multi-view reconstruction, and furnished environments.</p>
+<div class="stats" aria-label="Demo facts"><div class="stat"><strong>4 views</strong><span>Overlapping, calibrated cameras</span></div>
+<div class="stat"><strong>20 edges</strong><span>Interior architectural boundaries</span></div>
+<div class="stat"><strong>640 × 480</strong><span>RGB and geometric outputs</span></div>
+<div class="stat"><strong>6 × 5 × 3 m</strong><span>Known room dimensions</span></div></div>
+</header>
+<section><h2>Structural graph <small>Drag or use arrow keys to orbit · scroll or +/− to zoom</small></h2>
+<canvas id="scene" tabindex="0" role="img" aria-label="Interactive 3D graph of a room with a door and window, and four camera poses. Use arrow keys to orbit, plus and minus to zoom.">A rectangular room with a doorway, window opening, 20 structural edges, and four cameras.</canvas><div class="legend"><span>● Architecture</span><span>● Camera poses</span><button id="reset" type="button">Reset view</button></div></section>
+<section id="captures"><h2>Rendered images and geometric labels</h2><p>Turquoise lines mark visible structural edges computed from the scene geometry. These are ground-truth annotations, not model predictions. The depth panels span 0–8 metres; black indicates no surface hit through an opening.</p></section>
+<section><h2>view_000 <small>depth error p95: 0.0021 mm</small></h2><div class="grid"><figure><img src="../media/roomgraph/view_000_rgb.png" alt="Rendered room, camera 0" width="640" height="480" loading="lazy"><figcaption>Rendered RGB</figcaption></figure><figure><img src="../media/roomgraph/view_000_overlay.png" alt="Ground-truth structural edges overlaid on the room, camera 0" width="640" height="480" loading="lazy"><figcaption>Structural edges</figcaption></figure><figure><img src="../media/roomgraph/view_000_depth.png" alt="Optical-axis depth; black denotes no surface hit, camera 0" width="640" height="480" loading="lazy"><figcaption>Metric depth · 0–8 m</figcaption></figure></div></section>
+<section><h2>view_001 <small>depth error p95: 0.0023 mm</small></h2><div class="grid"><figure><img src="../media/roomgraph/view_001_rgb.png" alt="Rendered room, camera 1" width="640" height="480" loading="lazy"><figcaption>Rendered RGB</figcaption></figure><figure><img src="../media/roomgraph/view_001_overlay.png" alt="Ground-truth structural edges overlaid on the room, camera 1" width="640" height="480" loading="lazy"><figcaption>Structural edges</figcaption></figure><figure><img src="../media/roomgraph/view_001_depth.png" alt="Optical-axis depth; black denotes no surface hit, camera 1" width="640" height="480" loading="lazy"><figcaption>Metric depth · 0–8 m</figcaption></figure></div></section>
+<section><h2>view_002 <small>depth error p95: 0.0014 mm</small></h2><div class="grid"><figure><img src="../media/roomgraph/view_002_rgb.png" alt="Rendered room, camera 2" width="640" height="480" loading="lazy"><figcaption>Rendered RGB</figcaption></figure><figure><img src="../media/roomgraph/view_002_overlay.png" alt="Ground-truth structural edges overlaid on the room, camera 2" width="640" height="480" loading="lazy"><figcaption>Structural edges</figcaption></figure><figure><img src="../media/roomgraph/view_002_depth.png" alt="Optical-axis depth; black denotes no surface hit, camera 2" width="640" height="480" loading="lazy"><figcaption>Metric depth · 0–8 m</figcaption></figure></div></section>
+<section><h2>view_003 <small>depth error p95: 0.0018 mm</small></h2><div class="grid"><figure><img src="../media/roomgraph/view_003_rgb.png" alt="Rendered room, camera 3" width="640" height="480" loading="lazy"><figcaption>Rendered RGB</figcaption></figure><figure><img src="../media/roomgraph/view_003_overlay.png" alt="Ground-truth structural edges overlaid on the room, camera 3" width="640" height="480" loading="lazy"><figcaption>Structural edges</figcaption></figure><figure><img src="../media/roomgraph/view_003_depth.png" alt="Optical-axis depth; black denotes no surface hit, camera 3" width="640" height="480" loading="lazy"><figcaption>Metric depth · 0–8 m</figcaption></figure></div></section>
+<section class="details"><div><h2>What is validated</h2><p>The native ARM64 installation renders all four views successfully. Independent ray–geometry checks verify the camera and depth conventions, with a 95th-percentile depth difference below 0.003 mm in each view.</p><p>This agreement is a synthetic calibration check, not measured reconstruction accuracy. Five unit tests cover projection, ray intersections, openings, invalid poses, and occlusion.</p><p><a href="../media/roomgraph/manifest.json">Download sample geometry and camera metadata (JSON)</a></p></div>
+<div><h2>What comes next</h2><ul><li>Procedural connected rooms and larger layouts.</li><li>An edge/corner model, training pipeline, and held-out evaluation.</li><li>Multi-view reconstruction, first with known camera poses.</li><li>Furnished kitchens, offices, bedrooms, garages, and factories.</li></ul><p>Dense-scene throughput and real-image generalization are still to be evaluated. The current demo uses an empty room with opaque surfaces and an unglazed window opening.</p></div></section>
+<footer>Built by <a href="../">Kiwoo Shin</a> · Isaac Sim 5.1.0 / NVIDIA DGX Spark.<br>World: metres, Z up. Cameras: X right, Y down, Z forward. Labels describe the inner building shell.
+This capture validates rendering and calibration; it contains no learned predictions.</footer>
+</main>
+<script>
+const scene={"schema_version": "0.1", "world_axes": "right-handed, Z up", "units": "metres", "boxes": [{"name": "floor", "lower": [-3.2, -2.7, -0.2], "upper": [3.2, 2.7, 0], "color": [0.28, 0.2, 0.13]}, {"name": "ceiling", "lower": [-3.2, -2.7, 3], "upper": [3.2, 2.7, 3.2], "color": [0.85, 0.85, 0.82]}, {"name": "west_wall", "lower": [-3.2, -2.5, 0], "upper": [-3, 2.5, 3], "color": [0.72, 0.75, 0.78]}, {"name": "south_wall", "lower": [-3, -2.7, 0], "upper": [3, -2.5, 3], "color": [0.72, 0.75, 0.78]}, {"name": "door_left", "lower": [-3, 2.5, 0], "upper": [-2, 2.7, 3], "color": [0.56, 0.65, 0.69]}, {"name": "door_right", "lower": [-1, 2.5, 0], "upper": [3, 2.7, 3], "color": [0.56, 0.65, 0.69]}, {"name": "door_header", "lower": [-2, 2.5, 2.2], "upper": [-1, 2.7, 3], "color": [0.56, 0.65, 0.69]}, {"name": "window_south", "lower": [3, -2.5, 0], "upper": [3.2, -1, 3], "color": [0.72, 0.75, 0.78]}, {"name": "window_north", "lower": [3, 1, 0], "upper": [3.2, 2.5, 3], "color": [0.72, 0.75, 0.78]}, {"name": "window_sill", "lower": [3, -1, 0], "upper": [3.2, 1, 1], "color": [0.72, 0.75, 0.78]}, {"name": "window_header", "lower": [3, -1, 2.2], "upper": [3.2, 1, 3], "color": [0.72, 0.75, 0.78]}], "edges": [{"name": "corner_0", "start": [-3, -2.5, 0], "end": [-3, -2.5, 3], "kind": "wall_wall"}, {"name": "top_0", "start": [-3, -2.5, 3], "end": [3, -2.5, 3], "kind": "wall_ceiling"}, {"name": "bottom_0", "start": [-3, -2.5, 0], "end": [3, -2.5, 0], "kind": "wall_floor"}, {"name": "corner_1", "start": [3, -2.5, 0], "end": [3, -2.5, 3], "kind": "wall_wall"}, {"name": "top_1", "start": [3, -2.5, 3], "end": [3, 2.5, 3], "kind": "wall_ceiling"}, {"name": "bottom_1", "start": [3, -2.5, 0], "end": [3, 2.5, 0], "kind": "wall_floor"}, {"name": "corner_2", "start": [3, 2.5, 0], "end": [3, 2.5, 3], "kind": "wall_wall"}, {"name": "top_2", "start": [3, 2.5, 3], "end": [-3, 2.5, 3], "kind": "wall_ceiling"}, {"name": "corner_3", "start": [-3, 2.5, 0], "end": [-3, 2.5, 3], "kind": "wall_wall"}, {"name": "top_3", "start": [-3, 2.5, 3], "end": [-3, -2.5, 3], "kind": "wall_ceiling"}, {"name": "bottom_3", "start": [-3, 2.5, 0], "end": [-3, -2.5, 0], "kind": "wall_floor"}, {"name": "bottom_door_left", "start": [-3, 2.5, 0], "end": [-2, 2.5, 0], "kind": "wall_floor"}, {"name": "bottom_door_right", "start": [-1, 2.5, 0], "end": [3, 2.5, 0], "kind": "wall_floor"}, {"name": "door_left", "start": [-2, 2.5, 0], "end": [-2, 2.5, 2.2], "kind": "door"}, {"name": "door_top", "start": [-2, 2.5, 2.2], "end": [-1, 2.5, 2.2], "kind": "door"}, {"name": "door_right", "start": [-1, 2.5, 2.2], "end": [-1, 2.5, 0], "kind": "door"}, {"name": "window_0", "start": [3, -1, 1], "end": [3, 1, 1], "kind": "window"}, {"name": "window_1", "start": [3, 1, 1], "end": [3, 1, 2.2], "kind": "window"}, {"name": "window_2", "start": [3, 1, 2.2], "end": [3, -1, 2.2], "kind": "window"}, {"name": "window_3", "start": [3, -1, 2.2], "end": [3, -1, 1], "kind": "window"}], "renderer": "Isaac Sim 5.1.0", "views": [{"id": "view_000", "width": 640, "height": 480, "intrinsics": [[480.0, 0.0, 320.0], [0.0, 480.0, 240.0], [0.0, 0.0, 1.0]], "camera_to_world": [[0.8849182223819824, -0.010843047294563823, 0.46562019717971875, -2.0], [-0.4657464328326223, -0.020601789859671264, 0.8846783746414656, -1.8], [0.0, -0.9997289605587834, -0.02328100985898596, 1.5], [0.0, 0.0, 0.0, 1.0]], "camera_axes": "X right, Y down, Z forward", "pixel_coordinates": "top-left boundary origin; centers at i+0.5,j+0.5", "depth_convention": "optical-axis depth in metres", "depth_p95_absolute_error_m": 2.130069649552979e-06, "depth_checked_pixels": 832, "depth_valid_fraction": 1.0, "capture_seconds": 49.317120865918696, "visible_edge_pixels": 2399}, {"id": "view_001", "width": 640, "height": 480, "intrinsics": [[480.0, 0.0, 320.0], [0.0, 480.0, 240.0], [0.0, 0.0, 1.0]], "camera_to_world": [[-0.3511234415883917, 0.0, 0.9363291775690445, -2.0], [-0.9363291775690445, -0.0, -0.3511234415883917, 1.5], [0.0, -1.0, 0.0, 1.5], [0.0, 0.0, 0.0, 1.0]], "camera_axes": "X right, Y down, Z forward", "pixel_coordinates": "top-left boundary origin; centers at i+0.5,j+0.5", "depth_convention": "optical-axis depth in metres", "depth_p95_absolute_error_m": 2.3053307005582724e-06, "depth_checked_pixels": 876, "depth_valid_fraction": 1.0, "capture_seconds": 1.3582919021137059, "visible_edge_pixels": 2697}, {"id": "view_002", "width": 640, "height": 480, "intrinsics": [[480.0, 0.0, 320.0], [0.0, 480.0, 240.0], [0.0, 0.0, 1.0]], "camera_to_world": [[0.7933093260902778, 0.022448984786197293, -0.608404763475976, 2.0], [0.6088187851390504, -0.029251707448681323, 0.7927698433171808, -1.8], [-0.0, -0.9993199591189028, -0.036873015968241, 1.6], [0.0, 0.0, 0.0, 1.0]], "camera_axes": "X right, Y down, Z forward", "pixel_coordinates": "top-left boundary origin; centers at i+0.5,j+0.5", "depth_convention": "optical-axis depth in metres", "depth_p95_absolute_error_m": 1.3636999780519687e-06, "depth_checked_pixels": 903, "depth_valid_fraction": 1.0, "capture_seconds": 1.3941692621447146, "visible_edge_pixels": 2150}, {"id": "view_003", "width": 640, "height": 480, "intrinsics": [[480.0, 0.0, 320.0], [0.0, 480.0, 240.0], [0.0, 0.0, 1.0]], "camera_to_world": [[-0.8050558373533679, -0.012564505588854618, -0.5930659591837784, 1.8], [0.5931990380498501, -0.01705182901344555, -0.8048752303208421, 1.8], [0.0, -0.9997756589988593, 0.02118092711370639, 1.4], [0.0, 0.0, 0.0, 1.0]], "camera_axes": "X right, Y down, Z forward", "pixel_coordinates": "top-left boundary origin; centers at i+0.5,j+0.5", "depth_convention": "optical-axis depth in metres", "depth_p95_absolute_error_m": 1.7960816116602274e-06, "depth_checked_pixels": 936, "depth_valid_fraction": 1.0, "capture_seconds": 1.4011511323042214, "visible_edge_pixels": 1776}]};
+const canvas=document.getElementById('scene'),ctx=canvas.getContext('2d');
+let yaw=-.65,pitch=.55,zoom=42,drag=null;
+function draw(){
+ const dpr=window.devicePixelRatio||1,w=canvas.clientWidth,h=canvas.clientHeight;
+ canvas.width=w*dpr;canvas.height=h*dpr;ctx.scale(dpr,dpr);ctx.clearRect(0,0,w,h);
+ function project(p){const x=p[0],y=p[1],z=p[2]-1.5;
+  const u=Math.cos(yaw)*x-Math.sin(yaw)*y,v=Math.sin(yaw)*x+Math.cos(yaw)*y;
+  return [w/2+zoom*u,h/2-zoom*(Math.cos(pitch)*z-Math.sin(pitch)*v)];}
+ function line(a,b,color,width=1){a=project(a);b=project(b);ctx.strokeStyle=color;ctx.lineWidth=width;
+  ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke();}
+ for(let i=-4;i<=4;i++){line([i,-4,0],[i,4,0],'#203044');line([-4,i,0],[4,i,0],'#203044');}
+ for(const edge of scene.edges)line(edge.start,edge.end,'#45dec4',2);
+ scene.views.forEach((v,i)=>{const m=v.camera_to_world,p=m.slice(0,3).map(r=>r[3]),q=project(p);
+  const end=p.map((x,j)=>x+m[j][2]*.8);line(p,end,'#f3ae68',2);
+  ctx.fillStyle='#f3ae68';ctx.beginPath();ctx.arc(q[0],q[1],5,0,2*Math.PI);ctx.fill();
+  ctx.font='12px system-ui';ctx.fillText('C'+i,q[0]+8,q[1]-6);});
+}
+canvas.onpointerdown=e=>{drag=[e.clientX,e.clientY];canvas.setPointerCapture(e.pointerId)};
+canvas.onpointermove=e=>{if(!drag)return;yaw+=(e.clientX-drag[0])*.008;
+ pitch=Math.max(-1.4,Math.min(1.4,pitch+(e.clientY-drag[1])*.008));drag=[e.clientX,e.clientY];draw()};
+canvas.onpointerup=()=>drag=null;canvas.onpointercancel=()=>drag=null;
+canvas.addEventListener('wheel',e=>{e.preventDefault();zoom=Math.max(15,Math.min(100,zoom*Math.exp(-e.deltaY*.001)));draw()},{passive:false});
+canvas.addEventListener('keydown',e=>{let handled=true;
+ if(e.key==='ArrowLeft')yaw-=.1;else if(e.key==='ArrowRight')yaw+=.1;
+ else if(e.key==='ArrowUp')pitch=Math.min(1.4,pitch+.1);else if(e.key==='ArrowDown')pitch=Math.max(-1.4,pitch-.1);
+ else if(e.key==='+'||e.key==='=')zoom=Math.min(100,zoom*1.1);else if(e.key==='-')zoom=Math.max(15,zoom/1.1);else handled=false;
+ if(handled){e.preventDefault();draw();}});
+ document.getElementById('reset').onclick=()=>{yaw=-.65;pitch=.55;zoom=42;draw();};
+ window.addEventListener('resize',draw);draw();
+</script>
+</html>
