@@ -1,0 +1,232 @@
+{
+  "bounds_m": [
+    -3.2916591154423327,
+    3.300664047729286,
+    -2.9659762437189356,
+    2.9549531259872137,
+    0.011594275453292526,
+    2.8786935639169724
+  ],
+  "dimensions_m": [
+    6.592323163171619,
+    5.920929369706149,
+    2.8670992884636797
+  ],
+  "objective_pixels": 0.81227326932746,
+  "camera_views": 8,
+  "assumptions": [
+    "known metric camera poses",
+    "known gravity and Manhattan axes",
+    "single rectangular room"
+  ],
+  "edges": [
+    {
+      "start": [
+        -3.2916591154423327,
+        -2.9659762437189356,
+        0.011594275453292526
+      ],
+      "end": [
+        -3.2916591154423327,
+        -2.9659762437189356,
+        2.8786935639169724
+      ],
+      "channel": 1,
+      "reprojection_error_px": 1.6287476936112937,
+      "support_fraction": 0.8571428571428571,
+      "supporting_views": 2,
+      "status": "supported"
+    },
+    {
+      "start": [
+        -3.2916591154423327,
+        -2.9659762437189356,
+        0.011594275453292526
+      ],
+      "end": [
+        3.300664047729286,
+        -2.9659762437189356,
+        0.011594275453292526
+      ],
+      "channel": 2,
+      "reprojection_error_px": 0.41434018072773926,
+      "support_fraction": 0.9830508474576272,
+      "supporting_views": 3,
+      "status": "supported"
+    },
+    {
+      "start": [
+        -3.2916591154423327,
+        -2.9659762437189356,
+        2.8786935639169724
+      ],
+      "end": [
+        3.300664047729286,
+        -2.9659762437189356,
+        2.8786935639169724
+      ],
+      "channel": 3,
+      "reprojection_error_px": 0.49735188307673567,
+      "support_fraction": 1.0,
+      "supporting_views": 1,
+      "status": "inferred"
+    },
+    {
+      "start": [
+        3.300664047729286,
+        -2.9659762437189356,
+        0.011594275453292526
+      ],
+      "end": [
+        3.300664047729286,
+        -2.9659762437189356,
+        2.8786935639169724
+      ],
+      "channel": 1,
+      "reprojection_error_px": 1.037256976563201,
+      "support_fraction": 0.92,
+      "supporting_views": 3,
+      "status": "supported"
+    },
+    {
+      "start": [
+        3.300664047729286,
+        -2.9659762437189356,
+        0.011594275453292526
+      ],
+      "end": [
+        3.300664047729286,
+        2.9549531259872137,
+        0.011594275453292526
+      ],
+      "channel": 2,
+      "reprojection_error_px": 0.36351486841985575,
+      "support_fraction": 1.0,
+      "supporting_views": 5,
+      "status": "supported"
+    },
+    {
+      "start": [
+        3.300664047729286,
+        -2.9659762437189356,
+        2.8786935639169724
+      ],
+      "end": [
+        3.300664047729286,
+        2.9549531259872137,
+        2.8786935639169724
+      ],
+      "channel": 3,
+      "reprojection_error_px": 0.2951979935469761,
+      "support_fraction": 1.0,
+      "supporting_views": 3,
+      "status": "supported"
+    },
+    {
+      "start": [
+        3.300664047729286,
+        2.9549531259872137,
+        0.011594275453292526
+      ],
+      "end": [
+        3.300664047729286,
+        2.9549531259872137,
+        2.8786935639169724
+      ],
+      "channel": 1,
+      "reprojection_error_px": 0.7811602677893497,
+      "support_fraction": 0.9722222222222222,
+      "supporting_views": 3,
+      "status": "supported"
+    },
+    {
+      "start": [
+        3.300664047729286,
+        2.9549531259872137,
+        0.011594275453292526
+      ],
+      "end": [
+        -3.2916591154423327,
+        2.9549531259872137,
+        0.011594275453292526
+      ],
+      "channel": 2,
+      "reprojection_error_px": 2.5544457197526302,
+      "support_fraction": 0.8145695364238411,
+      "supporting_views": 5,
+      "status": "supported"
+    },
+    {
+      "start": [
+        3.300664047729286,
+        2.9549531259872137,
+        2.8786935639169724
+      ],
+      "end": [
+        -3.2916591154423327,
+        2.9549531259872137,
+        2.8786935639169724
+      ],
+      "channel": 3,
+      "reprojection_error_px": 0.48646819962263915,
+      "support_fraction": 1.0,
+      "supporting_views": 4,
+      "status": "supported"
+    },
+    {
+      "start": [
+        -3.2916591154423327,
+        2.9549531259872137,
+        0.011594275453292526
+      ],
+      "end": [
+        -3.2916591154423327,
+        2.9549531259872137,
+        2.8786935639169724
+      ],
+      "channel": 1,
+      "reprojection_error_px": 0.8422635545048922,
+      "support_fraction": 0.9637681159420289,
+      "supporting_views": 3,
+      "status": "supported"
+    },
+    {
+      "start": [
+        -3.2916591154423327,
+        2.9549531259872137,
+        0.011594275453292526
+      ],
+      "end": [
+        -3.2916591154423327,
+        -2.9659762437189356,
+        0.011594275453292526
+      ],
+      "channel": 2,
+      "reprojection_error_px": 0.4936178590101463,
+      "support_fraction": 0.9402985074626866,
+      "supporting_views": 3,
+      "status": "supported"
+    },
+    {
+      "start": [
+        -3.2916591154423327,
+        2.9549531259872137,
+        2.8786935639169724
+      ],
+      "end": [
+        -3.2916591154423327,
+        -2.9659762437189356,
+        2.8786935639169724
+      ],
+      "channel": 3,
+      "reprojection_error_px": 0.3529140353040601,
+      "support_fraction": 1.0,
+      "supporting_views": 3,
+      "status": "supported"
+    }
+  ],
+  "uncertainty_note": "Support is a heuristic, not a calibrated posterior. Inferred walls do not establish navigable free space.",
+  "openings_reconstructed": false,
+  "seconds": 3.9262998602353036,
+  "support_source": "Amodal edge predictions, not verified physical observations"
+}

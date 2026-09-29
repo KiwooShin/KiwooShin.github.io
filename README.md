@@ -57,3 +57,27 @@ controls. No third-party scripts or image hosts are needed. To preview:
 python3 -m http.server 8765 --bind 127.0.0.1
 # Open http://127.0.0.1:8765/roomgraph/
 ```
+
+## RoomGraph Perception project
+
+`roomgraph-perception/index.html` is a separate trained-perception project, linked
+from the homepage above the original RoomGraph dataset project. It reports the
+held-out head-camera experiment, with measured training curves, learned edge
+overlays, a mirror self-reflection example, and an interactive 3D room-shell
+comparison. Camera poses and Manhattan axes are known in this synthetic pilot.
+
+Selected previews and the measured summary live in `media/roomgraph-perception/`.
+Generate the page from local experiment outputs with:
+
+```bash
+python scripts/build_perception_page.py --results /path/to/roomgraph/vis/perception
+```
+
+The model checkpoints, raw dataset, and TensorBoard logs remain in the local
+RoomGraph workspace. The public page links back to reproducible source code and
+explicitly separates this result from future active mapping and robot navigation.
+
+Implementation for the reported experiment:
+[RoomGraph 38a4400](https://github.com/KiwooShin/roomgraph/commit/38a4400).
+Validation included local-link checks, all image loads, 3D keyboard/orbit controls,
+room/reference selection, and desktop/mobile layouts.
