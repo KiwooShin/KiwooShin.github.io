@@ -226,3 +226,15 @@ the dataset license. Raw captures and predictions remain local in RoomGraph.
 
 Implementation and experiment:
 [RoomGraph 3e08239](https://github.com/KiwooShin/roomgraph/commit/3e08239).
+
+## Unified RoomGraph project
+
+The homepage now presents synthetic data, head-camera perception, and connected-space
+exploration as one RoomGraph entry. `roomgraph/` is the shared overview and retains
+its furnished camera gallery. The detailed `roomgraph-perception/` and
+`roomgraph-spaces/` pages remain accessible from the overview. `roomgraph-real/`
+remains a separate real-data project.
+
+`python scripts/build_roomgraph_gallery.py` maintains the unified homepage entry
+and synthetic gallery. The perception publisher updates its detailed page only,
+so regenerating results does not recreate a separate homepage card.

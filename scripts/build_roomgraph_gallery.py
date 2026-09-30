@@ -5,6 +5,7 @@
 
 import html
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -52,19 +53,29 @@ for number, scene in enumerate(scenes, 1):
 
 homepage = ROOT / "index.html"
 content = homepage.read_text()
+# The detailed experiments now share one homepage project.
+for identifier in ("roomgraph-spaces", "roomgraph-perception"):
+    content = re.sub(
+        rf'^[ \t]*<article class="project" id="{identifier}">.*?</article>[ \t]*\n*',
+        "", content, flags=re.DOTALL | re.MULTILINE,
+    )
 start = content.index('    <article class="project" id="roomgraph">')
 end = content.index('    <article class="project" id="calibration-recovery">', start)
 content = (
     content[:start]
     + f"""    <article class="project" id="roomgraph">
-      <h3><a href="roomgraph/">RoomGraph — Synthetic Indoor Structure</a></h3>
-      <p>Recover the shape of an indoor space from its images. RoomGraph uses Isaac Sim on NVIDIA DGX Spark to generate furnished interiors with calibrated cameras, depth, and architectural edge ground truth.</p>
-      <div class="tags"><span>3D vision</span><span>synthetic data</span><span>Isaac Sim</span><span>DGX Spark</span></div>
-      <p class="rg-legend"><span>Mint: visible structure</span> · <span>Coral: hidden structure</span>. Labels come from scene geometry.</p>
+      <h3><a href="roomgraph/">RoomGraph — Indoor Perception &amp; 3D Exploration</a></h3>
+      <p>From furnished simulation to learned structural edges and observed 3D maps. RoomGraph connects synthetic dataset generation in Isaac Sim, humanoid head-camera perception, and active exploration across connected indoor spaces.</p>
+      <div class="tags"><span>Isaac Sim</span><span>Synthetic data</span><span>PyTorch</span><span>Active perception</span><span>3D reconstruction</span></div>
+      <p class="links"><a href="roomgraph/#bedroom">01 · Synthetic indoor data</a> · <a href="roomgraph-perception/">02 · Head-camera perception</a> · <a href="roomgraph-spaces/">03 · Connected-space exploration</a></p>
+      <figure class="featured"><a href="roomgraph-spaces/#gallery"><img src="media/roomgraph-spaces/overview.jpg" width="1800" height="1540" loading="lazy" alt="Four furnished buildings, each with a top-down camera map and four learned structural-edge overlays"></a><figcaption>Four furnished development buildings: top-down camera directions and acquired learned predictions. Exploration uses ideal RGB-D and known poses; maps remain partial.</figcaption></figure>
+      <details><summary>Explore synthetic camera samples: four rooms, four overlays each</summary>
+      <p class="rg-legend"><span>Mint: visible structure</span> · <span>Coral: hidden structure</span>. These synthetic labels come from scene geometry, not model predictions.</p>
       {"".join(rows)}
       <p class="rg-scroll-hint">On small screens, swipe each row to see all four overlays.</p>
-      <figure class="featured"><a href="roomgraph/#living"><picture><source media="(prefers-reduced-motion: reduce)" srcset="media/roomgraph/furnished/living/walkthrough-poster.webp"><img src="media/roomgraph/furnished/living/walkthrough.gif" width="768" height="384" loading="lazy" alt="Moving camera in a furnished living room, with a continuous structural-edge overlay and synchronized top-down camera marker"></picture></a><figcaption>Continuous moving-camera walkthrough. Explore four rooms, 32 detailed views, and camera-path videos on the project page.</figcaption></figure>
-      <p class="links"><a href="roomgraph/"><strong>Detailed project page &amp; interactive gallery →</strong></a> · <a href="https://github.com/KiwooShin/roomgraph">Source code ↗</a></p>
+      </details>
+      <p>Learned perception includes visible robot arms and mirror reflections. The initial RGB-only reconstruction fits rectangular room shells using known poses and Manhattan axes; later RGB-D experiments map multiple connected spaces.</p>
+      <p class="links"><a href="roomgraph/"><strong>Explore the complete RoomGraph project →</strong></a> · <a href="https://github.com/KiwooShin/roomgraph">Source code ↗</a></p>
     </article>
 
 """
@@ -77,4 +88,4 @@ start, end = content.index("<!-- GALLERY START -->"), content.index("<!-- GALLER
 page.write_text(
     content[:start] + "<!-- GALLERY START -->\n" + "\n".join(sections) + "\n" + content[end:]
 )
-print("Updated four homepage rows and four detailed scene sections.")
+print("Updated the unified RoomGraph homepage entry and four detailed scene sections.")

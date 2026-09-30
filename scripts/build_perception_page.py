@@ -456,37 +456,8 @@ def main():
     for token, value in substitutions.items():
         content = content.replace(token, value)
     (ROOT / "roomgraph-perception/index.html").write_text(content)
-    homepage = ROOT / "index.html"
-    content = homepage.read_text()
-    active_summary = (
-        ' A separate <a href="roomgraph-perception/#active-head">active head-camera pilot</a> '
-        'uses missing-structure cues to choose the next yaw/pitch target in a furnished office.'
-        if active_head_section else ""
-    )
-    card = f"""    <article class="project" id="roomgraph-perception">
-      <h3><a href="roomgraph-perception/">RoomGraph Perception — Head-camera RGB to 3D Room Structure</a></h3>
-      <p>A trained structural-edge model and calibrated multi-view reconstruction from furnished humanoid head-camera images, with visible robot arms and mirror reflections. On four held-out synthetic room instances: <strong>{metrics["test"]["visible"]["f1"]:.3f} visible-edge F1</strong>, <strong>{metrics["test"]["amodal"]["f1"]:.3f} amodal-edge F1</strong>, and <strong>{summary["reconstruction_mean"]["dimension_mae_m"]:.3f} m mean dimension error</strong>.</p>
-      <p>Known camera poses and Manhattan axes; rectangular room shells only.{active_summary} A <a href="roomgraph-multiroom/">connected-room exploration pilot</a> adds ideal RGB-D and known poses to build a persistent observed map.</p>
-      <div class="tags"><span>3D perception</span><span>PyTorch</span><span>head camera</span><span>multi-view geometry</span></div>
-      <figure class="featured"><a href="roomgraph-perception/#predictions"><img src="media/roomgraph-perception/predictions.jpg" width="1536" height="1240" loading="lazy" alt="Four held-out furnished head-camera views comparing RGB, reference edges, learned visible edges and learned amodal structure"></a><figcaption>Fixed camera samples from all four test rooms. These are learned predictions, including errors; blue overlays are evaluation references.</figcaption></figure>
-      <div class="gallery"><figure><a href="roomgraph-perception/#reconstruction"><img src="media/roomgraph-perception/reconstruction.png" width="1920" height="1440" loading="lazy" alt="Predicted and reference 3D room shells for four held-out rooms"></a><figcaption>3D shell fitting from eight calibrated views per room.</figcaption></figure><figure><a href="roomgraph-perception/"><img src="media/roomgraph-perception/mirror.webp" width="1152" height="768" loading="lazy" alt="Head-mounted camera seeing the humanoid proxy's body reflected in a mirror"></a><figcaption>Robot body and arms rendered in 3D. Original approximate proxy, not an official 1X model.</figcaption></figure></div>
-      <p class="links"><a href="roomgraph-perception/"><strong>Detailed project page &amp; interactive 3D results →</strong></a> · <a href="roomgraph-multiroom/">Connected rooms →</a> · <a href="https://github.com/KiwooShin/roomgraph">Code ↗</a></p>
-    </article>
-
-"""
-    start_marker = '    <article class="project" id="roomgraph-perception">'
-    if start_marker in content:
-        start = content.index(start_marker)
-        end = content.index('    <article class="project" id="roomgraph">', start)
-        content = content[:start] + card + content[end:]
-    else:
-        content = content.replace(
-            '    <article class="project" id="roomgraph">',
-            card + '    <article class="project" id="roomgraph">',
-            1,
-        )
-    homepage.write_text(content)
-    print("Built new perception project and homepage entry from measured results.")
+    # The unified homepage card is maintained by build_roomgraph_gallery.py.
+    print("Built the detailed perception page from measured results.")
 
 
 if __name__ == "__main__":

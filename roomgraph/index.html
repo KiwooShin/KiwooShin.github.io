@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>RoomGraph — Structure behind the scene | Kiwoo Shin</title>
-<meta name="description" content="Four furnished interiors, 32 calibrated views, and structural-edge ground truth. Explore RoomGraph, an Isaac Sim synthetic indoor dataset project.">
+<title>RoomGraph — Indoor Perception &amp; 3D Exploration | Kiwoo Shin</title>
+<meta name="description" content="Synthetic indoor data, head-camera structural-edge perception, and active 3D exploration across connected spaces.">
 <link rel="canonical" href="https://kiwooshin.github.io/roomgraph/">
-<meta property="og:title" content="RoomGraph — Structure behind the scene">
-<meta property="og:description" content="Explore furnished interiors through calibrated cameras and architectural edge overlays.">
+<meta property="og:title" content="RoomGraph — Indoor Perception &amp; 3D Exploration">
+<meta property="og:description" content="Explore the RoomGraph pipeline: furnished simulation, learned structural edges, and connected-space reconstruction.">
 <meta property="og:image" content="https://kiwooshin.github.io/media/roomgraph/furnished/bedroom/C1_overlay.webp">
 <meta property="og:url" content="https://kiwooshin.github.io/roomgraph/">
 <meta property="og:type" content="website">
@@ -18,12 +18,25 @@
 <main>
 <nav class="top-nav" aria-label="Project navigation"><a href="../#roomgraph">← Kiwoo Shin</a><a href="https://github.com/KiwooShin/roomgraph">Source code ↗</a></nav>
 <header class="hero">
-<p class="eyebrow">ROOMGRAPH / SYNTHETIC INDOOR VISION</p>
+<p class="eyebrow">ROOMGRAPH / DATA · PERCEPTION · EXPLORATION</p>
 <h1>Structure behind<br>the scene<span>.</span></h1>
-<p class="intro">A room is more than the objects inside it. RoomGraph generates furnished interiors with calibrated cameras and architectural edge labels, toward reconstructing indoor spaces from images.</p>
-<div class="hero-links"><a class="primary" href="#bedroom">Explore the rooms ↓</a><a href="#method">How it works</a></div>
-<div class="facts"><div><strong>04</strong><span>Furnished scenes</span></div><div><strong>32</strong><span>Calibrated views</span></div><div><strong>20</strong><span>Architectural edges / scene</span></div><div><strong>1152 × 768</strong><span>Path-traced captures</span></div></div>
+<p class="intro">Generate furnished indoor worlds, learn their structural edges, and explore connected spaces to build observed 3D maps. RoomGraph brings these experiments together in one project.</p>
+<div class="hero-links"><a class="primary" href="#project-stages">Explore the project ↓</a><a href="#bedroom">Synthetic camera gallery</a></div>
 </header>
+<section id="project-stages" class="project-stages" aria-labelledby="stages-title">
+<p class="eyebrow">THE ROOMGRAPH PIPELINE</p><h2 id="stages-title">From simulated rooms to observed 3D structure.</h2>
+<div class="stage-grid">
+<article><p class="eyebrow">01 / SYNTHETIC DATA</p><h3>Build the world and its labels</h3><p>Furnished interiors in Isaac Sim, calibrated moving cameras, depth, and visible and occluded architectural-edge ground truth.</p><a href="#bedroom"><img src="../media/roomgraph/furnished/bedroom/C1_overlay.webp" width="1152" height="768" loading="lazy" alt="Synthetic bedroom with geometry-derived architectural edges">Explore furnished scenes and camera paths ↓</a></article>
+<article><p class="eyebrow">02 / HEAD-CAMERA PERCEPTION</p><h3>Learn edges and fit room structure</h3><p>Humanoid head-camera images with visible arms and mirror reflections. Learned edge predictions feed calibrated multi-view fitting of rectangular room shells.</p><a href="../roomgraph-perception/"><img src="../media/roomgraph-perception/reconstruction.png" width="1920" height="1440" loading="lazy" alt="Predicted and reference 3D room shells">Training, predictions and interactive 3D results →</a></article>
+<article><p class="eyebrow">03 / CONNECTED SPACES</p><h3>Look around and extend the map</h3><p>Active camera movement and exploration across four furnished development buildings, using acquired ideal RGB-D and known poses to accumulate partial observed maps.</p><a href="../roomgraph-spaces/"><img src="../media/roomgraph-spaces/overview.jpg" width="1800" height="1540" loading="lazy" alt="Four connected-space cases with camera maps and learned edge overlays">Camera replays, interactive maps and measurements →</a></article>
+</div>
+<p class="annotation-note">The RGB-only room fitter assumes known poses and Manhattan axes. Connected-space mapping adds ideal depth; it does not establish complete building reconstruction or held-out real-world robustness.</p>
+<p>Follow the progression through the <a href="../roomgraph-perception/#active-head">active head-camera pilot</a> and <a href="../roomgraph-multiroom/">first connected building</a>. The separate <a href="../roomgraph-real/">ARKitScenes project</a> tests transfer to real RGB-D captures.</p>
+</section>
+<section aria-label="Synthetic dataset overview">
+<p class="eyebrow">SYNTHETIC DATA / CAMERA GALLERY</p>
+<div class="facts"><div><strong>04</strong><span>Furnished scenes</span></div><div><strong>32</strong><span>Calibrated views</span></div><div><strong>20</strong><span>Architectural edges / scene</span></div><div><strong>1152 × 768</strong><span>Path-traced captures</span></div></div>
+</section>
 <div class="gallery-heading"><div><p class="eyebrow">01 / EXPLORE</p><h2>One shell. Four ways to live in it.</h2></div><p>Watch continuous camera walkthroughs, then inspect individual views. Each map tracks the camera’s position and viewing direction.</p></div>
 <nav class="scene-nav" aria-label="Choose a room"><a href="#bedroom">Bedroom &amp; study</a><a href="#kitchen">Kitchen &amp; dining</a><a href="#living">Living room</a><a href="#office">Shared office</a></nav>
 <div class="legend"><span><i class="visible"></i>Visible structure</span><span><i class="hidden"></i>Occluded structure</span><span><i class="camera"></i>Camera direction</span></div>
