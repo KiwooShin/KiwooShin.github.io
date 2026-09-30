@@ -184,3 +184,28 @@ Implementation and measured protocol:
 Publication validation covers media receipts and hashes, all four videos and
 interactive maps, local links, and desktop/mobile layouts. Run publisher tests
 with `python -m unittest discover -s tests -v`.
+
+The same page now includes a paired development comparison of the original
+greedy frontier policy and bounded goal commitment. V2 still enters 13 of 16
+rooms, but macro 3D completeness falls from 43.98% to 42.42% at 10 cm. The page
+keeps v1 as the default and presents the candidate's regressions, observed maps,
+four additional camera replays and repeated-observation diagnostics.
+
+Build this section from the completed, replay-verified comparison:
+
+```bash
+python scripts/build_space_suite_page.py \
+  --report ../roomgraph/vis/space_suite/report \
+  --cases ../roomgraph/vis/space_suite/v1 \
+  --policy-comparison ../roomgraph/vis/space_suite/policy_comparison \
+  --candidate-cases ../roomgraph/vis/space_suite/v2
+```
+
+Omitting the comparison options on a later build preserves the published
+comparison. Candidate assets are isolated under `media/roomgraph-spaces/policy-v2/`;
+all 20 original selected baseline files remain byte-identical. Publication checks
+cover all eight videos and selectable maps, candidate map buttons, asset links,
+JavaScript errors, and desktop/mobile layouts. There are 13 publisher unit tests.
+The complete captures, traces, local reports and QA evidence remain in RoomGraph's
+ignored `vis/` tree. Implementation and measured protocol:
+[RoomGraph 857e828](https://github.com/KiwooShin/roomgraph/commit/857e828).

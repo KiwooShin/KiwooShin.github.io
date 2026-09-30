@@ -11,12 +11,16 @@
     const current = ++generation;
     status.textContent = 'Loading observed point data…';
     try {
-      const response = await fetch(`../media/roomgraph-spaces/${encodeURIComponent(selector.value)}/cloud.json`);
+      const option = selector.selectedOptions[0];
+      const cloudURL = option.dataset.cloud || `../media/roomgraph-spaces/${encodeURIComponent(selector.value)}/cloud.json`;
+      const response = await fetch(cloudURL);
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const incoming = await response.json();
       if (current !== generation) return;
       if (!Array.isArray(incoming.surface) || !Array.isArray(incoming.edges) || !Array.isArray(incoming.path)) throw new Error('Invalid point data');
       data = incoming; points = data.surface;
+      status.dataset.case = selector.value;
+      canvas.setAttribute('aria-label', `Interactive observed map: ${option.parentElement.label || 'v1'} · ${option.textContent}`);
       const source = points.length ? points : data.edges;
       const low = [Infinity, Infinity], high = [-Infinity, -Infinity];
       for (const point of source) for (let axis = 0; axis < 2; axis++) {

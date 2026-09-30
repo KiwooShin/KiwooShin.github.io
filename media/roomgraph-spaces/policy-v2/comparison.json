@@ -1,0 +1,791 @@
+{
+  "schema_version": 1,
+  "comparison": "greedy_frontiers_v1_vs_goal_commitment_v2",
+  "status": "complete",
+  "qualification": "Tuned development comparison on the same four layouts; not held-out generalization.",
+  "provenance": {
+    "baseline_summary_sha256": "999b3d5385a94f7d6fd10989a1dd8c9680bff3ee4355a1d4cb7f21f1819d0365",
+    "candidate_summary_sha256": "4ca2b6cd71bf84ca1bb4aeb413934e546df20d05b7053dd99c72d1c54e25aef7",
+    "baseline_frozen_suite_sha256": "b6bcf5dea417e3d7853b32f4a9e4d934a7a46b43fcc48f52f9b4c05b3a31e990",
+    "candidate_frozen_suite_sha256": "a50fc9ad0d8cf336a7ce4485e57c9db373c7027fb03c3822777b1dfd9edde9ba"
+  },
+  "shared_budget": {
+    "max_frames": 300,
+    "max_stations": 32
+  },
+  "diagnostic_protocol": {
+    "low_surface_gain_threshold_voxels": 500,
+    "revisited_pose_radius_m": 0.3,
+    "revisited_pose_excludes_immediately_previous_station": true,
+    "goal_switch_remaining_distance_threshold_m": 0.75,
+    "goal_switch_target_displacement_threshold_m": 1.0,
+    "goal_switch_qualification": "Counts target changes over 1 m while the previous target remains over 0.75 m away. A switch can be necessary when observations invalidate a path or resolve a frontier.",
+    "qualification": "Low surface gain and nearby repeated poses are descriptive proxies, not proof that images are redundant: they may improve confidence, edge predictions or navigation."
+  },
+  "macro": {
+    "rooms_entered": {
+      "baseline": 3.25,
+      "candidate": 3.25,
+      "delta": 0.0,
+      "denominator_buildings": 4,
+      "case_ids": [
+        "residential_branch",
+        "loop_workspaces",
+        "open_office",
+        "compact_apartment"
+      ]
+    },
+    "visible_edge_coverage": {
+      "baseline": 0.8130316880765961,
+      "candidate": 0.7845038134449706,
+      "delta": -0.02852787463162554,
+      "denominator_buildings": 4,
+      "case_ids": [
+        "residential_branch",
+        "loop_workspaces",
+        "open_office",
+        "compact_apartment"
+      ]
+    },
+    "edge_completeness_10cm": {
+      "baseline": 0.4397613157073127,
+      "candidate": 0.42418906819154883,
+      "delta": -0.01557224751576386,
+      "denominator_buildings": 4,
+      "case_ids": [
+        "residential_branch",
+        "loop_workspaces",
+        "open_office",
+        "compact_apartment"
+      ]
+    },
+    "edge_precision_10cm": {
+      "baseline": 0.639659313293553,
+      "candidate": 0.620161854810547,
+      "delta": -0.01949745848300599,
+      "denominator_buildings": 4,
+      "case_ids": [
+        "residential_branch",
+        "loop_workspaces",
+        "open_office",
+        "compact_apartment"
+      ]
+    },
+    "typed_edge_completeness_10cm": {
+      "baseline": 0.29743467146116664,
+      "candidate": 0.29041344257677126,
+      "delta": -0.007021228884395381,
+      "denominator_buildings": 4,
+      "case_ids": [
+        "residential_branch",
+        "loop_workspaces",
+        "open_office",
+        "compact_apartment"
+      ]
+    },
+    "typed_edge_precision_10cm": {
+      "baseline": 0.4550256633957995,
+      "candidate": 0.44296136454188156,
+      "delta": -0.01206429885391791,
+      "denominator_buildings": 4,
+      "case_ids": [
+        "residential_branch",
+        "loop_workspaces",
+        "open_office",
+        "compact_apartment"
+      ]
+    },
+    "path_length_m": {
+      "baseline": 24.619822330470342,
+      "candidate": 24.26464466094067,
+      "delta": -0.3551776695296702,
+      "denominator_buildings": 4,
+      "case_ids": [
+        "residential_branch",
+        "loop_workspaces",
+        "open_office",
+        "compact_apartment"
+      ]
+    },
+    "action_seconds": {
+      "baseline": 913.126890628771,
+      "candidate": 911.6957995997926,
+      "delta": -1.4310910289783578,
+      "denominator_buildings": 4,
+      "case_ids": [
+        "residential_branch",
+        "loop_workspaces",
+        "open_office",
+        "compact_apartment"
+      ]
+    },
+    "wall_seconds": {
+      "baseline": 284.0861880070297,
+      "candidate": 285.5165810039034,
+      "delta": 1.4303929968737066,
+      "denominator_buildings": 4,
+      "case_ids": [
+        "residential_branch",
+        "loop_workspaces",
+        "open_office",
+        "compact_apartment"
+      ]
+    },
+    "full_pipeline_wall_seconds": {
+      "baseline": 371.1384594623232,
+      "candidate": 373.01211417047307,
+      "delta": 1.873654708149843,
+      "denominator_buildings": 4,
+      "case_ids": [
+        "residential_branch",
+        "loop_workspaces",
+        "open_office",
+        "compact_apartment"
+      ]
+    },
+    "frames": {
+      "baseline": 300.0,
+      "candidate": 300.0,
+      "delta": 0.0,
+      "denominator_buildings": 4,
+      "case_ids": [
+        "residential_branch",
+        "loop_workspaces",
+        "open_office",
+        "compact_apartment"
+      ]
+    }
+  },
+  "limitations": [
+    "Ideal simulated RGB-D and known poses; original approximate humanoid proxy.",
+    "One acquisition run per policy and layout; differences are not significance estimates.",
+    "Fresh acquisitions use matching rendering settings but are not identical-RGB counterfactuals; renderer sampling can vary between runs.",
+    "Reference room names and geometry are evaluator-only inputs.",
+    "All paired regressions and missing evaluations remain visible; cases lacking a successful matching replay are unavailable for paired metrics.",
+    "Acquisition/processing wall time excludes renderer startup and report generation.",
+    "Geometric reconstruction remains partial; room entry is not full reconstruction."
+  ],
+  "media_sha256": {
+    "paired_metrics.png": "163cbf1b395d20795e808e715cbd95e998441feb775a5893a83c143b6227fca7",
+    "visibility_curves.png": "a421087f1bdcc5c752e7b7d971cc463e20a142b87d1e09bae284bfe4fc4a032c"
+  },
+  "cases": [
+    {
+      "id": "residential_branch",
+      "title": "Branching home: four furnished rooms around a central corridor",
+      "split": "development",
+      "delta": {
+        "rooms_entered": 0,
+        "visible_edge_coverage": -0.022096115658988946,
+        "edge_completeness_10cm": -0.013013307442581112,
+        "edge_precision_10cm": -0.042025065768082626,
+        "typed_edge_completeness_10cm": 0.005519920223628183,
+        "typed_edge_precision_10cm": -0.03195376364215596,
+        "path_length_m": 0.0,
+        "action_seconds": 11.649073717713918,
+        "wall_seconds": 0.5378175540827215,
+        "full_pipeline_wall_seconds": 2.1143834069371223,
+        "frames": 0
+      },
+      "baseline": {
+        "source_evaluated": true,
+        "replay_qualified": true,
+        "availability_reason": null,
+        "status": "complete",
+        "evaluated": true,
+        "stop_reason": "frame_budget",
+        "unentered_reference_rooms": [],
+        "frames": 300,
+        "path_length_m": 24.65000000000001,
+        "action_seconds": 937.4345781873982,
+        "wall_seconds": 282.3936675838195,
+        "full_pipeline_wall_seconds": 368.4303860240616,
+        "available_artifacts": [
+          "report.html",
+          "replay.mp4",
+          "poster.jpg",
+          "overview.jpg",
+          "cloud.json"
+        ],
+        "media_sha256": {
+          "report.html": "a3ceb49f044186dde428f576495e68378fbeed28fe4bd173d5ece59817a1e4f1",
+          "replay.mp4": "bdd72fbca738ee1938134715cc2ef441aea6c489467c901baa6a3ef1f01767d0",
+          "poster.jpg": "be078c80ec49c813cd6b251b17c3469bebe7147441b49952d4306750ba941a1d",
+          "overview.jpg": "2b160b9f23abdcdd38f531c3e3de64cc0ab83e88a600a71bba771e02a8ebaa57",
+          "cloud.json": "3de4db22bf61fbb5fff45afbc5704970b544d01ab2d34bfa0d88850cc9dc2fe4"
+        },
+        "receipt_sha256": "99150c50ceb72e9c1c6d48ab7b20e99dcbcdf7ad7eab15db09b7ae6985864a1e",
+        "provenance": {
+          "experiment_sha256": "35897a2f8be7357f3877f5edbba9748a9b8d57b53cc71454fa19e35bde26d016",
+          "reference_sha256": "665904a9c2bd7e81f593085b3f55299d8e85c8011275a95aafafcec2b2fc6d24",
+          "evaluation_sha256": "5c51ed424f27667e5289ab87a4be0ccec22cd7029cfb610da3d72526419e44bd",
+          "checkpoint_sha256": "bbdad608aa594122563b9e7aebac0c1415a82e9735f29521af660d5ceb21e022"
+        },
+        "visible_edge_coverage": 0.8416579425506513,
+        "edge_precision_10cm": 0.691495965238982,
+        "edge_completeness_10cm": 0.44734264152631154,
+        "typed_edge_precision_10cm": 0.48448168839230293,
+        "typed_edge_completeness_10cm": 0.2904773541321589,
+        "rooms_entered": 4,
+        "reference_room_count": 4,
+        "diagnostics": {
+          "low_surface_gain_stations": 6,
+          "low_surface_gain_frames": 58,
+          "revisited_pose_stations": 8,
+          "revisited_pose_frames": 78,
+          "exact_revisited_pose_stations": 0,
+          "exact_revisited_pose_frames": 0,
+          "goal_switches_before_proximity": 2
+        },
+        "policy": null,
+        "policy_diagnostics": null
+      },
+      "candidate": {
+        "source_evaluated": true,
+        "replay_qualified": true,
+        "availability_reason": null,
+        "status": "complete",
+        "evaluated": true,
+        "stop_reason": "frame_budget",
+        "unentered_reference_rooms": [],
+        "frames": 300,
+        "path_length_m": 24.65000000000001,
+        "action_seconds": 949.0836519051121,
+        "wall_seconds": 282.9314851379022,
+        "full_pipeline_wall_seconds": 370.5447694309987,
+        "available_artifacts": [
+          "report.html",
+          "replay.mp4",
+          "poster.jpg",
+          "overview.jpg",
+          "cloud.json"
+        ],
+        "media_sha256": {
+          "report.html": "9c994a10f82747d0e88d00ed1b1dfdb646438884ed4d3d25fc08cdd3edb7e284",
+          "replay.mp4": "a9a8cc194a20a3ca5672ba331e5b2d921cb6378cb1ebae4c496eacd05e360260",
+          "poster.jpg": "b89d7c0979e1694ac0db1efd7c54213c018deae7716371a887e5fe78875b746e",
+          "overview.jpg": "649eed9b16b3d5bfc5bd581bc2b26cea1537424080eb11439cdf6953067fb937",
+          "cloud.json": "73e28e73a563288a2b3dc9e8bd36dae4ef465cbf48d86853fc81e47d61179236"
+        },
+        "receipt_sha256": "faf2f18f5fb571be356ea9aa29ff9d18be0c3f7c91e5996955fcc783ba4c1cdb",
+        "provenance": {
+          "experiment_sha256": "32791acc6ec61b79327eaa52c40c79ef5ef3d8ad1392a60b15a863b9d9dec3f6",
+          "reference_sha256": "665904a9c2bd7e81f593085b3f55299d8e85c8011275a95aafafcec2b2fc6d24",
+          "evaluation_sha256": "5a2dc935cd015de6fb1d5606e0a443c5fb0c7a23d974fe9417bbfa77b80375dd",
+          "checkpoint_sha256": "bbdad608aa594122563b9e7aebac0c1415a82e9735f29521af660d5ceb21e022"
+        },
+        "visible_edge_coverage": 0.8195618268916623,
+        "edge_precision_10cm": 0.6494708994708994,
+        "edge_completeness_10cm": 0.4343293340837304,
+        "typed_edge_precision_10cm": 0.45252792475014697,
+        "typed_edge_completeness_10cm": 0.2959972743557871,
+        "rooms_entered": 4,
+        "reference_room_count": 4,
+        "diagnostics": {
+          "low_surface_gain_stations": 7,
+          "low_surface_gain_frames": 70,
+          "revisited_pose_stations": 6,
+          "revisited_pose_frames": 60,
+          "exact_revisited_pose_stations": 0,
+          "exact_revisited_pose_frames": 0,
+          "goal_switches_before_proximity": 1
+        },
+        "policy": {
+          "id": "frontier_commitment_v2",
+          "settings": {
+            "goal_tolerance_m": 0.3,
+            "frontier_match_radius_m": 0.8,
+            "max_commit_steps": 8,
+            "minimum_progress_m": 0.1,
+            "stagnation_steps": 2
+          }
+        },
+        "policy_diagnostics": {
+          "decision_count": 30,
+          "retained_different_from_local_greedy": 10,
+          "local_greedy_qualification": "Greedy choices are evaluated on candidate observations at that station; they are not counterfactual outcomes of the complete baseline run.",
+          "action_counts": {
+            "rescored": 10,
+            "retained": 20
+          },
+          "release_reason_counts": {
+            "reached": 3,
+            "resolved": 5,
+            "blocked": 1
+          },
+          "commitment_episodes": 10
+        }
+      }
+    },
+    {
+      "id": "loop_workspaces",
+      "title": "Loop-connected studio, dining room, lounge and workshop",
+      "split": "development",
+      "delta": {
+        "rooms_entered": 0,
+        "visible_edge_coverage": 0.0056849204620721405,
+        "edge_completeness_10cm": 0.014619891174281585,
+        "edge_precision_10cm": -0.04078946202716094,
+        "typed_edge_completeness_10cm": -0.004804109649277355,
+        "typed_edge_precision_10cm": -0.03836750014571311,
+        "path_length_m": -0.3000000000000078,
+        "action_seconds": 2.3386799045301814,
+        "wall_seconds": 3.815896888729185,
+        "full_pipeline_wall_seconds": 3.537158803548664,
+        "frames": 0
+      },
+      "baseline": {
+        "source_evaluated": true,
+        "replay_qualified": true,
+        "availability_reason": null,
+        "status": "complete",
+        "evaluated": true,
+        "stop_reason": "frame_budget",
+        "unentered_reference_rooms": [],
+        "frames": 300,
+        "path_length_m": 24.650000000000002,
+        "action_seconds": 928.4546171003228,
+        "wall_seconds": 286.98332479130477,
+        "full_pipeline_wall_seconds": 374.71910282224417,
+        "available_artifacts": [
+          "report.html",
+          "replay.mp4",
+          "poster.jpg",
+          "overview.jpg",
+          "cloud.json"
+        ],
+        "media_sha256": {
+          "report.html": "3bccaa85f00b654962fc4db3e91224ad830632583b3bb82ac82e45e874b170a2",
+          "replay.mp4": "b87f7f028af3a41a6bb0f68ea3609e105e8e1390084cc9662319c1db9e878aa8",
+          "poster.jpg": "fde11ad3267aa19c94e1ea1f32ed219e8222fd4c5d4acc3fa7eaca493be90233",
+          "overview.jpg": "3129873e4de308ab83c0b8f87a5d5be5f1108b595144fdb8adc4f51424a23608",
+          "cloud.json": "ef6671e42991ef8c51d18ab4a4fd556062681aa6f24057df6ce8e18ef88513e7"
+        },
+        "receipt_sha256": "eef668b53588a4602b923a3d38d9d442f7418246034351c61ebe88219e88491b",
+        "provenance": {
+          "experiment_sha256": "47c25fa48187eeb0133f7088881b711ca062ddb99ef8bb6aa523990d01e34f3b",
+          "reference_sha256": "3708715ccb298fc7140f4f160f0051270d5c112031650ae97fd57bc245e69ed1",
+          "evaluation_sha256": "3c79ea5d0037080e8061d58d8273e9fb70c22300338da810e963268b938546b7",
+          "checkpoint_sha256": "bbdad608aa594122563b9e7aebac0c1415a82e9735f29521af660d5ceb21e022"
+        },
+        "visible_edge_coverage": 0.848784793736055,
+        "edge_precision_10cm": 0.7949714285714286,
+        "edge_completeness_10cm": 0.43272311171496824,
+        "typed_edge_precision_10cm": 0.6187428571428571,
+        "typed_edge_completeness_10cm": 0.32371286115454834,
+        "rooms_entered": 4,
+        "reference_room_count": 4,
+        "diagnostics": {
+          "low_surface_gain_stations": 16,
+          "low_surface_gain_frames": 158,
+          "revisited_pose_stations": 10,
+          "revisited_pose_frames": 100,
+          "exact_revisited_pose_stations": 2,
+          "exact_revisited_pose_frames": 20,
+          "goal_switches_before_proximity": 15
+        },
+        "policy": null,
+        "policy_diagnostics": null
+      },
+      "candidate": {
+        "source_evaluated": true,
+        "replay_qualified": true,
+        "availability_reason": null,
+        "status": "complete",
+        "evaluated": true,
+        "stop_reason": "frame_budget",
+        "unentered_reference_rooms": [],
+        "frames": 300,
+        "path_length_m": 24.349999999999994,
+        "action_seconds": 930.793297004853,
+        "wall_seconds": 290.79922168003395,
+        "full_pipeline_wall_seconds": 378.25626162579283,
+        "available_artifacts": [
+          "report.html",
+          "replay.mp4",
+          "poster.jpg",
+          "overview.jpg",
+          "cloud.json"
+        ],
+        "media_sha256": {
+          "report.html": "c4fe0fec996001b0921a319815fdb0081b09e62a1b61cf742f19915b08f10465",
+          "replay.mp4": "ae29896734a5fa1cd2cae725b33eda193f460b20473cb13a6052dde19d688fa1",
+          "poster.jpg": "3ba898c93fa43b8cae1e083bc40774e43381ff7b1d11a0a79e282d473f455961",
+          "overview.jpg": "ef124d3651673f94acd0471c2d4d9154701e708ce77ab857c93b9a4ff906b15b",
+          "cloud.json": "c1ea4758948045b4e3c683ff3aa26d5fbbbe21b7c05ebcc43c72c39b4225b157"
+        },
+        "receipt_sha256": "ec934f3c1072736bcdd582e67cbb0265113d1d1c561d6b12259421ba8fac2dd9",
+        "provenance": {
+          "experiment_sha256": "411fb6aea6747ecf2c2ae4ca39a1566c9341a5921b31a80986d785bf5c282f74",
+          "reference_sha256": "3708715ccb298fc7140f4f160f0051270d5c112031650ae97fd57bc245e69ed1",
+          "evaluation_sha256": "299887b0ba5079c9410467e69be6bb7c82f280497c523c8e74e1f7f47a9b9b09",
+          "checkpoint_sha256": "bbdad608aa594122563b9e7aebac0c1415a82e9735f29521af660d5ceb21e022"
+        },
+        "visible_edge_coverage": 0.8544697141981271,
+        "edge_precision_10cm": 0.7541819665442676,
+        "edge_completeness_10cm": 0.44734300288924983,
+        "typed_edge_precision_10cm": 0.580375356997144,
+        "typed_edge_completeness_10cm": 0.318908751505271,
+        "rooms_entered": 4,
+        "reference_room_count": 4,
+        "diagnostics": {
+          "low_surface_gain_stations": 15,
+          "low_surface_gain_frames": 148,
+          "revisited_pose_stations": 7,
+          "revisited_pose_frames": 68,
+          "exact_revisited_pose_stations": 3,
+          "exact_revisited_pose_frames": 30,
+          "goal_switches_before_proximity": 6
+        },
+        "policy": {
+          "id": "frontier_commitment_v2",
+          "settings": {
+            "goal_tolerance_m": 0.3,
+            "frontier_match_radius_m": 0.8,
+            "max_commit_steps": 8,
+            "minimum_progress_m": 0.1,
+            "stagnation_steps": 2
+          }
+        },
+        "policy_diagnostics": {
+          "decision_count": 30,
+          "retained_different_from_local_greedy": 10,
+          "local_greedy_qualification": "Greedy choices are evaluated on candidate observations at that station; they are not counterfactual outcomes of the complete baseline run.",
+          "action_counts": {
+            "rescored": 15,
+            "retained": 15
+          },
+          "release_reason_counts": {
+            "reached": 5,
+            "resolved": 8,
+            "blocked": 1
+          },
+          "commitment_episodes": 15
+        }
+      }
+    },
+    {
+      "id": "open_office",
+      "title": "Open office with meeting room, break room and quiet office",
+      "split": "development",
+      "delta": {
+        "rooms_entered": 0,
+        "visible_edge_coverage": -0.08797588908648535,
+        "edge_completeness_10cm": -0.055972318093137685,
+        "edge_precision_10cm": 0.026884331561306596,
+        "typed_edge_completeness_10cm": -0.020020639520112182,
+        "typed_edge_precision_10cm": 0.030820994366326404,
+        "path_length_m": -0.770710678118661,
+        "action_seconds": -10.018976406636739,
+        "wall_seconds": 0.7021660869941115,
+        "full_pipeline_wall_seconds": 1.3810747158713639,
+        "frames": 0
+      },
+      "baseline": {
+        "source_evaluated": true,
+        "replay_qualified": true,
+        "availability_reason": null,
+        "status": "complete",
+        "evaluated": true,
+        "stop_reason": "frame_budget",
+        "unentered_reference_rooms": [
+          "break_room",
+          "quiet_office"
+        ],
+        "frames": 300,
+        "path_length_m": 24.65000000000001,
+        "action_seconds": 872.5098818344848,
+        "wall_seconds": 288.3865744653158,
+        "full_pipeline_wall_seconds": 377.7478780951351,
+        "available_artifacts": [
+          "report.html",
+          "replay.mp4",
+          "poster.jpg",
+          "overview.jpg",
+          "cloud.json"
+        ],
+        "media_sha256": {
+          "report.html": "d3407730e0e0b3298d55b1d6c08fee1cb679e42b413e6932e0f2e224bebd7082",
+          "replay.mp4": "045faaf0939bc46be18747e5c42f8cf36a014703d802cc224d9e0a71ac950f99",
+          "poster.jpg": "01b8d1c4cbdc10347af52d4b955df51f506c476e6576f8dccaae9159dc8943f9",
+          "overview.jpg": "a0f9985c19c7b15c0199c341b75d71efce2ae605d9c4f750ceaef86d7eea4b38",
+          "cloud.json": "4ab2ccef1b780adb62e6378af62cb5dee7f47e53a8da8746dc38d10326f439ff"
+        },
+        "receipt_sha256": "9b3d9bf1b3fede8773a1b3db4ec47b68137b9f6487cc2ab8f488c23bc2e6324e",
+        "provenance": {
+          "experiment_sha256": "8165efab3fba19214315985d5c119c8231fb4be51efb01716f26d89bc2aea376",
+          "reference_sha256": "cf74a8f18b19b60dd13f9f5453840de1b03d392712d684cda008c83834a5ee70",
+          "evaluation_sha256": "61af9dd33218d98421eb8f286c7f7102021eb3cf3c5d2c8ea95f11b656add416",
+          "checkpoint_sha256": "bbdad608aa594122563b9e7aebac0c1415a82e9735f29521af660d5ceb21e022"
+        },
+        "visible_edge_coverage": 0.8201534510615386,
+        "edge_precision_10cm": 0.42965100302280845,
+        "edge_completeness_10cm": 0.4276442355119458,
+        "typed_edge_precision_10cm": 0.27906018136850785,
+        "typed_edge_completeness_10cm": 0.2642357575935474,
+        "rooms_entered": 2,
+        "reference_room_count": 4,
+        "diagnostics": {
+          "low_surface_gain_stations": 3,
+          "low_surface_gain_frames": 28,
+          "revisited_pose_stations": 5,
+          "revisited_pose_frames": 48,
+          "exact_revisited_pose_stations": 0,
+          "exact_revisited_pose_frames": 0,
+          "goal_switches_before_proximity": 9
+        },
+        "policy": null,
+        "policy_diagnostics": null
+      },
+      "candidate": {
+        "source_evaluated": true,
+        "replay_qualified": true,
+        "availability_reason": null,
+        "status": "complete",
+        "evaluated": true,
+        "stop_reason": "frame_budget",
+        "unentered_reference_rooms": [
+          "break_room",
+          "quiet_office"
+        ],
+        "frames": 300,
+        "path_length_m": 23.87928932188135,
+        "action_seconds": 862.490905427848,
+        "wall_seconds": 289.0887405523099,
+        "full_pipeline_wall_seconds": 379.12895281100646,
+        "available_artifacts": [
+          "report.html",
+          "replay.mp4",
+          "poster.jpg",
+          "overview.jpg",
+          "cloud.json"
+        ],
+        "media_sha256": {
+          "report.html": "c3761fbc68ae57ae9e1fd53f7eee77096dc3f73cfe7d69129af5b3867055134d",
+          "replay.mp4": "831f0a1410b73ae5e1814dbf7cfdc64c1b00f06491459312a57a34b3ceff2f01",
+          "poster.jpg": "89eb844f706bae43f47ed0ce4ed5816388eb3388307ba74419a8a19c3609921c",
+          "overview.jpg": "a6e27afa452663427a91b07507eafb24172b101b8da62550c78e0bab0beab246",
+          "cloud.json": "2da689abed1b7964ec1636e47868d38b9dc6c4a9c3dda20ad86baf6164ba5d09"
+        },
+        "receipt_sha256": "8626bbee5c22cb838a30574ce7baea058593a7699c2ab074e62cc357d4adedda",
+        "provenance": {
+          "experiment_sha256": "02537bb17eca7534dc87a96674cee52f72d13b51ced8c3d282d8a0ce92542792",
+          "reference_sha256": "cf74a8f18b19b60dd13f9f5453840de1b03d392712d684cda008c83834a5ee70",
+          "evaluation_sha256": "7b196135801fe5ce0db628682d41bb72180390da429fa02d079f610010793ec1",
+          "checkpoint_sha256": "bbdad608aa594122563b9e7aebac0c1415a82e9735f29521af660d5ceb21e022"
+        },
+        "visible_edge_coverage": 0.7321775619750532,
+        "edge_precision_10cm": 0.45653533458411505,
+        "edge_completeness_10cm": 0.3716719174188081,
+        "typed_edge_precision_10cm": 0.30988117573483426,
+        "typed_edge_completeness_10cm": 0.2442151180734352,
+        "rooms_entered": 2,
+        "reference_room_count": 4,
+        "diagnostics": {
+          "low_surface_gain_stations": 7,
+          "low_surface_gain_frames": 68,
+          "revisited_pose_stations": 7,
+          "revisited_pose_frames": 70,
+          "exact_revisited_pose_stations": 0,
+          "exact_revisited_pose_frames": 0,
+          "goal_switches_before_proximity": 4
+        },
+        "policy": {
+          "id": "frontier_commitment_v2",
+          "settings": {
+            "goal_tolerance_m": 0.3,
+            "frontier_match_radius_m": 0.8,
+            "max_commit_steps": 8,
+            "minimum_progress_m": 0.1,
+            "stagnation_steps": 2
+          }
+        },
+        "policy_diagnostics": {
+          "decision_count": 30,
+          "retained_different_from_local_greedy": 12,
+          "local_greedy_qualification": "Greedy choices are evaluated on candidate observations at that station; they are not counterfactual outcomes of the complete baseline run.",
+          "action_counts": {
+            "rescored": 10,
+            "retained": 20
+          },
+          "release_reason_counts": {
+            "blocked": 1,
+            "resolved": 4,
+            "reached": 4
+          },
+          "commitment_episodes": 10
+        }
+      }
+    },
+    {
+      "id": "compact_apartment",
+      "title": "Compact furnished apartment with narrow central hall",
+      "split": "development",
+      "delta": {
+        "rooms_entered": 0,
+        "visible_edge_coverage": -0.009724414243099666,
+        "edge_completeness_10cm": -0.00792325570161817,
+        "edge_precision_10cm": -0.02205963769808672,
+        "typed_edge_completeness_10cm": -0.008780086591820502,
+        "typed_edge_precision_10cm": -0.008756925994128917,
+        "path_length_m": -0.350000000000005,
+        "action_seconds": -9.693141331520224,
+        "wall_seconds": 0.6656914576888084,
+        "full_pipeline_wall_seconds": 0.4620019062422216,
+        "frames": 0
+      },
+      "baseline": {
+        "source_evaluated": true,
+        "replay_qualified": true,
+        "availability_reason": null,
+        "status": "complete",
+        "evaluated": true,
+        "stop_reason": "frame_budget",
+        "unentered_reference_rooms": [
+          "kitchen"
+        ],
+        "frames": 300,
+        "path_length_m": 24.52928932188135,
+        "action_seconds": 914.1084853928778,
+        "wall_seconds": 278.5811851876788,
+        "full_pipeline_wall_seconds": 363.65647090785205,
+        "available_artifacts": [
+          "report.html",
+          "replay.mp4",
+          "poster.jpg",
+          "overview.jpg",
+          "cloud.json"
+        ],
+        "media_sha256": {
+          "report.html": "ff106b979dbb243c78b2b5a530109198611c9fb797b899b3bc2b6258e064549c",
+          "replay.mp4": "38ddb064f05bb40a7eac5a003e9f1728168c99b258f1d70898e6c565e752ef85",
+          "poster.jpg": "7ffbf51f1e3d0ac9196b3ed010d2814174f415e99f508845857e4321264554ff",
+          "overview.jpg": "aff470c893fb47f8b7dd7d6e2d99cbc2c31b7ac9619792b9ea72e5da8a7a31d1",
+          "cloud.json": "9bc33736adfde5b48eba5740eb309ba5b22e42972a2c472376fb9029ea63d9d8"
+        },
+        "receipt_sha256": "4f9bbd2ab5c2c5632fdf5efc86fdbabda5178d8e6e2f375a337626ac6ed4205d",
+        "provenance": {
+          "experiment_sha256": "d85a2ffd36262931b4263a477a1b59911e6ae74787435a04be148bc7033747a4",
+          "reference_sha256": "c279f76276cc49a3af5fc315628a25529d11d6a52dbe59decdf6097005ffba3f",
+          "evaluation_sha256": "13af0dd84b3a12df3412921e5f122ff0ca4d2ad5d731a54cfa80e8ec9e432747",
+          "checkpoint_sha256": "bbdad608aa594122563b9e7aebac0c1415a82e9735f29521af660d5ceb21e022"
+        },
+        "visible_edge_coverage": 0.7415305649581394,
+        "edge_precision_10cm": 0.6425188563409928,
+        "edge_completeness_10cm": 0.45133527407602525,
+        "typed_edge_precision_10cm": 0.4378179266795299,
+        "typed_edge_completeness_10cm": 0.3113127129644121,
+        "rooms_entered": 3,
+        "reference_room_count": 4,
+        "diagnostics": {
+          "low_surface_gain_stations": 12,
+          "low_surface_gain_frames": 118,
+          "revisited_pose_stations": 10,
+          "revisited_pose_frames": 98,
+          "exact_revisited_pose_stations": 1,
+          "exact_revisited_pose_frames": 10,
+          "goal_switches_before_proximity": 7
+        },
+        "policy": null,
+        "policy_diagnostics": null
+      },
+      "candidate": {
+        "source_evaluated": true,
+        "replay_qualified": true,
+        "availability_reason": null,
+        "status": "complete",
+        "evaluated": true,
+        "stop_reason": "frame_budget",
+        "unentered_reference_rooms": [
+          "kitchen"
+        ],
+        "frames": 300,
+        "path_length_m": 24.179289321881345,
+        "action_seconds": 904.4153440613576,
+        "wall_seconds": 279.2468766453676,
+        "full_pipeline_wall_seconds": 364.1184728140943,
+        "available_artifacts": [
+          "report.html",
+          "replay.mp4",
+          "poster.jpg",
+          "overview.jpg",
+          "cloud.json"
+        ],
+        "media_sha256": {
+          "report.html": "d58b3e36d09a7f60ad0d9e79462a36d6eec67a286dff5dbfba1c568a6f4cdb4b",
+          "replay.mp4": "f24758b7499b6c2a1850874739e468f378ddd666bfa3a1a55266f4258421b51a",
+          "poster.jpg": "54317b95cb67cc43ddac9890b5842ce39e592123dffc8a51483ba0254b210f30",
+          "overview.jpg": "d7f646297b541671884d4d03e2ca8c9f94f4458616028c550477612ac590e857",
+          "cloud.json": "d6b3bb4f07b1464cfaabaeb72c1f706e13437c3c0372d5a2b88a4e96e1260f45"
+        },
+        "receipt_sha256": "6225f0be997f7c36acdd0b34bcc1f1b29e2af030138257475bf90f09ee08974a",
+        "provenance": {
+          "experiment_sha256": "81a27044c7b7387a6deaf8e189261034af2554445c5bf1b5a033bfebb7f35fd5",
+          "reference_sha256": "c279f76276cc49a3af5fc315628a25529d11d6a52dbe59decdf6097005ffba3f",
+          "evaluation_sha256": "30eed5c7645965665dd5c0d119c30dd95afa584b4115102bf26f9546dba56ef9",
+          "checkpoint_sha256": "bbdad608aa594122563b9e7aebac0c1415a82e9735f29521af660d5ceb21e022"
+        },
+        "visible_edge_coverage": 0.7318061507150397,
+        "edge_precision_10cm": 0.6204592186429061,
+        "edge_completeness_10cm": 0.4434120183744071,
+        "typed_edge_precision_10cm": 0.429061000685401,
+        "typed_edge_completeness_10cm": 0.3025326263725916,
+        "rooms_entered": 3,
+        "reference_room_count": 4,
+        "diagnostics": {
+          "low_surface_gain_stations": 13,
+          "low_surface_gain_frames": 128,
+          "revisited_pose_stations": 10,
+          "revisited_pose_frames": 98,
+          "exact_revisited_pose_stations": 1,
+          "exact_revisited_pose_frames": 10,
+          "goal_switches_before_proximity": 2
+        },
+        "policy": {
+          "id": "frontier_commitment_v2",
+          "settings": {
+            "goal_tolerance_m": 0.3,
+            "frontier_match_radius_m": 0.8,
+            "max_commit_steps": 8,
+            "minimum_progress_m": 0.1,
+            "stagnation_steps": 2
+          }
+        },
+        "policy_diagnostics": {
+          "decision_count": 30,
+          "retained_different_from_local_greedy": 14,
+          "local_greedy_qualification": "Greedy choices are evaluated on candidate observations at that station; they are not counterfactual outcomes of the complete baseline run.",
+          "action_counts": {
+            "rescored": 13,
+            "retained": 17
+          },
+          "release_reason_counts": {
+            "reached": 8,
+            "resolved": 4
+          },
+          "commitment_episodes": 13
+        }
+      }
+    }
+  ],
+  "public_artifacts_sha256": {
+    "policy-v2/paired_metrics.png": "163cbf1b395d20795e808e715cbd95e998441feb775a5893a83c143b6227fca7",
+    "policy-v2/visibility_curves.png": "a421087f1bdcc5c752e7b7d971cc463e20a142b87d1e09bae284bfe4fc4a032c",
+    "policy-v2/residential_branch/replay.mp4": "a9a8cc194a20a3ca5672ba331e5b2d921cb6378cb1ebae4c496eacd05e360260",
+    "policy-v2/residential_branch/poster.jpg": "b89d7c0979e1694ac0db1efd7c54213c018deae7716371a887e5fe78875b746e",
+    "policy-v2/residential_branch/overview.jpg": "649eed9b16b3d5bfc5bd581bc2b26cea1537424080eb11439cdf6953067fb937",
+    "policy-v2/residential_branch/cloud.json": "73e28e73a563288a2b3dc9e8bd36dae4ef465cbf48d86853fc81e47d61179236",
+    "policy-v2/loop_workspaces/replay.mp4": "ae29896734a5fa1cd2cae725b33eda193f460b20473cb13a6052dde19d688fa1",
+    "policy-v2/loop_workspaces/poster.jpg": "3ba898c93fa43b8cae1e083bc40774e43381ff7b1d11a0a79e282d473f455961",
+    "policy-v2/loop_workspaces/overview.jpg": "ef124d3651673f94acd0471c2d4d9154701e708ce77ab857c93b9a4ff906b15b",
+    "policy-v2/loop_workspaces/cloud.json": "c1ea4758948045b4e3c683ff3aa26d5fbbbe21b7c05ebcc43c72c39b4225b157",
+    "policy-v2/open_office/replay.mp4": "831f0a1410b73ae5e1814dbf7cfdc64c1b00f06491459312a57a34b3ceff2f01",
+    "policy-v2/open_office/poster.jpg": "89eb844f706bae43f47ed0ce4ed5816388eb3388307ba74419a8a19c3609921c",
+    "policy-v2/open_office/overview.jpg": "a6e27afa452663427a91b07507eafb24172b101b8da62550c78e0bab0beab246",
+    "policy-v2/open_office/cloud.json": "2da689abed1b7964ec1636e47868d38b9dc6c4a9c3dda20ad86baf6164ba5d09",
+    "policy-v2/compact_apartment/replay.mp4": "f24758b7499b6c2a1850874739e468f378ddd666bfa3a1a55266f4258421b51a",
+    "policy-v2/compact_apartment/poster.jpg": "54317b95cb67cc43ddac9890b5842ce39e592123dffc8a51483ba0254b210f30",
+    "policy-v2/compact_apartment/overview.jpg": "d7f646297b541671884d4d03e2ca8c9f94f4458616028c550477612ac590e857",
+    "policy-v2/compact_apartment/cloud.json": "d6b3bb4f07b1464cfaabaeb72c1f706e13437c3c0372d5a2b88a4e96e1260f45"
+  }
+}
