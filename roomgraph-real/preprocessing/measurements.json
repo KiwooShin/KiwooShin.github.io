@@ -1,0 +1,62 @@
+{
+  "status": "complete",
+  "threshold": 0.7,
+  "device": "cuda",
+  "pilot_manifest_sha256": "ff5a10db2e7a120791a77f6dc17f3cbb9b4eec4060df840bfbf71b4a13ca0dc9",
+  "checkpoint_sha256": "bbdad608aa594122563b9e7aebac0c1415a82e9735f29521af660d5ceb21e022",
+  "source_sha256": {
+    "compare_real_edges.py": "eb61ff6db14bf6a9d417bb1cf37dee0ac4cc13b9df4e5b568dbca6d49471d78c",
+    "real_edges.py": "b1e627ff5c0b54a1368e0c79afa4d2ca8c01bf268b1eb17090b4eab5bb86b768",
+    "model.py": "5d67c7d3b32655db5aaf09a4130c9a3639cfbe42fc1057544e3cc1336300dadf"
+  },
+  "frames": 240,
+  "vga_exact_matches": 121,
+  "wall_seconds": 41.47356711188331,
+  "peak_tensor_memory_mib": 172.1513671875,
+  "metrics_status": "No verified real edge labels. Coverage is NOT accuracy.",
+  "methods": {
+    "stretch": {
+      "frames": 240,
+      "median_forward_transfer_ms": 11.598902521654963,
+      "mean_predicted_pixel_fraction": 0.0020876566569010416,
+      "paired_mean_predicted_pixel_fraction": 0.002020381370523416
+    },
+    "letterbox": {
+      "frames": 240,
+      "median_forward_transfer_ms": 3.8624710869044065,
+      "mean_predicted_pixel_fraction": 0.004625023735894098,
+      "paired_mean_predicted_pixel_fraction": 0.004640521425189395
+    },
+    "portrait": {
+      "frames": 240,
+      "median_forward_transfer_ms": 3.2763518393039703,
+      "mean_predicted_pixel_fraction": 0.003993479410807291,
+      "paired_mean_predicted_pixel_fraction": 0.004052364464962121
+    },
+    "portrait_large": {
+      "frames": 240,
+      "median_forward_transfer_ms": 7.205624599009752,
+      "mean_predicted_pixel_fraction": 0.0013261583116319444,
+      "paired_mean_predicted_pixel_fraction": 0.001332180559142562
+    },
+    "vga_portrait_large": {
+      "frames": 121,
+      "median_forward_transfer_ms": 7.250842172652483,
+      "mean_predicted_pixel_fraction": 0.00131049037964876,
+      "paired_mean_predicted_pixel_fraction": 0.00131049037964876
+    }
+  },
+  "publication": {
+    "summary_sha256": "33404040c306586eb764afd484b5ab9bcef66c0db7c642dd6bcf54cb0e696e86",
+    "image_sha256": {
+      "comparison_001.jpg": "48408b0f794cbde063058e13541dd4217a723bfb7ba16c38fe3cb336e2da057a",
+      "comparison_035.jpg": "4c60730223b79a4f3ae6fd69a06b775ee2bcfa7c3b84cb0a0844b3b72d31d21f",
+      "comparison_068.jpg": "2559835c67bccbe6f807d3fbec141d9201af6ed0c7f00f901c6560333d851c86",
+      "comparison_101.jpg": "a89c54f09e24332aee87c40b2745f0aed35cd8049a5c31be6dcbe847f023284b",
+      "comparison_139.jpg": "6f384a60091e99ad206af99a2c94cdf7a36d2f83240eb6c9751392df9eed149f",
+      "comparison_174.jpg": "eb1053df48c26b54a5273ddec12d3d7b813a94197ae84e174dec5ac393466e63",
+      "comparison_206.jpg": "12539eff671e8b45a87990ec49d3b66a2473ea009c6baf521df21710849be581",
+      "comparison_238.jpg": "452e3c5890749a37e3fbe49b6744d4c6fe52becca5272c49a4aaa53457fd43f2"
+    }
+  }
+}

@@ -57,6 +57,13 @@ def build(run, output, license_path):
         '<p><a href="measurements.json">Measurements and publication provenance</a> · <a href="dataset-license.txt">Retained dataset license</a></p></main>',
         1,
     )
+    if (output / "preprocessing/index.html").exists():
+        page = page.replace(
+            "</main>",
+            '<p><a href="preprocessing/">New: same-view real edge preprocessing comparison</a> '
+            '— five input strategies, with accuracy limitations and local annotation review.</p></main>',
+            1,
+        )
     (output / "index.html").write_text(page)
     public = {
         **summary,
