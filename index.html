@@ -344,6 +344,15 @@
   <section id="projects">
     <h2>Projects</h2>
 
+    <article class="project" id="roomgraph-real">
+      <h3><a href="roomgraph-real/">RoomGraph Real — Reconstruction with Imperfect Cameras</a></h3>
+      <p>A structural-edge model trained in simulation is applied to 240 views from a real ARKitScenes RGB-D capture. The pilot tests camera-pose jitter, drift, calibration bias, depth scale and timestamp errors while reusing frozen predictions.</p>
+      <p>Confidence and multi-view filtering improve agreement with available reference surfaces, but substantial pose noise still degrades reconstruction. This is one development capture with estimated poses; architectural-edge accuracy remains unmeasured.</p>
+      <div class="tags"><span>Real RGB-D</span><span>ARKitScenes</span><span>Calibration sensitivity</span><span>Frozen model</span></div>
+      <figure class="featured"><a href="roomgraph-real/"><img src="roomgraph-real/overview.jpg" width="1800" height="1220" loading="lazy" alt="Real indoor capture with four rows of top-down camera directions and learned structural-edge overlays"></a><figcaption>Recorded camera movement, learned predictions and partial observed geometry. Dataset: ARKitScenes, Baruch et al. (2021).</figcaption></figure>
+      <p class="links"><a href="roomgraph-real/"><strong>Camera replay, interactive maps &amp; error experiments →</strong></a> · <a href="https://github.com/KiwooShin/roomgraph">Code ↗</a></p>
+    </article>
+
     <article class="project" id="roomgraph-spaces">
       <h3><a href="roomgraph-spaces/">RoomGraph — Exploring Multiple Connected Spaces</a></h3>
       <p>The same frozen perception model and exploration policy start in one room and grow partial 3D maps across four furnished development buildings: a branching home, loop-connected workspaces, an open office and a compact apartment.</p>

@@ -209,3 +209,20 @@ JavaScript errors, and desktop/mobile layouts. There are 13 publisher unit tests
 The complete captures, traces, local reports and QA evidence remain in RoomGraph's
 ignored `vis/` tree. Implementation and measured protocol:
 [RoomGraph 857e828](https://github.com/KiwooShin/roomgraph/commit/857e828).
+
+## Real RGB-D and calibration sensitivity
+
+`roomgraph-real/` presents the first ARKitScenes pilot: 240 selected views, a
+frozen synthetic model and 24 measured fusion variants. The page distinguishes
+surface agreement to an incomplete reference subset from architectural-edge
+accuracy, which is not measured. It includes a 48-second camera replay, the
+requested four-row overlay layout, and four interactive maps.
+
+Build selected media and a public measurement summary with
+`python scripts/build_arkitscenes_page.py`. The publisher requires completed
+measurements, matching manifest/replay hashes and the surface-metric qualification.
+It copies only four selected media files and the self-contained report, retaining
+the dataset license. Raw captures and predictions remain local in RoomGraph.
+
+Implementation and experiment:
+[RoomGraph 3e08239](https://github.com/KiwooShin/roomgraph/commit/3e08239).
