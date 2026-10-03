@@ -38,6 +38,19 @@ source bundle. Actual calibration runs in a browser Web Worker using pinned
 Pyodide 314.0.2 and NumPy/SciPy from jsDelivr. Visitors need no installation or
 local server. Imported observations remain in their browser.
 
+The card also embeds a muted, looping 22-second MP4 with playback controls and
+a downloadable GIF. It records the actual app's synthetic example and accepted
+optimizer iterates; playback timing is adjusted, not solver wall time. Autoplay
+is disabled for visitors requesting reduced motion. To recreate the media:
+
+```bash
+cd ../calibration_lab
+xvfb-run -a python scripts/record_preview.py --url http://127.0.0.1:8770/calibration-lab/
+```
+
+Copy `workflow.mp4`, `workflow.gif`, and `poster.png` from `artifacts/preview/`
+into this repo's `media/head-camera-calibration/` folder.
+
 Regenerate the published lab from the sibling repository:
 
 ```bash

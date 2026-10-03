@@ -284,13 +284,18 @@
         <span>robust optimization</span><span>Three.js</span>
       </div>
       <figure class="featured">
-        <a href="media/head-camera-calibration/preview.png">
-          <img src="media/head-camera-calibration/preview.png" width="1440" height="1400"
-               loading="lazy"
-               alt="Calibration lab comparing green perceived arm landmarks with orange forward-kinematics predictions, with pink residuals in robot and camera views">
-        </a>
-        <figcaption>Green: observed landmarks. Orange: predicted geometry.
-        Pink: disagreement to minimize. Click to enlarge the lab preview.</figcaption>
+        <video id="calibration-preview" autoplay muted loop playsinline controls preload="metadata"
+               width="1280" height="960" style="width:100%;height:auto;display:block;border-radius:8px"
+               poster="media/head-camera-calibration/poster.png"
+               aria-label="22-second recorded calibration workflow with synthetic observations">
+          <source src="media/head-camera-calibration/workflow.mp4" type="video/mp4">
+          <a href="media/head-camera-calibration/workflow.gif">Watch the animated GIF</a>
+        </video>
+        <figcaption>22-second recorded app demo: observe → compare → calibrate → validate.
+        Green: observations. Orange: FK predictions. Pink: disagreement.
+        Synthetic data; actual accepted optimizer updates, with timing adjusted for playback.
+        <a href="media/head-camera-calibration/workflow.mp4">Open video</a> ·
+        <a href="media/head-camera-calibration/workflow.gif">Animated GIF</a>.</figcaption>
       </figure>
       <p>The default synthetic experiment reduces held-out landmark RMS error
       from <strong>30.46 to 9.48 mm</strong> with noise, missing observations, and
@@ -728,5 +733,12 @@
   </footer>
 
 </main>
+<script>
+  const calibrationPreview = document.getElementById('calibration-preview');
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    calibrationPreview.autoplay = false;
+    calibrationPreview.pause();
+  }
+</script>
 </body>
 </html>
