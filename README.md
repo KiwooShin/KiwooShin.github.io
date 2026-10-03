@@ -25,6 +25,16 @@ minute or two. Any later `git push` updates it automatically.
 (Naming the repo `KiwooShin.github.io` gives you the root URL; any other repo
 name would serve at `kiwooshin.github.io/<repo>`.)
 
+## Head-camera self-calibration project
+
+The homepage card at `#head-camera-calibration` links to the standalone
+[calibration lab](https://github.com/KiwooShin/calibration_lab) and its local
+launch instructions. `media/head-camera-calibration/preview.png` is copied from
+the lab's `docs/preview.png` at commit `b6377e4`. The reported 30.46 → 9.48 mm
+held-out landmark RMS is from the default synthetic experiment, not a hardware
+measurement. The Python calibration server runs locally; GitHub Pages hosts
+the portfolio description and preview only.
+
 ## RoomGraph project page
 
 `roomgraph/index.html` presents four furnished rooms, 32 calibrated camera views,

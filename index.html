@@ -344,6 +344,38 @@
   <section id="projects">
     <h2>Projects</h2>
 
+    <article class="project" id="head-camera-calibration">
+      <h3><a href="https://github.com/KiwooShin/calibration_lab">Head-Camera Self-Calibration — Learning Arm Geometry from 3D Landmarks</a></h3>
+      <p>Use a head-mounted camera's labeled 3D arm and hand positions to
+      calibrate forward kinematics for two seven-joint arms. With known camera
+      calibration and synchronized encoder readings, robust least squares fits
+      14 joint offsets and four link-length corrections.</p>
+      <p><strong>Observe → Compare → Calibrate → Validate.</strong> The interactive
+      lab shows perceived landmarks, predicted arm geometry, and their disagreement
+      in 3D and in the camera view. Step through optimizer updates, then evaluate
+      the corrected model on held-out poses.</p>
+      <div class="tags">
+        <span>forward kinematics</span><span>3D perception</span>
+        <span>robust optimization</span><span>Three.js</span>
+      </div>
+      <figure class="featured">
+        <a href="media/head-camera-calibration/preview.png">
+          <img src="media/head-camera-calibration/preview.png" width="1440" height="1400"
+               loading="lazy"
+               alt="Calibration lab comparing green perceived arm landmarks with orange forward-kinematics predictions, with pink residuals in robot and camera views">
+        </a>
+        <figcaption>Green: observed landmarks. Orange: predicted geometry.
+        Pink: disagreement to minimize. Click to enlarge the lab preview.</figcaption>
+      </figure>
+      <p>The default synthetic experiment reduces held-out landmark RMS error
+      from <strong>30.46 to 9.48 mm</strong> with noise, missing observations, and
+      outliers. It uses a generic robot model and simulated perception outputs;
+      real 3D predictions can be imported after adapting the robot geometry.
+      Image inference is not bundled.</p>
+      <p class="links"><a href="https://github.com/KiwooShin/calibration_lab">Code &amp; local launch instructions →</a>
+        · <a href="https://github.com/KiwooShin/calibration_lab/blob/main/docs/observations.md">3D observation format →</a></p>
+    </article>
+
     <article class="project" id="roomgraph-real">
       <h3><a href="roomgraph-real/">RoomGraph Real — Reconstruction with Imperfect Cameras</a></h3>
       <p>A structural-edge model trained in simulation is applied to 240 views from a real ARKitScenes RGB-D capture. The pilot tests camera-pose jitter, drift, calibration bias, depth scale and timestamp errors while reusing frozen predictions.</p>
