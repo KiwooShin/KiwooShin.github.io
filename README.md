@@ -27,13 +27,27 @@ name would serve at `kiwooshin.github.io/<repo>`.)
 
 ## Head-camera self-calibration project
 
-The homepage card at `#head-camera-calibration` links to the standalone
-[calibration lab](https://github.com/KiwooShin/calibration_lab) and its local
-launch instructions. `media/head-camera-calibration/preview.png` is copied from
+The homepage card at `#head-camera-calibration` opens the fully interactive
+static lab at `calibration-lab/`, with source in the standalone
+[calibration lab](https://github.com/KiwooShin/calibration_lab).
+`media/head-camera-calibration/preview.png` is copied from
 the lab's `docs/preview.png` at commit `b6377e4`. The reported 30.46 → 9.48 mm
 held-out landmark RMS is from the default synthetic experiment, not a hardware
-measurement. The Python calibration server runs locally; GitHub Pages hosts
-the portfolio description and preview only.
+measurement. GitHub Pages serves the interface, initial example, and Python
+source bundle. Actual calibration runs in a browser Web Worker using pinned
+Pyodide 314.0.2 and NumPy/SciPy from jsDelivr. Visitors need no installation or
+local server. Imported observations remain in their browser.
+
+Regenerate the published lab from the sibling repository:
+
+```bash
+cd ../calibration_lab
+python build_static.py --output ../homepage/calibration-lab
+```
+
+Validate with `tests/static_browser_smoke.py` in the lab repo against a local
+static preview. This checks real WebAssembly fits against native Python,
+import/export, invalid input, regeneration, mobile layout, and no API requests.
 
 ## RoomGraph project page
 
